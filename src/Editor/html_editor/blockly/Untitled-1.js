@@ -1,41 +1,3 @@
-import Blockly from "blockly";
-
-//construction functions
-const genAttributes = attribute => {
-  let res = [];
-  attribute.forEach(element => {
-    res.push({
-      type: element.name,
-      belongTo: element.belongTo,
-      message0: "%1 %2 %3",
-      args0: [
-        {
-          type: "field_label_serializable",
-          name: "attribute_name",
-          text: element.name
-        },
-        {
-          type: "field_input",
-          name: "attribute_value",
-          text: "set value"
-        },
-        {
-          type: "input_value",
-          name: "input_attributes",
-          align: "RIGHT"
-        }
-      ],
-      output: null,
-      colour: 255,
-      tooltip: element.description,
-      helpUrl: "soon"
-    });
-  });
-  console.log(res);
-  return res;
-};
-
-//pre constarct blocks
 const attributes = [
   {
     name: "accept",
@@ -51,7 +13,7 @@ const attributes = [
   },
   {
     name: "accesskey",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Sets a shortcut key to activate/focus an element"
   },
   {
@@ -123,7 +85,7 @@ const attributes = [
   },
   {
     name: "class",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description:
       "Sets one or more classnames for an element (refers to a class in a style sheet)"
   },
@@ -150,12 +112,12 @@ const attributes = [
   },
   {
     name: "contenteditable",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Sets whether the content of an element is editable or not"
   },
   {
     name: "contextmenu",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description:
       "Sets a context menu for an element. The context menu appears when a user right-clicks on the element"
   },
@@ -177,7 +139,7 @@ const attributes = [
   },
   {
     name: "data-*",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Used to store custom data private to the page or application"
   },
   {
@@ -199,7 +161,7 @@ const attributes = [
   },
   {
     name: "dir",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Sets the text direction for the content in an element"
   },
   {
@@ -229,12 +191,12 @@ const attributes = [
   },
   {
     name: "draggable",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Sets whether an element is draggable or not"
   },
   {
     name: "dropzone",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description:
       "Sets whether the dragged data is copied moved or linked when dropped"
   },
@@ -282,7 +244,7 @@ const attributes = [
   },
   {
     name: "hidden",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Sets that an element is not yet or is no longer relevant"
   },
   {
@@ -308,7 +270,7 @@ const attributes = [
   },
   {
     name: "id",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Sets a unique id for an element"
   },
   {
@@ -328,7 +290,7 @@ const attributes = [
   },
   {
     name: "lang",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Sets the language of the elements content"
   },
   {
@@ -913,7 +875,7 @@ const attributes = [
   },
   {
     name: "spellcheck",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description:
       "Sets whether the element is to have its spelling and grammar checked or not"
   },
@@ -960,12 +922,12 @@ const attributes = [
   },
   {
     name: "style",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Sets an inline CSS style for an element"
   },
   {
     name: "tabindex",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Sets the tabbing order of an element"
   },
   {
@@ -976,12 +938,12 @@ const attributes = [
   },
   {
     name: "title",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description: "Sets extra information about an element"
   },
   {
     name: "translate",
-    belongTo: ["ALL"],
+    belongTo: ["all"],
     description:
       "Sets whether the content of an element should be translated or not"
   },
@@ -1022,319 +984,3 @@ const attributes = [
       "Sets how the text in a text area is to be wrapped when submitted in a form"
   }
 ];
-
-//blocks
-export const htmlMetadataBlocks = [
-  {
-    type: "html",
-    message0: "document %1 %2",
-    args0: [
-      {
-        type: "input_dummy"
-      },
-      {
-        type: "input_statement",
-        name: "content",
-        check: "document"
-      }
-    ],
-    colour: 0,
-    tooltip: "",
-    helpUrl: "http://www.w3schools.com/tags/tag_html.asp"
-  },
-  {
-    type: "head",
-    message0: "head %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 20,
-    tooltip: "",
-    helpUrl: ""
-  },
-  {
-    type: "body",
-    message0: "body %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 20,
-    tooltip: "",
-    helpUrl: ""
-  },
-  {
-    type: "text",
-    message0: "text %1",
-    args0: [
-      {
-        type: "field_input",
-        name: "value",
-        text: "default"
-      }
-    ],
-    previousStatement: null,
-    nextStatement: null,
-    colour: 160,
-    tooltip: "",
-    helpUrl: ""
-  }
-];
-export const htmlBasicElementsBlocks = [
-  {
-    type: "h1",
-    message0: "Heading level 1 %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 120,
-    tooltip: "",
-    helpUrl: ""
-  },
-  {
-    type: "h2",
-    message0: "Heading level 2 %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 120,
-    tooltip: "",
-    helpUrl: ""
-  },
-  {
-    type: "h3",
-    message0: "Heading level 3 %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 120,
-    tooltip: "",
-    helpUrl: ""
-  },
-  {
-    type: "h4",
-    message0: "Heading level 4 %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 120,
-    tooltip: "",
-    helpUrl: ""
-  },
-  {
-    type: "h5",
-    message0: "Heading level 5 %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 120,
-    tooltip: "",
-    helpUrl: ""
-  },
-  {
-    type: "h6",
-    message0: "Heading level 6 %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 120,
-    tooltip: "",
-    helpUrl: ""
-  },
-  {
-    type: "p",
-    message0: "paragraph %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 120,
-    tooltip: "",
-    helpUrl: ""
-  },
-  {
-    type: "br",
-    message0: "line breaker %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 120,
-    tooltip: "",
-    helpUrl: ""
-  },
-  {
-    type: "hr",
-    message0: "thematic break %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 120,
-    tooltip: "",
-    helpUrl: ""
-  }
-];
-export const htmlStylingElements = [
-  {
-    type: "div",
-    message0: "section %1 %2",
-    args0: [
-      {
-        type: "input_value",
-        name: "input_attributes"
-      },
-      {
-        type: "input_statement",
-        name: "input_body",
-        align: "CENTRE"
-      }
-    ],
-    inputsInline: true,
-    previousStatement: null,
-    nextStatement: null,
-    colour: 120,
-    tooltip: "",
-    helpUrl: ""
-  }
-];
-export const htmlAttributes = genAttributes(attributes);
-
-const makeBlock = json => {
-  Blockly.Blocks[json.type] = {
-    init: function() {
-      this.jsonInit(json);
-    }
-  };
-};
-const makeBlocks = jsonArry => {
-  for (let iBlock in jsonArry) {
-    makeBlock(jsonArry[iBlock]);
-  }
-};
-
-const registerBlocks = () => {
-  makeBlocks(htmlMetadataBlocks);
-  makeBlocks(htmlBasicElementsBlocks);
-  makeBlocks(htmlStylingElements);
-  makeBlocks(htmlAttributes);
-  console.log("html blocks registiration is done");
-};
-export default registerBlocks;

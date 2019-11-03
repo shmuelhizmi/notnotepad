@@ -1,5 +1,11 @@
 import Blockly from "blockly";
 
+import {
+  htmlMetadataBlocks,
+  htmlBasicElementsBlocks,
+  htmlStylingElements,
+  htmlAttributes
+} from "./html_blocks";
 const HtmlGenerator = new Blockly.Generator("HTML");
 
 HtmlGenerator.ORDER_ATOMIC = 0;
@@ -22,24 +28,44 @@ const autoGenElement = (
   haveParameters = true,
   haveBody = true
 ) => {
-  let value_parameters = HtmlGenerator.valueToCode(
+  const value_body = HtmlGenerator.statementToCode(block, "input_body");
+  const value_attributes = HtmlGenerator.statementToCode(
     block,
-    "parameters",
-    HtmlGenerator.ORDER_ATOMIC
+    "input_attributes"
   );
-  let statements_body = HtmlGenerator.statementToCode(block, "body");
 
-  let code =
-    "<" +
-    name +
-    value_parameters +
-    ">\n" +
-    statements_body +
-    "<" +
-    name +
-    "/>\n";
+  const code = `<${name}${
+    value_attributes != "" ? `${value_attributes}` : ""
+  }> ${value_body}\n</${name}>\n`;
   return code;
 };
+
+const autoGenElementArray = elementArray => {
+  elementArray.forEach(element => {
+    HtmlGenerator[element.type] = block => {
+      return autoGenElement(element.type, block);
+    };
+  });
+};
+
+const autoGenAttribute = (name, block, last = false) => {
+  const value = block.getFieldValue("attribute_value");
+  const attributes = HtmlGenerator.statementToCode(block, "input_attributes");
+  let code = `${block.type} = "${value}"${
+    attributes != "" && attributes != null ? ` ${attributes}` : ""
+  }`;
+  return code;
+};
+
+const autoGenAttributeArray = elementArray => {
+  elementArray.forEach(element => {
+    HtmlGenerator[element.type] = block => {
+      return autoGenAttribute(element.type, block);
+    };
+  });
+};
+
+autoGenAttributeArray(htmlAttributes);
 
 //value
 HtmlGenerator["text"] = block => {

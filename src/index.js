@@ -1,12 +1,17 @@
+//react
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+//defualt styling
+import "./index.css";
+
+//firebase
 import * as firebase from "firebase";
-import { config } from "rxjs";
+
+//test
 import HtmlEditor from "./Editor/html_editor/HtmlEditor";
+import { testStore } from "./state/reducers/test";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDk2TmMUiqmD-AVCKD2dZNW__AfN0EdRFE",
@@ -21,17 +26,12 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const Editor = new HtmlEditor();
+const Store = testStore;
+const Editor = <HtmlEditor></HtmlEditor>;
 
-ReactDOM.render(
-  React.createElement(HtmlEditor),
-  document.getElementById("editor")
-);
-ReactDOM.render(<a>{Editor.state.Code}</a>, document.getElementById("code"));
+ReactDOM.render(Editor, document.getElementById("editor"));
+//ReactDOM.render(<a>{Editor.state.Code}</a>, document.getElementById("code"));
 
-window.setTimeout(() => {
-  console.log(Editor.state.Code);
-}, 1000);
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
