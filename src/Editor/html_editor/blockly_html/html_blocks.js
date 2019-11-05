@@ -1,6 +1,5 @@
 import Blockly from "blockly";
-
-//construction functions
+//blocks construction functions
 const genAttributes = attribute => {
   let res = [];
   attribute.forEach(element => {
@@ -31,7 +30,6 @@ const genAttributes = attribute => {
       helpUrl: "soon"
     });
   });
-  console.log(res);
   return res;
 };
 
@@ -1022,6 +1020,18 @@ const attributes = [
       "Sets how the text in a text area is to be wrapped when submitted in a form"
   }
 ];
+const makeBlock = block => {
+  Blockly.Blocks[block.type] = {
+    init: function() {
+      this.jsonInit(block);
+    }
+  };
+};
+const makeBlocks = blocks => {
+  blocks.forEach(block => {
+    makeBlock(block);
+  });
+};
 
 //blocks
 export const htmlMetadataBlocks = [
@@ -1317,24 +1327,10 @@ export const htmlStylingElements = [
 ];
 export const htmlAttributes = genAttributes(attributes);
 
-const makeBlock = json => {
-  Blockly.Blocks[json.type] = {
-    init: function() {
-      this.jsonInit(json);
-    }
-  };
-};
-const makeBlocks = jsonArry => {
-  for (let iBlock in jsonArry) {
-    makeBlock(jsonArry[iBlock]);
-  }
-};
-
 const registerBlocks = () => {
   makeBlocks(htmlMetadataBlocks);
   makeBlocks(htmlBasicElementsBlocks);
   makeBlocks(htmlStylingElements);
   makeBlocks(htmlAttributes);
-  console.log("html blocks registiration is done");
 };
 export default registerBlocks;

@@ -1,0 +1,16 @@
+[
+  {
+    "task": "faster html selection",
+    "state": "on-going",
+    "steps": {
+      "1": "righ cilck to search"
+    }
+  },
+  {
+    "task": "html Database",
+    "state": "on-going",
+    "steps": {
+      "1": "document and pre program every tag and attr"
+    }
+  }
+]

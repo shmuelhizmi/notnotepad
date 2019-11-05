@@ -2,13 +2,14 @@
 import React from "react";
 
 //UI
+import { Search, Portal, Button } from "semantic-ui-react";
 
 //blockly editor
 import Blockly from "blockly";
-import registerBlocks from "./blockly/html_blocks";
-import HtmlGenerator from "./blockly/html_gen";
-import ConfigFiles from "./blockly/toolbox";
-//blockly rederer
+import registerBlocks from "./blockly_html/html_blocks";
+import HtmlGenerator from "./blockly_html/html_gen";
+import ConfigFiles, { SEARCH_TOOLBOX_XML } from "./blockly_html/toolbox";
+//blockly rederer=
 import ReactBlocklyComponent from "react-blockly";
 import parseWorkspaceXml from "react-blockly/src/BlocklyHelper";
 
@@ -20,12 +21,11 @@ class HtmlEditor extends React.Component {
   constructor(props) {
     registerBlocks();
     super(props);
-    console.log(ConfigFiles.INITIAL_TOOLBOX_XML);
     this.state = {
       toolboxCategories: parseWorkspaceXml(ConfigFiles.INITIAL_TOOLBOX_XML),
       Code: "html",
       SaveData: "",
-      IsBlockly: true
+      searchKey: ""
     };
   }
   workspaceDidChange = workspace => {
@@ -35,9 +35,36 @@ class HtmlEditor extends React.Component {
     this.setState({ Code: code });
   };
 
+  searchBlocksKeyUpdate = event => {
+    const value = event.target.value;
+    this.setState({ searchKey: value });
+    console.log(this.state.searchKey);
+    this.searchBlocks();
+  };
+
+  searchBlocks = () => {
+    this.setState({
+      toolboxCategories: parseWorkspaceXml(
+        SEARCH_TOOLBOX_XML(this.state.searchKey)
+      )
+    });
+  };
+
   render = () => {
     return (
       <div>
+        <Portal trigger={<Button content="Search" />} openOnTriggerFocus={true}>
+          <Search
+            style={{
+              left: "40%",
+              position: "fixed",
+              top: "50%",
+              zIndex: 1000
+            }}
+            results={[{ title: "toolbox filter updated" }]}
+          ></Search>
+        </Portal>
+
         <ReactBlocklyComponent.BlocklyEditor
           toolboxCategories={this.state.toolboxCategories}
           workspaceConfiguration={{
@@ -52,7 +79,6 @@ class HtmlEditor extends React.Component {
           wrapperDivClassName="fill-height"
           workspaceDidChange={this.workspaceDidChange}
         />
-
         <Highlight {...defaultProps} code={this.state.Code} language="markup">
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <Pre className={className} style={style}>

@@ -34,9 +34,12 @@ const autoGenElement = (
     "input_attributes"
   );
 
-  const code = `<${name}${
-    value_attributes != "" ? `${value_attributes}` : ""
-  }> ${value_body}\n</${name}>\n`;
+  let code = "<" + name;
+  if (value_attributes != "" || value_attributes != null) {
+    code += ` ${value_attributes}`;
+    console.log(value_attributes);
+  }
+  code += ">\n" + value_body + "\n</" + name + ">\n";
   return code;
 };
 

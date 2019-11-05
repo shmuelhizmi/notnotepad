@@ -1,0 +1,1910 @@
+[
+  {
+    "name": "comment",
+    "displayName": "comment",
+    "description": "A comment in HTML (and related XML, SGML and SHTML) uses the same syntax as the SGML comment or XML comment, depending on the doctype. \nUnlike most HTML tags, comments do not nest.",
+    "type": "tag",
+    "tags": ["document"],
+    "custom": {
+      "openTag": "<!--",
+      "closeTag": "-->",
+      "childTag": "text"
+    }
+  },
+  {
+    "name": "!DOCTYPE",
+    "displayName": "document",
+    "description": "Defines that the document type is html",
+    "type": "tag",
+    "tags": ["document"],
+    "custom": {
+      "openTag": "<!DOCTYPE html>"
+    }
+  },
+  {
+    "name": "a",
+    "displayName": "link",
+    "description": "Specific a anchor (Hyperlink)Use for link in internal/external web documents.",
+    "type": "tag",
+    "tags": ["links"],
+    "custom": false
+  },
+  {
+    "name": "abbr",
+    "description": "Describes an abbreviation (acronyms)",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "address",
+    "description": "Describes an address information",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "area",
+    "description": "Defines an area in an image map",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "article",
+    "description": "Defines an article",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "aside",
+    "description": "Describes contain set(or write) on aside place in page contain",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "audio",
+    "description": "Specific audio content",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "b",
+    "description": "Specific text weight bold",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "base",
+    "description": "The base element allows authors to specify the document base URL.",
+    "type": "tag",
+    "tags": ["metadata"],
+    "custom": false
+  },
+  {
+    "name": "bdo",
+    "description": "Specific direction of text display",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "blockquote",
+    "description": "Specifies a long quotation",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "body",
+    "description": "Defines a main section(body) part in HTML document",
+    "type": "tag",
+    "custom": true
+  },
+  {
+    "name": "br",
+    "description": "Specific a single line break",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "button",
+    "description": "Specifies a press/push button",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "canvas",
+    "description": "Specifies the display graphics on HTML web documment",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "caption",
+    "description": "Define a table caption",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "cite",
+    "description": "Specifies a text citation",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "code",
+    "description": "Specifies computer code text",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "col",
+    "description": "Specifies a each column within a colgroup element in table",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "colgroup",
+    "description": "Defines a group of one or more columns inside table",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "command",
+    "description": "Define a command button, invoke as per user action",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "datalist",
+    "description": "Define a list of pre-defined options surrounding input tag",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "dd",
+    "description": "Defines a definition description in a definition list",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "del",
+    "description": "Specific text deleted in web document",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "details",
+    "description": "Define a additional details hide or show as per user action",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "dfn",
+    "description": "Define a definition team",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "div",
+    "description": "Define a division part",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "dl",
+    "description": "Define a definition list",
+    "type": "tag",
+    "tags": ["lists"],
+    "custom": false
+  },
+  {
+    "name": "dt",
+    "description": "Define a definition team",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "em",
+    "description": "Define a text is emphasize format",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "embed",
+    "description": "Define a embedding external application using a relative plug-in",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "fieldset",
+    "description": "Defines a grouping of related form elements",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "figcaption",
+    "description": "Represents a caption text corresponding with a figure element",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "figure",
+    "description": "Represents self-contained content corresponding with a figcaption element",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "footer",
+    "description": "Defines a footer section containing details about the author, copyright, contact us, sitemap, or links to related documents.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "form",
+    "description": "Defines a form section that having interactive input controls to submit form information to a server.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "h1-6",
+    "description": "Defines a Headings level from 1 to 6 different sizes.",
+    "type": "tag",
+    "tags": ["basic text"],
+    "custom": true
+  },
+  {
+    "name": "head",
+    "description": "The head element represents a collection of metadata for the Document.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "header",
+    "description": "Defines as a container that hold introductory content or navigation links.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "hr",
+    "description": "Represent a thematic break between paragraph-level tags. It is typically draw horizontal line.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "html",
+    "description": "The html element represents the root of an HTML document",
+    "type": "tag",
+    "custom": {
+      "perentTag": "!DOCTYPE"
+    }
+  },
+  {
+    "name": "i",
+    "description": "Defines a italic format text",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "iframe",
+    "description": "Defines a inline frame that embedded external content into current web document.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "img",
+    "description": "Used to insert image into a web document.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "input",
+    "description": "Define a get information in selected input",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "ins",
+    "description": "Used to indicate text that is inserted into a page and indicates changes to a document.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "kbd",
+    "description": "Used to identify text that are represents keyboard input.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "label",
+    "description": "Used to caption a text label with a form input element.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "legend",
+    "description": "Used to add a caption (title) to a group of related form elements that are grouped together into the fieldset tag.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "li",
+    "description": "Define a list item either ordered list or unordered list.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "link",
+    "description": "Used to load an external stylesheets into HTML document.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "map",
+    "description": "Defines an clickable image map.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "mark",
+    "description": "Used to highlighted (marked) specific text.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "menu",
+    "description": "Used to display a unordered list of items/menu of commands.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "meta",
+    "description": "Used to provide structured metadata about a web page.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "meter",
+    "description": "Used to measure data within a given range.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "nav",
+    "description": "Used to defines group of navigation links.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "noscript",
+    "description": "Used to provide an fall-back content to the browser that does not support the JavaScript.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "object",
+    "description": "Used to embedded objects such as images, audio, videos, Java applets, and Flash animations.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "ol",
+    "description": "Defines an ordered list of items.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "optgroup",
+    "description": "Used to create a grouping of options, the related options are grouped under specific headings.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "option",
+    "description": "Represents option items within a select, optgroup or datalist element.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "output",
+    "description": "Used for representing the result of a calculation.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "p",
+    "description": "Used to represents a paragraph text.",
+    "type": "tag",
+    "tags": ["basic text"],
+    "custom": false
+  },
+  {
+    "name": "param",
+    "description": "Provides parameters for embedded object element.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "pre",
+    "description": "Used to represents preformatted text.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "progress",
+    "description": "Represents the progress of a task.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "q",
+    "description": "Represents the short quotation.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "rp",
+    "description": "Used to provide parentheses around fall-back content to the browser that does not support the ruby annotations.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "rt",
+    "description": "Specifies the ruby text of ruby annotation.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "ruby",
+    "description": "Used to represents a ruby annotation.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "s",
+    "description": "Text display in strikethrough style.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "samp",
+    "description": "Represents text that should be interpreted as sample output from a computer program.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "script",
+    "description": "Defines client-side JavaScript.",
+    "type": "tag",
+    "custom": true
+  },
+  {
+    "name": "section",
+    "description": "Used to divide a document into number of different generic section.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "select",
+    "description": "Used to create a drop-down list.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "small",
+    "description": "Used to makes the text one size smaller.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "source",
+    "description": "Used to specifies multiple media resources.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "span",
+    "description": "Used to grouping and applying styles to inline elements.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "strong",
+    "description": "Represents strong emphasis greater important text.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "style",
+    "description": "Used to add CSS style to an HTML document.",
+    "type": "tag",
+    "custom": true
+  },
+  {
+    "name": "sub",
+    "description": "Represents inline subscript text.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "sup",
+    "description": "Represents inline superscript text.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "table",
+    "description": "Used to defines a table in an HTML document.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "tbody",
+    "description": "Used for grouping table rows.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "td",
+    "description": "Used for creates standard data cell in HTML table.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "textarea",
+    "description": "Create multi-line text input.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "tfoot",
+    "description": "Used to adding a footer to a table that containing summary of the table data.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "th",
+    "description": "Used for creates header of a group of cell in HTML table.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "thead",
+    "description": "Used to adding a header to a table that containing header information of the table.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "time",
+    "description": "Represents the date and/or time in an HTML document.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "title",
+    "description": "The title element represents the document’s title or name",
+    "type": "tag",
+    "tags": ["metadata"],
+    "custom": {
+      "noAttributes": true
+    }
+  },
+  {
+    "name": "tr",
+    "description": "Defines a row of cells in a table.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "track",
+    "description": "Represents text tracks for both the audio and video tags.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "u",
+    "description": "Represents underlined text.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "ul",
+    "description": "Defines an unordered list of items.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "var",
+    "description": "Represents a variable in a computer program or mathematical equation.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "video",
+    "description": "Used to embed video content.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "wbr",
+    "description": "Defines a word break opportunity in a long string of text.",
+    "type": "tag",
+    "custom": false
+  },
+  {
+    "name": "accept",
+    "belongTo": ["input"],
+    "description": "Sets what types of files that the server accepts (only for type=\"file\")",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "accept-charset",
+    "belongTo": ["form"],
+    "description": "Sets the character encodings that are to be used for the form submission",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "accesskey",
+    "belongTo": ["ALL"],
+    "description": "Sets a shortcut key to activate/focus an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "action",
+    "belongTo": ["form"],
+    "description": "Sets where to send the form-data when the form is submitted",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "align",
+    "belongTo": ["Obsolete!"],
+    "description": "Sets the alignment according to surrounding elements. Obsolete attribute use CSS instead",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "alt",
+    "belongTo": ["area", "img", "input"],
+    "description": "Sets an alternate text when the original element fails to display",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "async",
+    "belongTo": ["script"],
+    "description": "Sets that the script is executed asynchronously (only for external scripts)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "autocomplete",
+    "belongTo": ["form", "input"],
+    "description": "Sets whether the form or the input element should have autocomplete enabled",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "autofocus",
+    "belongTo": ["button", "input", "select", "textarea"],
+    "description": "Sets that the element should automatically get focus when the page loads",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "autoplay",
+    "belongTo": ["audio", "video"],
+    "description": "Sets that the audio/video will start playing as soon as it is ready",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "bgcolor",
+    "belongTo": ["Obsolete!"],
+    "description": "Sets the background color of an element. Use CSS instead",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "border",
+    "belongTo": ["Obsolete!"],
+    "description": "Sets the width of the border of an element. Use CSS instead",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "charset",
+    "belongTo": ["meta", "script"],
+    "description": "Sets the character encoding",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "checked",
+    "belongTo": ["input"],
+    "description": "Sets that an input element should be pre-selected when the page loads (for type=\"checkbox\" or type=\"radio\")",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "cite",
+    "belongTo": ["blockquote", "del", "ins", "q"],
+    "description": "Sets a URL which explains the quote/deleted/inserted text",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "class",
+    "belongTo": ["ALL"],
+    "description": "Sets one or more classnames for an element (refers to a class in a style sheet)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "color",
+    "belongTo": ["Obsolete!"],
+    "description": "Sets the text color of an element. Use CSS instead",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "cols",
+    "belongTo": ["textarea"],
+    "description": "Sets the visible width of a text area",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "colspan",
+    "belongTo": ["td", "th"],
+    "description": "Sets the number of columns a table cell should span",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "content",
+    "belongTo": ["meta"],
+    "description": "Gives the value associated with the http-equiv or name attribute",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "contenteditable",
+    "belongTo": ["ALL"],
+    "description": "Sets whether the content of an element is editable or not",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "contextmenu",
+    "belongTo": ["ALL"],
+    "description": "Sets a context menu for an element. The context menu appears when a user right-clicks on the element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "controls",
+    "belongTo": ["audio", "video"],
+    "description": "Sets that audio/video controls should be displayed (such as a play/pause button etc)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "coords",
+    "belongTo": ["area"],
+    "description": "Sets the coordinates of the area",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "data",
+    "belongTo": ["object"],
+    "description": "Sets the URL of the resource to be used by the object",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "data-*",
+    "belongTo": ["ALL"],
+    "description": "Used to store custom data private to the page or application",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "datetime",
+    "belongTo": ["del", "ins", "time"],
+    "description": "Sets the date and time",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "default",
+    "belongTo": ["track"],
+    "description": "Sets that the track is to be enabled if the users preferences do not indicate that another track would be more appropriate",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "defer",
+    "belongTo": ["script"],
+    "description": "Sets that the script is executed when the page has finished parsing (only for external scripts)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "dir",
+    "belongTo": ["ALL"],
+    "description": "Sets the text direction for the content in an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "dirname",
+    "belongTo": ["input", "textarea"],
+    "description": "Sets that the text direction will be submitted",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "disabled",
+    "belongTo": [
+      "button",
+      "fieldset",
+      "input",
+      "optgroup",
+      "option",
+      "select",
+      "textarea"
+    ],
+    "description": "Sets that the specified element/group of elements should be disabled",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "download",
+    "belongTo": ["a", "area"],
+    "description": "Sets that the target will be downloaded when a user clicks on the hyperlink",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "draggable",
+    "belongTo": ["ALL"],
+    "description": "Sets whether an element is draggable or not",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "dropzone",
+    "belongTo": ["ALL"],
+    "description": "Sets whether the dragged data is copied moved or linked when dropped",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "enctype",
+    "belongTo": ["form"],
+    "description": "Sets how the form-data should be encoded when submitting it to the server (only for method=\"post\")",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "for",
+    "belongTo": ["label", "output"],
+    "description": "Sets which form element(s) a label/calculation is bound to",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "form",
+    "belongTo": [
+      "button",
+      "fieldset",
+      "input",
+      "label",
+      "meter",
+      "object",
+      "output",
+      "select",
+      "textarea"
+    ],
+    "description": "Sets the name of the form the element belongs to",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "formaction",
+    "belongTo": ["button", "input"],
+    "description": "Sets where to send the form-data when a form is submitted. Only for type=\"submit\"",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "headers",
+    "belongTo": ["td", "th"],
+    "description": "Sets one or more headers cells a cell is related to",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "height",
+    "belongTo": [
+      "canvas",
+      "embed",
+      "iframe",
+      "img",
+      "input",
+      "object",
+      "video"
+    ],
+    "description": "Sets the height of the element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "hidden",
+    "belongTo": ["ALL"],
+    "description": "Sets that an element is not yet or is no longer relevant",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "high",
+    "belongTo": ["meter"],
+    "description": "Sets the range that is considered to be a high value",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "href",
+    "belongTo": ["a", "area", "base", "link"],
+    "description": "Sets the URL of the page the link goes to",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "hreflang",
+    "belongTo": ["a", "area", "link"],
+    "description": "Sets the language of the linked document",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "http-equiv",
+    "belongTo": ["meta"],
+    "description": "Provides an HTTP header for the information/value of the content attribute",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "id",
+    "belongTo": ["ALL"],
+    "description": "Sets a unique id for an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ismap",
+    "belongTo": ["img"],
+    "description": "Sets an image as a server-side image-map",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "kind",
+    "belongTo": ["track"],
+    "description": "Sets the kind of text track",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "label",
+    "belongTo": ["track", "option", "optgroup"],
+    "description": "Sets the title of the text track",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "lang",
+    "belongTo": ["ALL"],
+    "description": "Sets the language of the elements content",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "list",
+    "belongTo": ["input"],
+    "description": "Refers to a datalist element that contains pre-defined options for an input element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "loop",
+    "belongTo": ["audio", "video"],
+    "description": "Sets that the audio/video will start over again every time it is finished",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "low",
+    "belongTo": ["meter"],
+    "description": "Sets the range that is considered to be a low value",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "max",
+    "belongTo": ["input", "meter", "progress"],
+    "description": "Sets the maximum value",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "maxlength",
+    "belongTo": ["input", "textarea"],
+    "description": "Sets the maximum number of characters allowed in an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "media",
+    "belongTo": ["a", "area", "link", "source", "style"],
+    "description": "Sets what media/device the linked document is optimized for",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "method",
+    "belongTo": ["form"],
+    "description": "Sets the HTTP method to use when sending form-data",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "min",
+    "belongTo": ["input", "meter"],
+    "description": "Sets a minimum value",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "multiple",
+    "belongTo": ["input", "select"],
+    "description": "Sets that a user can enter more than one value",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "muted",
+    "belongTo": ["video", "audio"],
+    "description": "Sets that the audio output of the video should be muted",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "name",
+    "belongTo": [
+      "button",
+      "fieldset",
+      "form",
+      "iframe",
+      "input",
+      "map",
+      "meta",
+      "object",
+      "output",
+      "param",
+      "select",
+      "textarea"
+    ],
+    "description": "Sets the name of the element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "novalidate",
+    "belongTo": ["form"],
+    "description": "Sets that the form should not be validated when submitted",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onabort",
+    "belongTo": ["audio", "embed", "img", "object", "video"],
+    "description": "Script to be run on abort",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onafterprint",
+    "belongTo": ["body"],
+    "description": "Script to be run after the document is printed",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onbeforeprint",
+    "belongTo": ["body"],
+    "description": "Script to be run before the document is printed",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onbeforeunload",
+    "belongTo": ["body"],
+    "description": "Script to be run when the document is about to be unloaded",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onblur",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the element loses focus",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "oncanplay",
+    "belongTo": ["audio", "embed", "object", "video"],
+    "description": "Script to be run when a file is ready to start playing (when it has buffered enough to begin)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "oncanplaythrough",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when a file can be played all the way to the end without pausing for buffering",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onchange",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the value of the element is changed",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onclick",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the element is being clicked",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "oncontextmenu",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when a context menu is triggered",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "oncopy",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the content of the element is being copied",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "oncuechange",
+    "belongTo": ["track"],
+    "description": "Script to be run when the cue changes in a track element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "oncut",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the content of the element is being cut",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ondblclick",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the element is being double-clicked",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ondrag",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the element is being dragged",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ondragend",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run at the end of a drag operation",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ondragenter",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when an element has been dragged to a valid drop target",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ondragleave",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when an element leaves a valid drop target",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ondragover",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when an element is being dragged over a valid drop target",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ondragstart",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run at the start of a drag operation",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ondrop",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when dragged element is being dropped",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ondurationchange",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the length of the media changes",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onemptied",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when something bad happens and the file is suddenly unavailable (like unexpectedly disconnects)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onended",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the media has reach the end (a useful event for messages like \"thanks for listening\")",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onerror",
+    "belongTo": [
+      "audio",
+      "body",
+      "embed",
+      "img",
+      "object",
+      "script",
+      "style",
+      "video"
+    ],
+    "description": "Script to be run when an error occurs",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onfocus",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the element gets focus",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onhashchange",
+    "belongTo": ["body"],
+    "description": "Script to be run when there has been changes to the anchor part of the a URL",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "oninput",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the element gets user input",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "oninvalid",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the element is invalid",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onkeydown",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when a user is pressing a key",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onkeypress",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when a user presses a key",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onkeyup",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when a user releases a key",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onload",
+    "belongTo": ["body", "iframe", "img", "input", "link", "script", "style"],
+    "description": "Script to be run when the element is finished loading",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onloadeddata",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when media data is loaded",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onloadedmetadata",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when meta data (like dimensions and duration) are loaded",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onloadstart",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run just as the file begins to load before anything is actually loaded",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onmousedown",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when a mouse button is pressed down on an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onmousemove",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run as long as the mouse pointer is moving over an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onmouseout",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when a mouse pointer moves out of an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onmouseover",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when a mouse pointer moves over an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onmouseup",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when a mouse button is released over an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onmousewheel",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when a mouse wheel is being scrolled over an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onoffline",
+    "belongTo": ["body"],
+    "description": "Script to be run when the browser starts to work offline",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ononline",
+    "belongTo": ["body"],
+    "description": "Script to be run when the browser starts to work online",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onpagehide",
+    "belongTo": ["body"],
+    "description": "Script to be run when a user navigates away from a page",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onpageshow",
+    "belongTo": ["body"],
+    "description": "Script to be run when a user navigates to a page",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onpaste",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the user pastes some content in an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onpause",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the media is paused either by the user or programmatically",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onplay",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the media is ready to start playing",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onplaying",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the media actually has started playing.",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onpopstate",
+    "belongTo": ["body"],
+    "description": "Script to be run when the windows history changes.",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onprogress",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the browser is in the process of getting the media data",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onratechange",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run each time the playback rate changes (like when a user switches to a slow motion or fast forward mode).",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onreset",
+    "belongTo": ["form"],
+    "description": "Script to be run when a reset button in a form is clicked.",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onresize",
+    "belongTo": ["body"],
+    "description": "Script to be run when the browser window is being resized.",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onscroll",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when an elements scrollbar is being scrolled",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onsearch",
+    "belongTo": ["input"],
+    "description": "Script to be run when the user writes something in a search field (for input=\"search\")",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onseeked",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the seeking attribute is set to false indicating that seeking has ended",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onseeking",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the seeking attribute is set to true indicating that seeking is active",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onselect",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the element gets selected",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onshow",
+    "belongTo": ["menu"],
+    "description": "Script to be run when a menu element is shown as a context menu",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onstalled",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the browser is unable to fetch the media data for whatever reason",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onstorage",
+    "belongTo": ["body"],
+    "description": "Script to be run when a Web Storage area is updated",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onsubmit",
+    "belongTo": ["form"],
+    "description": "Script to be run when a form is submitted",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onsuspend",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when fetching the media data is stopped before it is completely loaded for whatever reason",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ontimeupdate",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the playing position has changed (like when the user fast forwards to a different point in the media)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "ontoggle",
+    "belongTo": ["details"],
+    "description": "Script to be run when the user opens or closes the details element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onunload",
+    "belongTo": ["body"],
+    "description": "Script to be run when a page has unloaded (or the browser window has been closed)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onvolumechange",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run each time the volume of a video/audio has been changed",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onwaiting",
+    "belongTo": ["audio", "video"],
+    "description": "Script to be run when the media has paused but is expected to resume (like when the media pauses to buffer more data)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "onwheel",
+    "belongTo": ["Visible elements"],
+    "description": "Script to be run when the mouse wheel rolls up or down over an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "open",
+    "belongTo": ["details"],
+    "description": "Sets that the details should be visible (open) to the user",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "optimum",
+    "belongTo": ["meter"],
+    "description": "Sets what value is the optimal value for the gauge",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "pattern",
+    "belongTo": ["input"],
+    "description": "Sets a regular expression that an input elements value is checked against",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "placeholder",
+    "belongTo": ["input", "textarea"],
+    "description": "Sets a short hint that describes the expected value of the element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "poster",
+    "belongTo": ["video"],
+    "description": "Sets an image to be shown while the video is downloading or until the user hits the play button",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "preload",
+    "belongTo": ["audio", "video"],
+    "description": "Sets if and how the author thinks the audio/video should be loaded when the page loads",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "readonly",
+    "belongTo": ["input", "textarea"],
+    "description": "Sets that the element is read-only",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "rel",
+    "belongTo": ["a", "area", "link"],
+    "description": "Sets the relationship between the current document and the linked document",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "required",
+    "belongTo": ["input", "select", "textarea"],
+    "description": "Sets that the element must be filled out before submitting the form",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "reversed",
+    "belongTo": ["ol"],
+    "description": "Sets that the list order should be descending (9,8,7...)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "rows",
+    "belongTo": ["textarea"],
+    "description": "Sets the visible number of lines in a text area",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "rowspan",
+    "belongTo": ["td", "th"],
+    "description": "Sets the number of rows a table cell should span",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "sandbox",
+    "belongTo": ["iframe"],
+    "description": "Enables an extra set of restrictions for the content in an iframe",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "scope",
+    "belongTo": ["th"],
+    "description": "Sets whether a header cell is a header for a column row or group of columns or rows",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "scoped",
+    "belongTo": ["style"],
+    "description": "Sets that the styles only apply to this elements parent element and that elements child elements",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "selected",
+    "belongTo": ["option"],
+    "description": "Sets that an option should be pre-selected when the page loads",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "shape",
+    "belongTo": ["area"],
+    "description": "Sets the shape of the area",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "size",
+    "belongTo": ["input", "select"],
+    "description": "Sets the width in characters (for input) or specifies the number of visible options (for select)",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "sizes",
+    "belongTo": ["img", "link", "source"],
+    "description": "Sets the size of the linked resource",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "span",
+    "belongTo": ["col", "colgroup"],
+    "description": "Sets the number of columns to span",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "spellcheck",
+    "belongTo": ["ALL"],
+    "description": "Sets whether the element is to have its spelling and grammar checked or not",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "src",
+    "belongTo": [
+      "audio",
+      "embed",
+      "iframe",
+      "img",
+      "input",
+      "script",
+      "source",
+      "track",
+      "video"
+    ],
+    "description": "Sets the URL of the media file",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "srcdoc",
+    "belongTo": ["iframe"],
+    "description": "Sets the HTML content of the page to show in the iframe",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "srclang",
+    "belongTo": ["track"],
+    "description": "Sets the language of the track text data (required if kind=\"subtitles\")",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "srcset",
+    "belongTo": ["img", "source"],
+    "description": "Sets the URL of the image to use in different situations",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "start",
+    "belongTo": ["ol"],
+    "description": "Sets the start value of an ordered list",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "step",
+    "belongTo": ["input"],
+    "description": "Sets the legal number intervals for an input field",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "style",
+    "belongTo": ["ALL"],
+    "description": "Sets an inline CSS style for an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "tabindex",
+    "belongTo": ["ALL"],
+    "description": "Sets the tabbing order of an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "target",
+    "belongTo": ["a", "area", "base", "form"],
+    "description": "Sets the target for where to open the linked document or where to submit the form",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "title",
+    "belongTo": ["ALL"],
+    "description": "Sets extra information about an element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "translate",
+    "belongTo": ["ALL"],
+    "description": "Sets whether the content of an element should be translated or not",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "type",
+    "belongTo": [
+      "button",
+      "embed",
+      "input",
+      "link",
+      "menu",
+      "object",
+      "script",
+      "source",
+      "style"
+    ],
+    "description": "Sets the type of element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "usemap",
+    "belongTo": ["img", "object"],
+    "description": "Sets an image as a client-side image-map",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "value",
+    "belongTo": [
+      "button",
+      "input",
+      "li",
+      "option",
+      "meter",
+      "progress",
+      "param"
+    ],
+    "description": "Sets the value of the element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "width",
+    "belongTo": [
+      "canvas",
+      "embed",
+      "iframe",
+      "img",
+      "input",
+      "object",
+      "video"
+    ],
+    "description": "Sets the width of the element",
+    "type": "attribute",
+    "custom": false
+  },
+  {
+    "name": "wrap",
+    "belongTo": ["textarea"],
+    "description": "Sets how the text in a text area is to be wrapped when submitted in a form",
+    "type": "attribute",
+    "custom": false
+  }
+]

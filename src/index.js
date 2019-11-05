@@ -27,9 +27,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const Store = testStore;
-const Editor = <HtmlEditor></HtmlEditor>;
 
-ReactDOM.render(Editor, document.getElementById("editor"));
+ReactDOM.render(<HtmlEditor></HtmlEditor>, document.getElementById("editor"));
 //ReactDOM.render(<a>{Editor.state.Code}</a>, document.getElementById("code"));
 
 // If you want your app to work offline and load faster, you can change
