@@ -10,8 +10,8 @@ import "./index.css";
 import * as firebase from "firebase";
 
 //test
-import HtmlEditor from "./Editor/html_editor/HtmlEditor";
-import { testStore } from "./state/reducers/test";
+import BlocklyEditor from "./Editor/blockly/blockly_Editor";
+import blockDatabase from "./Editor/html_editor/blockly_html/blockDatabase.json";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDk2TmMUiqmD-AVCKD2dZNW__AfN0EdRFE",
@@ -26,9 +26,14 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const Store = testStore;
-
-ReactDOM.render(<HtmlEditor></HtmlEditor>, document.getElementById("editor"));
+ReactDOM.render(
+  <BlocklyEditor
+    name="html"
+    data={blockDatabase}
+    INITIAL_XML=""
+  ></BlocklyEditor>,
+  document.getElementById("editor")
+);
 //ReactDOM.render(<a>{Editor.state.Code}</a>, document.getElementById("code"));
 
 // If you want your app to work offline and load faster, you can change

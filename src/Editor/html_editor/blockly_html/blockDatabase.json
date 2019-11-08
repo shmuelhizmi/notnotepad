@@ -1,5 +1,16 @@
 [
   {
+    "name": "text",
+    "displayName": "text",
+    "description": "add text to tags",
+    "type": "text",
+    "tags": ["basic", "basic text"],
+    "custom": {
+      "noAttributes": true,
+      "noBody": true
+    }
+  },
+  {
     "name": "comment",
     "displayName": "comment",
     "description": "A comment in HTML (and related XML, SGML and SHTML) uses the same syntax as the SGML comment or XML comment, depending on the doctype. \nUnlike most HTML tags, comments do not nest.",
@@ -18,7 +29,10 @@
     "type": "tag",
     "tags": ["document"],
     "custom": {
-      "openTag": "<!DOCTYPE html>"
+      "openTag": "<!DOCTYPE html>",
+      "closeTag": "<!-- End of document -->",
+      "noPerent": true,
+      "noAttributes": true
     }
   },
   {
@@ -242,7 +256,7 @@
     "custom": false
   },
   {
-    "name": "h1-6",
+    "name": "h1",
     "description": "Defines a Headings level from 1 to 6 different sizes.",
     "type": "tag",
     "tags": ["basic text"],
@@ -1080,7 +1094,7 @@
     "custom": false
   },
   {
-    "name": "name",
+    "name": "name_attribute",
     "belongTo": [
       "button",
       "fieldset",

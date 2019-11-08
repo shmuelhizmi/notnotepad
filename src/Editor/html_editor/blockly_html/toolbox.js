@@ -21,7 +21,7 @@ const toolboxCategoryGen = (Blocks, name, searchKey = "") => {
 };
 
 const INITIAL_XML =
-  '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="html" x="70" y="30"></block></xml>';
+  '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="comment" x="70" y="30"></block></xml>';
 
 const INITIAL_TOOLBOX_XML =
   '<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">\n' +

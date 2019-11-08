@@ -5,9 +5,9 @@ import React from "react";
 import { Search, Portal, Button } from "semantic-ui-react";
 
 //blockly editor
-import Blockly from "blockly";
-import registerBlocks from "./blockly_html/html_blocks";
-import HtmlGenerator from "./blockly_html/html_gen";
+import Blockly from "../blockly/blockly_Editor";
+//import registerBlocks from "./blockly_html/html_blocks";
+//import HtmlGenerator from "./blockly_html/html_gen";
 import ConfigFiles, { SEARCH_TOOLBOX_XML } from "./blockly_html/toolbox";
 //blockly rederer=
 import ReactBlocklyComponent from "react-blockly";
@@ -17,11 +17,15 @@ import parseWorkspaceXml from "react-blockly/src/BlocklyHelper";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { Pre, LineNo } from "../code_viewer/style";
 
+//new gen
+import BlocklyEditor from "../blockly/blockly_Editor";
+import blockDatabase from "./blockly_html/blockDatabase.json";
+
 class HtmlEditor extends React.Component {
   constructor(props) {
-    registerBlocks();
     super(props);
     this.state = {
+      //HtmlGenerator: jsonToBlocks(blockDatabase, "HTML"),
       toolboxCategories: parseWorkspaceXml(ConfigFiles.INITIAL_TOOLBOX_XML),
       Code: "html",
       SaveData: "",
@@ -30,7 +34,7 @@ class HtmlEditor extends React.Component {
   }
   workspaceDidChange = workspace => {
     const newXml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
-    const code = HtmlGenerator.workspaceToCode(workspace);
+    const code = this.state.HtmlGenerator.workspaceToCode(workspace);
     this.setState({ SaveData: newXml });
     this.setState({ Code: code });
   };
@@ -52,6 +56,12 @@ class HtmlEditor extends React.Component {
 
   render = () => {
     return (
+      <BlocklyEditor
+        name="html"
+        data={blockDatabase}
+        INITIAL_XML={ConfigFiles.INITIAL_XML}
+      ></BlocklyEditor>
+    ); /*(
       <div>
         <Portal trigger={<Button content="Search" />} openOnTriggerFocus={true}>
           <Search
@@ -94,7 +104,7 @@ class HtmlEditor extends React.Component {
           )}
         </Highlight>
       </div>
-    );
+    );*/
   };
 }
 export default HtmlEditor;
