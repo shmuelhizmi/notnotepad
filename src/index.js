@@ -11,7 +11,7 @@ import * as firebase from "firebase";
 
 //test
 import BlocklyEditor from "./Editor/blockly/blockly_Editor";
-import blockDatabase from "./Editor/html_editor/blockly_html/blockDatabase.json";
+import blockDatabase from "./Editor/html_editor/blockly_html/data/blockDatabase.json";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDk2TmMUiqmD-AVCKD2dZNW__AfN0EdRFE",

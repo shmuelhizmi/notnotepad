@@ -5,18 +5,19 @@ export const makeTagBlock = block => {
   const name = block.displayName || block.name;
   const color = 100;
   const tooltip = block.description;
-  const isCustom = block.custom == false ? false : true;
-  const noPerent = block.custom.noPerent || false;
+  const haveMetadata = block.metadata == false ? false : true;
+  const noPerent = block.metadata.noPerent || false;
+
   let args = [
     {
       type: "input_dummy"
     }
   ];
-  if (isCustom == false || block.custom.noAttributes == null) {
-    args.push({ type: "input_value", name: "attribute" });
+  if (haveMetadata == false || block.metadata.noAttributes == null) {
+    args.push({ type: "input_value", name: "attribute_input" });
   }
-  if (isCustom == false || block.custom.nobody == null) {
-    args.push({ type: "input_statement", name: "tag_body" });
+  if (haveMetadata == false || block.metadata.nobody == null) {
+    args.push({ type: "input_statement", name: "tag_body_input" });
   }
   return UniversalBlockMaker(
     type,
@@ -26,6 +27,7 @@ export const makeTagBlock = block => {
     tooltip,
     "",
     true,
-    !noPerent
+    !noPerent,
+    haveMetadata ? block.metadata : {}
   );
 };

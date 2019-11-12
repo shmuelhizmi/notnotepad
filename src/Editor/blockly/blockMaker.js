@@ -6,7 +6,8 @@ export const UniversalBlockMaker = (
   tooltip = "",
   helpUrl = "",
   inputsInline = false,
-  hasPerent = false
+  hasPerent = false,
+  metadata = {}
 ) => {
   let message0 = name;
   for (let count = 1; count <= inputArguments.length; count++) {
@@ -19,7 +20,8 @@ export const UniversalBlockMaker = (
     inputsInline: inputsInline,
     colour: color,
     tooltip: tooltip,
-    helpUrl: helpUrl
+    helpUrl: helpUrl,
+    metadata: metadata
   };
   if (hasPerent) {
     result.nextStatement = null;
