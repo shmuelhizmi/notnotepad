@@ -1,0 +1,5 @@
+{
+  "name": "html",
+  "blocksDir": ["attribute", "tag", "text"],
+  "dataDir": "data"
+}

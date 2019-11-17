@@ -6,55 +6,92 @@ import Blockly from "blockly";
 import ReactBlocklyComponent from "react-blockly";
 import parseWorkspaceXml from "react-blockly/src/BlocklyHelper";
 
-//block gen
-import { makeTagBlock } from "../html_editor/blockly_html/tags/tag_block_gen";
-import { FakeAtt as makeAttBlock } from "../html_editor/blockly_html/attributes/attribute_block_gen";
-
-//code gen
-import { makeTagBlockCode } from "../html_editor/blockly_html/tags/tag_code_gen";
-
 export default class BlocklyEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.toolboxCategories = makeToolboxCategories(props.data); //toolblox categories for reinitialization
+    this.init = this.getInit(props.name);
+    this.blockData = this.getBlocksData(this.init);
+    this.toolboxCategories = makeToolboxCategories(this.blockData); //toolblox categories for reinitialization
     this.state = {
       toolbox: genarateToolboxFromCategories(this.toolboxCategories),
       Initial_xml: props.INITIAL_XML
     };
     this.generator = new Blockly.Generator(props.name);
-    this.registerBlocksFromData(props.data); //build blocks from data
-    this.registerBlocksCodeFromData(props.data);
+    this.makeBlocksByCategory(this.init, this.blockData);
   }
+  //get data
 
-  registerBlocksFromData = data => {
-    data.forEach(block => {
-      registerBlock(makeBlockByCategory(block));
+  getInit = name => {
+    return require("./blockly_files_editors/" + name + "/init.json");
+  };
+
+  getBlocksData = init => {
+    return require("./blockly_files_editors/" +
+      init.name +
+      "/" +
+      init.dataDir +
+      "/blockDatabase.json");
+  };
+
+  makeBlocksByCategory = (init, blocks = this.getBlocksData(init)) => {
+    let BlockMakers = {};
+    let BlockCodeMakers = {};
+
+    init.blocksDir.forEach(category => {
+      const makeBlock = require("./blockly_files_editors/" +
+        init.name +
+        "/" +
+        category +
+        "/block_gen.js").default;
+      console.log(makeBlock);
+      BlockMakers[category] = makeBlock;
+    });
+
+    init.blocksDir.forEach(category => {
+      const makeBlockCode = require("./blockly_files_editors/" +
+        init.name +
+        "/" +
+        category +
+        "/" +
+        "code_gen.js").default;
+      BlockCodeMakers[category] = makeBlockCode;
+    });
+
+    blocks.forEach(block => {
+      let makeBlock = () => {};
+      makeBlock = BlockMakers[block.type];
+      registerBlock(makeBlock(block));
+    });
+
+    blocks.forEach(block => {
+      let makeBlockCode = () => {};
+      makeBlockCode = BlockCodeMakers[block.type];
+      this.registerBlockCodeFromData(makeBlockCode(block));
+      console.log(makeBlockCode(block));
     });
   };
 
-  registerBlocksCodeFromData = data => {
+  registerBlockCodeFromData = blockData => {
+    console.log(blockData);
     //make code genarator from data
-    data.forEach(blockData => {
-      this.generator[blockData.name] = block => {
-        const preConstractBlock = makeBlockCodeByCategory(block, blockData);
-        let resultCode = preConstractBlock.blockText;
-        preConstractBlock.statement_inputs.forEach(statement => {
-          resultCode = replace(
-            resultCode,
-            "%" + statement + "%",
-            this.generator.statementToCode(block, statement) || ""
-          );
-        });
-        preConstractBlock.value_inputs.forEach(vlaue => {
-          resultCode = replace(
-            resultCode,
-            "%" + vlaue + "%",
-            this.generator.valueToCode(block, vlaue, 1) || ""
-          );
-        });
-        return resultCode;
-      };
-    });
+    this.generator[blockData.name] = block => {
+      let resultCode = blockData.blockText;
+      blockData.statement_inputs.forEach(statement => {
+        resultCode = replace(
+          resultCode,
+          "%" + statement + "%",
+          this.generator.statementToCode(block, statement) || ""
+        );
+      });
+      blockData.value_inputs.forEach(vlaue => {
+        resultCode = replace(
+          resultCode,
+          "%" + vlaue + "%",
+          this.generator.valueToCode(block, vlaue, 1) || ""
+        );
+      });
+      return resultCode;
+    };
   };
 
   workspaceDidChange = workspace => {
@@ -89,34 +126,6 @@ const registerBlock = block => {
       this.jsonInit(block);
     }
   };
-};
-
-const makeBlockByCategory = block => {
-  switch (block.type) {
-    case "tag": {
-      return makeTagBlock(block);
-    }
-    case "attribute": {
-      return makeAttBlock(block);
-    }
-    case "text": {
-      return makeAttBlock(block);
-    }
-  }
-};
-
-const makeBlockCodeByCategory = (block, blockData) => {
-  switch (blockData.type) {
-    case "tag": {
-      return makeTagBlockCode(block, blockData);
-    }
-    case "attribute": {
-      return " ";
-    }
-    case "text": {
-      return " ";
-    }
-  }
 };
 
 //TOOLBOX

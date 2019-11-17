@@ -1,5 +1,4 @@
-import Blockly from "blockly";
-export const FakeAtt = block => {
+const makeBlock = block => {
   return {
     type: block.type,
     message0: "name =  %1 %2",
@@ -20,3 +19,4 @@ export const FakeAtt = block => {
     helpUrl: ""
   };
 };
+export default makeBlock;

@@ -1,6 +1,6 @@
-import { UniversalBlockMaker } from "../../../blockly/blockMaker";
+import { UniversalBlockMaker } from "../../../blockMaker";
 
-export const makeTagBlock = block => {
+const makeBlock = block => {
   const type = block.name;
   const name = block.displayName || block.name;
   const color = 100;
@@ -31,3 +31,4 @@ export const makeTagBlock = block => {
     haveMetadata ? block.metadata : {}
   );
 };
+export default makeBlock;

@@ -11,7 +11,6 @@ import * as firebase from "firebase";
 
 //test
 import BlocklyEditor from "./Editor/blockly/blockly_Editor";
-import blockDatabase from "./Editor/html_editor/blockly_html/data/blockDatabase.json";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDk2TmMUiqmD-AVCKD2dZNW__AfN0EdRFE",
@@ -27,11 +26,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
-  <BlocklyEditor
-    name="html"
-    data={blockDatabase}
-    INITIAL_XML=""
-  ></BlocklyEditor>,
+  <BlocklyEditor name="html" INITIAL_XML=""></BlocklyEditor>,
   document.getElementById("editor")
 );
 //ReactDOM.render(<a>{Editor.state.Code}</a>, document.getElementById("code"));
