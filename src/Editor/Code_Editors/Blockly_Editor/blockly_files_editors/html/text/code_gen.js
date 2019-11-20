@@ -4,7 +4,8 @@ const makeBlockCode = block => {
 
     blockText: "%text_input%",
     statement_inputs: [],
-    value_inputs: ["text_input"]
+    value_inputs: [],
+    field_values: ["text_input"]
   };
 };
 export default makeBlockCode;

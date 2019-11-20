@@ -1,0 +1,2258 @@
+[
+  {
+    "name": "text",
+    "displayName": "text",
+    "description": "visit the help url to learn more",
+    "type": "text",
+    "tags": ["basic", "basic text"],
+    "metadata": { "noAttributes": true, "noBody": true }
+  },
+  {
+    "name": "comment",
+    "displayName": "comment",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["document", "basic"],
+    "metadata": {
+      "noAttributes": true,
+      "openTag": "!--",
+      "closeTag": "--",
+      "childTag": "text"
+    },
+    "helpURL": "https://www.w3schools.com/html/html_comments.asp"
+  },
+  {
+    "name": "!DOCTYPE",
+    "displayName": "document",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["document", "basic"],
+    "metadata": {
+      "openTag": "!DOCTYPE html",
+      "closeTag": "!-- End of document --",
+      "noPerent": true,
+      "noAttributes": true
+    },
+    "helpURL": "https://htmlreference.io/"
+  },
+  {
+    "name": "a",
+    "displayName": "link",
+    "description": "visit the help url to learn more",
+    "helpURL": "https://htmlreference.io/element/a",
+    "type": "tag",
+    "tags": ["links"],
+    "metadata": false
+  },
+  {
+    "name": "abbr",
+    "description": "visit the help url to learn more",
+    "helpURL": "https://htmlreference.io/element/abbr",
+    "type": "tag",
+    "tags": [],
+    "metadata": false
+  },
+  {
+    "name": "address",
+    "description": "visit the help url to learn more",
+    "helpURL": "https://htmlreference.io/element/address",
+    "type": "tag",
+    "tags": ["information", "contact"],
+    "metadata": false
+  },
+  {
+    "name": "area",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["images"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/area"
+  },
+  {
+    "name": "article",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/article"
+  },
+  {
+    "name": "aside",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/aside"
+  },
+  {
+    "name": "audio",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/audio"
+  },
+  {
+    "name": "b",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/b",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "base",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["metadata"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/base"
+  },
+  {
+    "name": "bdo",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/bdo",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "blockquote",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/blockquote",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "body",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["document", "basic"],
+    "metadata": true,
+    "helpURL": "https://htmlreference.io/element/body"
+  },
+  {
+    "name": "br",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["basic"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/br"
+  },
+  {
+    "name": "button",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/button",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "canvas",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["images"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/canvas"
+  },
+  {
+    "name": "caption",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/caption"
+  },
+  {
+    "name": "cite",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/cite",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "code",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/code",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "col",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/col"
+  },
+  {
+    "name": "colgroup",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/colgroup"
+  },
+  {
+    "name": "command",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/command"
+  },
+  {
+    "name": "datalist",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/datalist",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "dd",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/dd"
+  },
+  {
+    "name": "del",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/del",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "details",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/details"
+  },
+  {
+    "name": "dfn",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/dfn",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "div",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["styling", "basic"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/div"
+  },
+  {
+    "name": "dl",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["lists"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/dl"
+  },
+  {
+    "name": "dt",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/dt"
+  },
+  {
+    "name": "em",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/em",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "embed",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/embed"
+  },
+  {
+    "name": "fieldset",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/fieldset",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "figcaption",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["images"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/figcaption"
+  },
+  {
+    "name": "figure",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["images"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/figure"
+  },
+  {
+    "name": "footer",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/footer"
+  },
+  {
+    "name": "form",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/form",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "h1",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["basic text", "basic"],
+    "metadata": true,
+    "helpURL": "https://htmlreference.io/element/h1"
+  },
+  {
+    "name": "h2",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["basic text", "basic"],
+    "metadata": true,
+    "helpURL": "https://htmlreference.io/element/h2"
+  },
+  {
+    "name": "h3",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["basic text", "basic"],
+    "metadata": true,
+    "helpURL": "https://htmlreference.io/element/h3"
+  },
+  {
+    "name": "h4",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["basic text", "basic"],
+    "metadata": true,
+    "helpURL": "https://htmlreference.io/element/h4"
+  },
+  {
+    "name": "h5",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["basic text", "basic"],
+    "metadata": true,
+    "helpURL": "https://htmlreference.io/element/h5"
+  },
+  {
+    "name": "h6",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["basic text", "basic"],
+    "metadata": true,
+    "helpURL": "https://htmlreference.io/element/h6"
+  },
+  {
+    "name": "head",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["document", "basic"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/head"
+  },
+  {
+    "name": "header",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/header"
+  },
+  {
+    "name": "hr",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["hr"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/hr"
+  },
+  {
+    "name": "html",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["document", "basic"],
+    "metadata": { "perentTag": "!DOCTYPE" },
+    "helpURL": "https://htmlreference.io/element/html"
+  },
+  {
+    "name": "i",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/i",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "iframe",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["frame"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/iframe"
+  },
+  {
+    "name": "img",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["images"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/img"
+  },
+  {
+    "name": "input",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/input",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "ins",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/ins",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "kbd",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/kbd",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "label",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/label",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "legend",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/legend",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "li",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/li"
+  },
+  {
+    "name": "link",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/link"
+  },
+  {
+    "name": "map",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["images"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/map"
+  },
+  {
+    "name": "mark",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/mark",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "menu",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/menu"
+  },
+  {
+    "name": "meta",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/meta"
+  },
+  {
+    "name": "meter",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/meter",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "nav",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/nav"
+  },
+  {
+    "name": "noscript",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/noscript"
+  },
+  {
+    "name": "object",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/object"
+  },
+  {
+    "name": "ol",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/ol"
+  },
+  {
+    "name": "optgroup",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/optgroup",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "option",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/option",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "output",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/output",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "p",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["basic text", "basic"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/p"
+  },
+  {
+    "name": "param",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/param"
+  },
+
+  {
+    "name": "pre",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/pre",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "progress",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/progress",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "q",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/q",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "rp",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/rp",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "rt",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/rt",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "ruby",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/ruby",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "s",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/s",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "samp",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/samp",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "script",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": true,
+    "helpURL": "https://htmlreference.io/element/script"
+  },
+  {
+    "name": "section",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/section"
+  },
+  {
+    "name": "select",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/select",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "small",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/small",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "source",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/source"
+  },
+  {
+    "name": "span",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/span"
+  },
+  {
+    "name": "strong",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/strong",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "style",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": true,
+    "helpURL": "https://htmlreference.io/element/style"
+  },
+  {
+    "name": "sub",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/sub",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "sup",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/sup",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "table",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/table"
+  },
+  {
+    "name": "tbody",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/tbody"
+  },
+  {
+    "name": "td",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/td"
+  },
+  {
+    "name": "textarea",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/textarea",
+    "tags": ["input tags"]
+  },
+  {
+    "name": "tfoot",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/tfoot"
+  },
+  {
+    "name": "th",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/th"
+  },
+  {
+    "name": "thead",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/thead"
+  },
+  {
+    "name": "time",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/time",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "title",
+    "displayName": "page title",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["metadata", "basic"],
+    "metadata": { "noAttributes": true },
+    "helpURL": "https://htmlreference.io/element/page title"
+  },
+  {
+    "name": "tr",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/tr"
+  },
+  {
+    "name": "track",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/track"
+  },
+  {
+    "name": "u",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/u",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "ul",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/ul"
+  },
+  {
+    "name": "var",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/var",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "video",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/video"
+  },
+  {
+    "name": "wbr",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/wbr",
+    "tags": ["text formating"]
+  },
+  {
+    "name": "accept",
+    "belongTo": ["input"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20accept"
+  },
+  {
+    "name": "accept-charset",
+    "belongTo": ["form"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20accept-charset"
+  },
+  {
+    "name": "accesskey",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey"
+  },
+  {
+    "name": "action",
+    "belongTo": ["form"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20action"
+  },
+  {
+    "name": "alt",
+    "belongTo": ["area", "img", "input"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20alt"
+  },
+  {
+    "name": "async",
+    "belongTo": ["script"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20async"
+  },
+  {
+    "name": "autocomplete",
+    "belongTo": ["form", "input"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20autocomplete"
+  },
+  {
+    "name": "autofocus",
+    "belongTo": ["button", "input", "select", "textarea"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20autofocus"
+  },
+  {
+    "name": "autoplay",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20autoplay"
+  },
+  {
+    "name": "charset",
+    "belongTo": ["meta", "script"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20charset"
+  },
+  {
+    "name": "checked",
+    "belongTo": ["input"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20checked"
+  },
+  {
+    "name": "cite",
+    "belongTo": ["blockquote", "del", "ins", "q"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20cite"
+  },
+  {
+    "name": "class",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "tags": ["styling", "basic"],
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class"
+  },
+  {
+    "name": "cols",
+    "belongTo": ["textarea"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20cols"
+  },
+  {
+    "name": "colspan",
+    "belongTo": ["td", "th"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20colspan"
+  },
+  {
+    "name": "content",
+    "belongTo": ["meta"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20content"
+  },
+  {
+    "name": "contenteditable",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable"
+  },
+  {
+    "name": "contextmenu",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contextmenu"
+  },
+  {
+    "name": "controls",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20controls"
+  },
+  {
+    "name": "coords",
+    "belongTo": ["area"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20coords"
+  },
+  {
+    "name": "data",
+    "belongTo": ["object"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20data"
+  },
+  {
+    "name": "data-*",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*"
+  },
+  {
+    "name": "datetime",
+    "belongTo": ["del", "ins", "time"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20datetime"
+  },
+  {
+    "name": "default",
+    "belongTo": ["track"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20default"
+  },
+  {
+    "name": "defer",
+    "belongTo": ["script"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20defer"
+  },
+  {
+    "name": "dir",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir"
+  },
+  {
+    "name": "dirname",
+    "belongTo": ["input", "textarea"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20dirname"
+  },
+  {
+    "name": "disabled",
+    "belongTo": [
+      "button",
+      "fieldset",
+      "input",
+      "optgroup",
+      "option",
+      "select",
+      "textarea"
+    ],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20disabled"
+  },
+  {
+    "name": "download",
+    "belongTo": ["a", "area"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20download"
+  },
+  {
+    "name": "draggable",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable"
+  },
+  {
+    "name": "dropzone",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dropzone"
+  },
+  {
+    "name": "enctype",
+    "belongTo": ["form"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20enctype"
+  },
+  {
+    "name": "for",
+    "belongTo": ["label", "output"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20for"
+  },
+  {
+    "name": "form",
+    "belongTo": [
+      "button",
+      "fieldset",
+      "input",
+      "label",
+      "meter",
+      "object",
+      "output",
+      "select",
+      "textarea"
+    ],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20form"
+  },
+  {
+    "name": "formaction",
+    "belongTo": ["button", "input"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20formaction"
+  },
+  {
+    "name": "headers",
+    "belongTo": ["td", "th"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20headers"
+  },
+  {
+    "name": "height",
+    "belongTo": [
+      "canvas",
+      "embed",
+      "iframe",
+      "img",
+      "input",
+      "object",
+      "video"
+    ],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20height"
+  },
+  {
+    "name": "hidden",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden"
+  },
+  {
+    "name": "high",
+    "belongTo": ["meter"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20high"
+  },
+  {
+    "name": "href",
+    "belongTo": ["a", "area", "base", "link"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20href"
+  },
+  {
+    "name": "hreflang",
+    "belongTo": ["a", "area", "link"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20hreflang"
+  },
+  {
+    "name": "http-equiv",
+    "belongTo": ["meta"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20http-equiv"
+  },
+  {
+    "name": "id",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "tags": ["styling", "basic"],
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id"
+  },
+  {
+    "name": "ismap",
+    "belongTo": ["img"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ismap"
+  },
+  {
+    "name": "kind",
+    "belongTo": ["track"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20kind"
+  },
+  {
+    "name": "label",
+    "belongTo": ["track", "option", "optgroup"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20label"
+  },
+  {
+    "name": "lang",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang"
+  },
+  {
+    "name": "list",
+    "belongTo": ["input"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20list"
+  },
+  {
+    "name": "loop",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20loop"
+  },
+  {
+    "name": "low",
+    "belongTo": ["meter"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20low"
+  },
+  {
+    "name": "max",
+    "belongTo": ["input", "meter", "progress"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20max"
+  },
+  {
+    "name": "maxlength",
+    "belongTo": ["input", "textarea"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20maxlength"
+  },
+  {
+    "name": "media",
+    "belongTo": ["a", "area", "link", "source", "style"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20media"
+  },
+  {
+    "name": "method",
+    "belongTo": ["form"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20method"
+  },
+  {
+    "name": "min",
+    "belongTo": ["input", "meter"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20min"
+  },
+  {
+    "name": "multiple",
+    "belongTo": ["input", "select"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20multiple"
+  },
+  {
+    "name": "muted",
+    "belongTo": ["video", "audio"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20muted"
+  },
+  {
+    "name": "name_attribute",
+    "belongTo": [
+      "button",
+      "fieldset",
+      "form",
+      "iframe",
+      "input",
+      "map",
+      "meta",
+      "object",
+      "output",
+      "param",
+      "select",
+      "textarea"
+    ],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20name_attribute"
+  },
+  {
+    "name": "novalidate",
+    "belongTo": ["form"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20novalidate"
+  },
+  {
+    "name": "onabort",
+    "belongTo": ["audio", "embed", "img", "object", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onabort"
+  },
+  {
+    "name": "onafterprint",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onafterprint"
+  },
+  {
+    "name": "onbeforeprint",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onbeforeprint"
+  },
+  {
+    "name": "onbeforeunload",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onbeforeunload"
+  },
+  {
+    "name": "onblur",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onblur"
+  },
+  {
+    "name": "oncanplay",
+    "belongTo": ["audio", "embed", "object", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20oncanplay"
+  },
+  {
+    "name": "oncanplaythrough",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20oncanplaythrough"
+  },
+  {
+    "name": "onchange",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onchange"
+  },
+  {
+    "name": "onclick",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onclick"
+  },
+  {
+    "name": "oncontextmenu",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20oncontextmenu"
+  },
+  {
+    "name": "oncopy",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20oncopy"
+  },
+  {
+    "name": "oncuechange",
+    "belongTo": ["track"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20oncuechange"
+  },
+  {
+    "name": "oncut",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20oncut"
+  },
+  {
+    "name": "ondblclick",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ondblclick"
+  },
+  {
+    "name": "ondrag",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ondrag"
+  },
+  {
+    "name": "ondragend",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ondragend"
+  },
+  {
+    "name": "ondragenter",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ondragenter"
+  },
+  {
+    "name": "ondragleave",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ondragleave"
+  },
+  {
+    "name": "ondragover",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ondragover"
+  },
+  {
+    "name": "ondragstart",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ondragstart"
+  },
+  {
+    "name": "ondrop",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ondrop"
+  },
+  {
+    "name": "ondurationchange",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ondurationchange"
+  },
+  {
+    "name": "onemptied",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onemptied"
+  },
+  {
+    "name": "onended",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onended"
+  },
+  {
+    "name": "onerror",
+    "belongTo": [
+      "audio",
+      "body",
+      "embed",
+      "img",
+      "object",
+      "script",
+      "style",
+      "video"
+    ],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onerror"
+  },
+  {
+    "name": "onfocus",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onfocus"
+  },
+  {
+    "name": "onhashchange",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onhashchange"
+  },
+  {
+    "name": "oninput",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20oninput"
+  },
+  {
+    "name": "oninvalid",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20oninvalid"
+  },
+  {
+    "name": "onkeydown",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onkeydown"
+  },
+  {
+    "name": "onkeypress",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onkeypress"
+  },
+  {
+    "name": "onkeyup",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onkeyup"
+  },
+  {
+    "name": "onload",
+    "belongTo": ["body", "iframe", "img", "input", "link", "script", "style"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onload"
+  },
+  {
+    "name": "onloadeddata",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onloadeddata"
+  },
+  {
+    "name": "onloadedmetadata",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onloadedmetadata"
+  },
+  {
+    "name": "onloadstart",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onloadstart"
+  },
+  {
+    "name": "onmousedown",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onmousedown"
+  },
+  {
+    "name": "onmousemove",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onmousemove"
+  },
+  {
+    "name": "onmouseout",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onmouseout"
+  },
+  {
+    "name": "onmouseover",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onmouseover"
+  },
+  {
+    "name": "onmouseup",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onmouseup"
+  },
+  {
+    "name": "onmousewheel",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onmousewheel"
+  },
+  {
+    "name": "onoffline",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onoffline"
+  },
+  {
+    "name": "ononline",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ononline"
+  },
+  {
+    "name": "onpagehide",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onpagehide"
+  },
+  {
+    "name": "onpageshow",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onpageshow"
+  },
+  {
+    "name": "onpaste",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onpaste"
+  },
+  {
+    "name": "onpause",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onpause"
+  },
+  {
+    "name": "onplay",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onplay"
+  },
+  {
+    "name": "onplaying",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onplaying"
+  },
+  {
+    "name": "onpopstate",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onpopstate"
+  },
+  {
+    "name": "onprogress",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onprogress"
+  },
+  {
+    "name": "onratechange",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onratechange"
+  },
+  {
+    "name": "onreset",
+    "belongTo": ["form"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onreset"
+  },
+  {
+    "name": "onresize",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onresize"
+  },
+  {
+    "name": "onscroll",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onscroll"
+  },
+  {
+    "name": "onsearch",
+    "belongTo": ["input"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onsearch"
+  },
+  {
+    "name": "onseeked",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onseeked"
+  },
+  {
+    "name": "onseeking",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onseeking"
+  },
+  {
+    "name": "onselect",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onselect"
+  },
+  {
+    "name": "onshow",
+    "belongTo": ["menu"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onshow"
+  },
+  {
+    "name": "onstalled",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onstalled"
+  },
+  {
+    "name": "onstorage",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onstorage"
+  },
+  {
+    "name": "onsubmit",
+    "belongTo": ["form"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onsubmit"
+  },
+  {
+    "name": "onsuspend",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onsuspend"
+  },
+  {
+    "name": "ontimeupdate",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ontimeupdate"
+  },
+  {
+    "name": "ontoggle",
+    "belongTo": ["details"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20ontoggle"
+  },
+  {
+    "name": "onunload",
+    "belongTo": ["body"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onunload"
+  },
+  {
+    "name": "onvolumechange",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onvolumechange"
+  },
+  {
+    "name": "onwaiting",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onwaiting"
+  },
+  {
+    "name": "onwheel",
+    "belongTo": ["Visible elements"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20onwheel"
+  },
+  {
+    "name": "open",
+    "belongTo": ["details"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20open"
+  },
+  {
+    "name": "optimum",
+    "belongTo": ["meter"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20optimum"
+  },
+  {
+    "name": "pattern",
+    "belongTo": ["input"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20pattern"
+  },
+  {
+    "name": "placeholder",
+    "belongTo": ["input", "textarea"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20placeholder"
+  },
+  {
+    "name": "poster",
+    "belongTo": ["video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20poster"
+  },
+  {
+    "name": "preload",
+    "belongTo": ["audio", "video"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20preload"
+  },
+  {
+    "name": "readonly",
+    "belongTo": ["input", "textarea"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20readonly"
+  },
+  {
+    "name": "rel",
+    "belongTo": ["a", "area", "link"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20rel"
+  },
+  {
+    "name": "required",
+    "belongTo": ["input", "select", "textarea"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20required"
+  },
+  {
+    "name": "reversed",
+    "belongTo": ["ol"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20reversed"
+  },
+  {
+    "name": "rows",
+    "belongTo": ["textarea"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20rows"
+  },
+  {
+    "name": "rowspan",
+    "belongTo": ["td", "th"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20rowspan"
+  },
+  {
+    "name": "sandbox",
+    "belongTo": ["iframe"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20sandbox"
+  },
+  {
+    "name": "scope",
+    "belongTo": ["th"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20scope"
+  },
+  {
+    "name": "scoped",
+    "belongTo": ["style"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20scoped"
+  },
+  {
+    "name": "selected",
+    "belongTo": ["option"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20selected"
+  },
+  {
+    "name": "shape",
+    "belongTo": ["area"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20shape"
+  },
+  {
+    "name": "size",
+    "belongTo": ["input", "select"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20size"
+  },
+  {
+    "name": "sizes",
+    "belongTo": ["img", "link", "source"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20sizes"
+  },
+  {
+    "name": "span",
+    "belongTo": ["col", "colgroup"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20span"
+  },
+  {
+    "name": "spellcheck",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck"
+  },
+  {
+    "name": "src",
+    "belongTo": [
+      "audio",
+      "embed",
+      "iframe",
+      "img",
+      "input",
+      "script",
+      "source",
+      "track",
+      "video"
+    ],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20src"
+  },
+  {
+    "name": "srcdoc",
+    "belongTo": ["iframe"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20srcdoc"
+  },
+  {
+    "name": "srclang",
+    "belongTo": ["track"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20srclang"
+  },
+  {
+    "name": "srcset",
+    "belongTo": ["img", "source"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20srcset"
+  },
+  {
+    "name": "start",
+    "belongTo": ["ol"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20start"
+  },
+  {
+    "name": "step",
+    "belongTo": ["input"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20step"
+  },
+  {
+    "name": "style",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style"
+  },
+  {
+    "name": "tabindex",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex"
+  },
+  {
+    "name": "target",
+    "belongTo": ["a", "area", "base", "form"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20target"
+  },
+  {
+    "name": "title",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title"
+  },
+  {
+    "name": "translate",
+    "belongTo": ["ALL"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate"
+  },
+  {
+    "name": "type",
+    "belongTo": [
+      "button",
+      "embed",
+      "input",
+      "link",
+      "menu",
+      "object",
+      "script",
+      "source",
+      "style"
+    ],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20type"
+  },
+  {
+    "name": "usemap",
+    "belongTo": ["img", "object"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20usemap"
+  },
+  {
+    "name": "value",
+    "belongTo": [
+      "button",
+      "input",
+      "li",
+      "option",
+      "meter",
+      "progress",
+      "param"
+    ],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20value"
+  },
+  {
+    "name": "width",
+    "belongTo": [
+      "canvas",
+      "embed",
+      "iframe",
+      "img",
+      "input",
+      "object",
+      "video"
+    ],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20width"
+  },
+  {
+    "name": "wrap",
+    "belongTo": ["textarea"],
+    "description": "visit the help url to learn more",
+    "type": "attribute",
+    "metadata": false,
+    "helpURL": "https://www.google.com/search?q=html%20attribute%20wrap"
+  }
+]

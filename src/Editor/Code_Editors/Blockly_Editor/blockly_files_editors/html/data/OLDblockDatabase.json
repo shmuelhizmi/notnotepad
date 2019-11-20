@@ -13,7 +13,7 @@
   {
     "name": "comment",
     "displayName": "comment",
-    "description": "A comment in HTML (and related XML, SGML and SHTML) uses the same syntax as the SGML comment or XML comment, depending on the doctype. \nUnlike most HTML tags, comments do not nest.",
+    "description": "add an html comment",
     "type": "tag",
     "tags": ["document"],
     "metadata": {
@@ -39,20 +39,23 @@
   {
     "name": "a",
     "displayName": "link",
-    "description": "Specific a anchor (Hyperlink)Use for link in internal/external web documents.",
+    "description": "Creates a link to a URL: a web page, a section within a page, an email address... Also called the anchor element, where the a comes from.",
+    "helpURL": "https://htmlreference.io/element/a/",
     "type": "tag",
     "tags": ["links"],
     "metadata": false
   },
   {
     "name": "abbr",
-    "description": "Describes an abbreviation (acronyms)",
+    "description": "Defines an abbreviation, and usually includes its full description.",
+    "helpURL": "https://htmlreference.io/element/abbr/",
     "type": "tag",
     "metadata": false
   },
   {
     "name": "address",
-    "description": "Describes an address information",
+    "description": "Defines a block for contact information.",
+    "helpURL": "https://htmlreference.io/element/address/",
     "type": "tag",
     "metadata": false
   },
@@ -200,6 +203,7 @@
     "name": "div",
     "description": "Define a division part",
     "type": "tag",
+    "tags": ["styling", "basic"],
     "metadata": false
   },
   {
@@ -268,6 +272,7 @@
     "name": "head",
     "description": "The head element represents a collection of metadata for the Document.",
     "type": "tag",
+    "tags": ["document"],
     "metadata": false
   },
   {
@@ -286,6 +291,7 @@
     "name": "html",
     "description": "The html element represents the root of an HTML document",
     "type": "tag",
+    "tags": ["document"],
     "metadata": {
       "perentTag": "!DOCTYPE"
     }
@@ -674,13 +680,6 @@
     "metadata": false
   },
   {
-    "name": "align",
-    "belongTo": ["Obsolete!"],
-    "description": "Sets the alignment according to surrounding elements. Obsolete attribute use CSS instead",
-    "type": "attribute",
-    "metadata": false
-  },
-  {
     "name": "alt",
     "belongTo": ["area", "img", "input"],
     "description": "Sets an alternate text when the original element fails to display",
@@ -716,20 +715,6 @@
     "metadata": false
   },
   {
-    "name": "bgcolor",
-    "belongTo": ["Obsolete!"],
-    "description": "Sets the background color of an element. Use CSS instead",
-    "type": "attribute",
-    "metadata": false
-  },
-  {
-    "name": "border",
-    "belongTo": ["Obsolete!"],
-    "description": "Sets the width of the border of an element. Use CSS instead",
-    "type": "attribute",
-    "metadata": false
-  },
-  {
     "name": "charset",
     "belongTo": ["meta", "script"],
     "description": "Sets the character encoding",
@@ -754,13 +739,7 @@
     "name": "class",
     "belongTo": ["ALL"],
     "description": "Sets one or more classnames for an element (refers to a class in a style sheet)",
-    "type": "attribute",
-    "metadata": false
-  },
-  {
-    "name": "color",
-    "belongTo": ["Obsolete!"],
-    "description": "Sets the text color of an element. Use CSS instead",
+    "tags": ["styling", "basic"],
     "type": "attribute",
     "metadata": false
   },
@@ -997,6 +976,7 @@
     "name": "id",
     "belongTo": ["ALL"],
     "description": "Sets a unique id for an element",
+    "tags": ["styling", "basic"],
     "type": "attribute",
     "metadata": false
   },

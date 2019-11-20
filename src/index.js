@@ -10,7 +10,7 @@ import "./index.css";
 import * as firebase from "firebase";
 
 //test
-import BlocklyEditor from "./Editor/blockly/blockly_Editor";
+import BlocklyEditor from "./Editor/Code_Editors/Blockly_Editor/blockly_Editor";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDk2TmMUiqmD-AVCKD2dZNW__AfN0EdRFE",
@@ -26,7 +26,12 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
-  <BlocklyEditor name="html" INITIAL_XML=""></BlocklyEditor>,
+  <BlocklyEditor
+    name="html"
+    INITIAL_XML=""
+    IDkey="htmlExmple"
+    documentName="index.html"
+  ></BlocklyEditor>,
   document.getElementById("editor")
 );
 //ReactDOM.render(<a>{Editor.state.Code}</a>, document.getElementById("code"));

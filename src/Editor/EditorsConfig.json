@@ -1,0 +1,6 @@
+{
+  "codeViewerLanguages": [{ "name": "markup", "files": ["html", "xml"] }],
+  "supportedFileTypes": {
+    "blockly": ["html", "css"]
+  }
+}

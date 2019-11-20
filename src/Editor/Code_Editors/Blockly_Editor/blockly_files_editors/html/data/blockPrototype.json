@@ -1,0 +1,18 @@
+({
+  "name": "exmple",
+  "displayName": "exmple display name",
+  "description": "exmple description",
+  "type": "for HTML -text/tag/attribute",
+  "tags": ["tags", "for", "categoties"],
+  "Exmple_metadata": {
+    "noAttributes": "boolean",
+    "noBody": "boolean",
+    "openTag": "open tag to use in TAGS",
+    "closeTag": "close tag to use in TAGS",
+    "childTag": "child tag to spwn inside perent block",
+    "valueList": {
+      "values": ["option one for attrubute value list", "tow", "..."]
+    }
+  }
+},
+{})

@@ -7,7 +7,8 @@ export const UniversalBlockMaker = (
   helpUrl = "",
   inputsInline = false,
   hasPerent = false,
-  metadata = {}
+  metadata = {},
+  leftOutput = false
 ) => {
   let message0 = name;
   for (let count = 1; count <= inputArguments.length; count++) {
@@ -26,6 +27,9 @@ export const UniversalBlockMaker = (
   if (hasPerent) {
     result.nextStatement = null;
     result.previousStatement = null;
+  }
+  if (leftOutput) {
+    result.output = null;
   }
   return result;
 };

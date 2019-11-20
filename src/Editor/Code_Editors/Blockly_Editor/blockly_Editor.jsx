@@ -2,30 +2,79 @@ import React from "react";
 
 import Blockly from "blockly";
 
-//blockly rederer=
+//blockly rederer
 import ReactBlocklyComponent from "react-blockly";
 import parseWorkspaceXml from "react-blockly/src/BlocklyHelper";
 
 export default class BlocklyEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.init = this.getInit(props.name);
-    this.blockData = this.getBlocksData(this.init);
+    //ID KEY
+    this.IDkey = props.IDkey;
+
+    //
+    this.init = this.initializationFileToData(props.name);
+    this.blockData = this.getBlocksDataFromInitializationData(this.init);
     this.toolboxCategories = makeToolboxCategories(this.blockData); //toolblox categories for reinitialization
-    this.state = {
-      toolbox: genarateToolboxFromCategories(this.toolboxCategories),
-      Initial_xml: props.INITIAL_XML
-    };
+    this.Initial_xml = this.getEditorData(this.IDkey);
     this.generator = new Blockly.Generator(props.name);
+    this.state = {
+      documentName: props.documentName,
+      code: "",
+      savedData: "",
+      toolbox: genarateToolboxFromCategories(this.toolboxCategories)
+    };
     this.makeBlocksByCategory(this.init, this.blockData);
   }
-  //get data
 
-  getInit = name => {
+  //workspace updated
+  workspaceDidChange = workspace => {
+    this.setState({
+      code: this.generator.workspaceToCode(workspace),
+      savedData: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
+    });
+    this.saveEditorData();
+    console.log(
+      "code : \n" + this.state.code + "\nsave data : " + this.state.savedData
+    );
+  };
+
+  saveEditorData = () => {
+    localStorage.setItem(
+      this.state.documentName,
+      JSON.stringify({ saveData: this.state.savedData, code: this.state.code })
+    );
+  };
+  getEditorData = Key => {
+    return JSON.parse(localStorage.getItem(Key)).saveData;
+  };
+
+  //render
+  render() {
+    return (
+      <ReactBlocklyComponent.BlocklyEditor
+        toolboxCategories={parseWorkspaceXml(this.state.toolbox)}
+        workspaceConfiguration={{
+          grid: {
+            spacing: 20,
+            length: 3,
+            colour: "#ccc",
+            snap: true
+          }
+        }}
+        initialXml={this.Initial_xml}
+        wrapperDivClassName="fill-height"
+        workspaceDidChange={this.workspaceDidChange}
+      ></ReactBlocklyComponent.BlocklyEditor>
+    );
+  }
+
+  //data initialization
+  initializationFileToData = name => {
     return require("./blockly_files_editors/" + name + "/init.json");
   };
 
-  getBlocksData = init => {
+  getBlocksDataFromInitializationData = init => {
     return require("./blockly_files_editors/" +
       init.name +
       "/" +
@@ -33,7 +82,10 @@ export default class BlocklyEditor extends React.Component {
       "/blockDatabase.json");
   };
 
-  makeBlocksByCategory = (init, blocks = this.getBlocksData(init)) => {
+  makeBlocksByCategory = (
+    init,
+    blocks = this.getBlocksDataFromInitializationData(init)
+  ) => {
     let BlockMakers = {};
     let BlockCodeMakers = {};
 
@@ -43,7 +95,6 @@ export default class BlocklyEditor extends React.Component {
         "/" +
         category +
         "/block_gen.js").default;
-      console.log(makeBlock);
       BlockMakers[category] = makeBlock;
     });
 
@@ -67,13 +118,10 @@ export default class BlocklyEditor extends React.Component {
       let makeBlockCode = () => {};
       makeBlockCode = BlockCodeMakers[block.type];
       this.registerBlockCodeFromData(makeBlockCode(block));
-      console.log(makeBlockCode(block));
     });
   };
 
   registerBlockCodeFromData = blockData => {
-    console.log(blockData);
-    //make code genarator from data
     this.generator[blockData.name] = block => {
       let resultCode = blockData.blockText;
       blockData.statement_inputs.forEach(statement => {
@@ -83,41 +131,23 @@ export default class BlocklyEditor extends React.Component {
           this.generator.statementToCode(block, statement) || ""
         );
       });
-      blockData.value_inputs.forEach(vlaue => {
+      blockData.value_inputs.forEach(value => {
         resultCode = replace(
           resultCode,
-          "%" + vlaue + "%",
-          this.generator.valueToCode(block, vlaue, 1) || ""
+          "%" + value + "%",
+          this.generator.valueToCode(block, value, 1) || ""
+        );
+      });
+      blockData.field_values.forEach(value => {
+        resultCode = replace(
+          resultCode,
+          "%" + value + "%",
+          block.getFieldValue(value)
         );
       });
       return resultCode;
     };
   };
-
-  workspaceDidChange = workspace => {
-    const newXml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
-    const code = this.generator.workspaceToCode(workspace);
-    console.log("code : " + code + "\nsave data : " + newXml);
-  };
-
-  render() {
-    return (
-      <ReactBlocklyComponent.BlocklyEditor
-        toolboxCategories={parseWorkspaceXml(this.state.toolbox)}
-        workspaceConfiguration={{
-          grid: {
-            spacing: 20,
-            length: 3,
-            colour: "#ccc",
-            snap: true
-          }
-        }}
-        initialXml={this.state.Initial_xml}
-        wrapperDivClassName="fill-height"
-        workspaceDidChange={this.workspaceDidChange}
-      ></ReactBlocklyComponent.BlocklyEditor>
-    );
-  }
 }
 
 const registerBlock = block => {

@@ -11,6 +11,7 @@ const makeBlock = block => {
     ],
     previousStatement: null,
     nextStatement: null,
+    colour: 160,
     tooltip: "just enter some text",
     helpUrl: ""
   };

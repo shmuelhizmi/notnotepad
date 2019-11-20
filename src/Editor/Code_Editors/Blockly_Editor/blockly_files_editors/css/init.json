@@ -1,0 +1,5 @@
+{
+  "name": "css",
+  "blocksDir": ["block", "parameters"],
+  "dataDir": "data"
+}
