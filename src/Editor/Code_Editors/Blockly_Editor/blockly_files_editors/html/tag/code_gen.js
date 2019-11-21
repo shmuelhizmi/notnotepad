@@ -3,11 +3,21 @@ const makeBlockCode = block => {
   const attribute = "attribute_input";
   const body = "tag_body_input";
   const haveMetadata = block.hasOwnProperty("metadata");
+  const nextStatement = "nextStatement";
   const attributeExist =
-    haveMetadata === false || block.metadata.noAttributes === null;
-  const bodyExist = haveMetadata === false || block.metadata.nobody === null;
+    haveMetadata && block.metadata.hasOwnProperty("noAttributes")
+      ? !block.metadata.noAttributes
+      : true;
+  const bodyExist =
+    haveMetadata && block.metadata.hasOwnProperty("nobody")
+      ? !block.metadata.nobody
+      : true;
+  const notLast =
+    haveMetadata && block.metadata.hasOwnProperty("last")
+      ? !block.metadata.last
+      : true;
+
   let statement_inputs = [];
-  let value_inputs = [];
   if (attributeExist) statement_inputs.push(attribute);
   if (bodyExist) statement_inputs.push(body);
   return {
@@ -20,10 +30,13 @@ const makeBlockCode = block => {
       (bodyExist ? "%" + body + "%" : "") +
       "\n</" +
       (block.metadata.closeTag || TagName) +
-      ">\n",
+      ">" +
+      (notLast ? "%" + nextStatement + "%" : ""),
+
     statement_inputs: statement_inputs,
-    value_inputs: value_inputs,
-    field_values: []
+    value_inputs: [],
+    field_values: [],
+    nextStatement: { exist: notLast, str: nextStatement }
   };
 };
 export default makeBlockCode;

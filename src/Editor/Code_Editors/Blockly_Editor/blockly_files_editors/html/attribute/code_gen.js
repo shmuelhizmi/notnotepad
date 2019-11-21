@@ -12,7 +12,8 @@ export const makeBlockCode = block => {
     blockText: `${type}="%${fieldName}%"`,
     value_inputs: [],
     statement_inputs: [],
-    field_values: field_inputs
+    field_values: field_inputs,
+    nextStatement: { exist: false, str: null }
   };
 };
 export default makeBlockCode;

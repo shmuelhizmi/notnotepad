@@ -31,6 +31,7 @@
       "openTag": "!DOCTYPE html",
       "closeTag": "!-- End of document --",
       "noPerent": true,
+      "last": true,
       "noAttributes": true
     },
     "helpURL": "https://htmlreference.io/"

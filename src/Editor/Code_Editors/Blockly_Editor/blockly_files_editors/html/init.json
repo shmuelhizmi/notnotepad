@@ -1,5 +1,6 @@
 {
   "name": "html",
   "blocksDir": ["attribute", "tag", "text"],
-  "dataDir": "data"
+  "dataDir": "data",
+  "languageType": "markup"
 }

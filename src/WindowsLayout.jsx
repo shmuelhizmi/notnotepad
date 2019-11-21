@@ -1,23 +1,14 @@
 import { Classes, HTMLSelect } from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
 import classNames from "classnames";
-import dropRight from "lodash/dropRight";
 import React from "react";
 
 import {
-  Corner,
   createBalancedTreeFromLeaves,
   getLeaves,
-  getNodeAtPath,
-  getOtherDirection,
-  getPathToCorner,
   Mosaic,
-  MosaicDirection,
-  MosaicNode,
-  MosaicParent,
   MosaicWindow,
-  MosaicZeroState,
-  updateTree
+  MosaicZeroState
 } from "react-mosaic-component";
 
 //import { CloseAdditionalControlsButton } from "react-mosaic-component";
@@ -27,7 +18,7 @@ import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 import "./App.css";
 
 import BlocklyEditor from "./Editor/Code_Editors/Blockly_Editor/blockly_Editor";
-
+import Viewport from "./LayoutComponents/Viewport/viewport";
 let windowCount = 3;
 
 export const THEMES = {
@@ -44,6 +35,7 @@ const EMPTY_ARRAY = [];
 
 export class WindowsLayout extends React.PureComponent {
   state = {
+    openDocument: "index.html",
     currentNode: {
       direction: "column",
       first: {
@@ -64,19 +56,14 @@ export class WindowsLayout extends React.PureComponent {
       body: (
         <BlocklyEditor
           IDkey="exmp_key"
-          documentName="index.html"
+          documentName={this.state.openDocument}
           name="html"
         ></BlocklyEditor>
       )
     },
     {
       name: "code viewer",
-      body: (
-        <div>
-          code
-          <h1>Code viewer</h1>
-        </div>
-      )
+      body: <Viewport document={this.state.openDocument}></Viewport>
     },
     {
       name: "Explorer",

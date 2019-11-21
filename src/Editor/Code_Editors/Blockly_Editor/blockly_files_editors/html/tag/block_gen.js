@@ -20,19 +20,6 @@ const makeBlock = block => {
   if (haveMetadata == false || block.metadata.nobody == null) {
     args.push({ type: "input_statement", name: "tag_body_input" });
   }
-  console.log(
-    UniversalBlockMaker(
-      type,
-      name,
-      args,
-      color,
-      tooltip,
-      helpURL,
-      true,
-      !noPerent,
-      haveMetadata ? block.metadata : {}
-    )
-  );
   return UniversalBlockMaker(
     type,
     name,

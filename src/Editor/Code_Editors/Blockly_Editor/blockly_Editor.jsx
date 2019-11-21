@@ -6,6 +6,7 @@ import Blockly from "blockly";
 import ReactBlocklyComponent from "react-blockly";
 import parseWorkspaceXml from "react-blockly/src/BlocklyHelper";
 import CodeEditor from "../../CodeEditor";
+import makeBlock from "./blockly_files_editors/html/tag/block_gen";
 export default class BlocklyEditor extends CodeEditor {
   constructor(props) {
     super(props);
@@ -14,6 +15,8 @@ export default class BlocklyEditor extends CodeEditor {
     this.blockData = this.getBlocksDataFromInitializationData(this.init);
     this.toolboxCategories = makeToolboxCategories(this.blockData); //toolblox categories for reinitialization
     this.generator = new Blockly.Generator(props.name);
+    this.generator.ORDER_ATOMIC = 0;
+    this.generator.ORDER_NONE = 0;
     this.toolbox = genarateToolboxFromCategories(this.toolboxCategories);
     this.Initial_xml = this.getEditorData().saveData;
     this.makeBlocksByCategory(this.init, this.blockData);
@@ -92,14 +95,15 @@ export default class BlocklyEditor extends CodeEditor {
     });
 
     blocks.forEach(block => {
-      let makeBlock = () => {};
-      makeBlock = BlockMakers[block.type];
+      let makeBlock = () => {}; //empty void
+      makeBlock = BlockMakers[block.type]; //load function
       registerBlock(makeBlock(block));
     });
 
     blocks.forEach(block => {
-      let makeBlockCode = () => {};
-      makeBlockCode = BlockCodeMakers[block.type];
+      let makeBlockCode = () => {}; //empty void
+      makeBlockCode = BlockCodeMakers[block.type]; //load function
+      console.log(makeBlockCode);
       this.registerBlockCodeFromData(makeBlockCode(block));
     });
   };
@@ -128,6 +132,14 @@ export default class BlocklyEditor extends CodeEditor {
           block.getFieldValue(value)
         );
       });
+      if (blockData.nextStatement.exist) {
+        const nextBlockCode = this.generator.blockToCode(block.getNextBlock());
+        resultCode = replace(
+          resultCode,
+          "%" + blockData.nextStatement.str + "%",
+          nextBlockCode != "" ? "\n" + nextBlockCode : ""
+        );
+      }
       return resultCode;
     };
   };

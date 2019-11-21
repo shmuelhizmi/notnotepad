@@ -5,12 +5,8 @@ import * as serviceWorker from "./serviceWorker";
 
 //defualt styling
 import "./index.css";
+import WebRouter from "./router";
 
-import WindowsLayout from "./WindowsLayout";
-
-ReactDOM.render(
-  <WindowsLayout></WindowsLayout>,
-  document.getElementById("editor")
-);
+ReactDOM.render(<WebRouter></WebRouter>, document.getElementById("editor"));
 
 serviceWorker.unregister();

@@ -25,7 +25,6 @@ class CodeEditor extends Component {
   };
   getEditorData = () => {
     if (this.StorageManager.fileExist(this.state.documentName)) {
-      console.log(this.StorageManager.getFile(this.state.documentName));
       return this.StorageManager.getFile(this.state.documentName);
     } else {
       this.StorageManager.createFile(this.state.documentName, {
