@@ -5,25 +5,17 @@ import Blockly from "blockly";
 //blockly rederer
 import ReactBlocklyComponent from "react-blockly";
 import parseWorkspaceXml from "react-blockly/src/BlocklyHelper";
-
-export default class BlocklyEditor extends React.Component {
+import CodeEditor from "../../CodeEditor";
+export default class BlocklyEditor extends CodeEditor {
   constructor(props) {
     super(props);
-    //ID KEY
-    this.IDkey = props.IDkey;
-
-    //
+    console.log(this.getEditorData().saveData);
     this.init = this.initializationFileToData(props.name);
     this.blockData = this.getBlocksDataFromInitializationData(this.init);
     this.toolboxCategories = makeToolboxCategories(this.blockData); //toolblox categories for reinitialization
-    this.Initial_xml = this.getEditorData(this.IDkey);
     this.generator = new Blockly.Generator(props.name);
-    this.state = {
-      documentName: props.documentName,
-      code: "",
-      savedData: "",
-      toolbox: genarateToolboxFromCategories(this.toolboxCategories)
-    };
+    this.toolbox = genarateToolboxFromCategories(this.toolboxCategories);
+    this.Initial_xml = this.getEditorData().saveData;
     this.makeBlocksByCategory(this.init, this.blockData);
   }
 
@@ -34,26 +26,17 @@ export default class BlocklyEditor extends React.Component {
       savedData: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
     });
     this.saveEditorData();
+    Blockly.svgResize(workspace);
     console.log(
       "code : \n" + this.state.code + "\nsave data : " + this.state.savedData
     );
-  };
-
-  saveEditorData = () => {
-    localStorage.setItem(
-      this.state.documentName,
-      JSON.stringify({ saveData: this.state.savedData, code: this.state.code })
-    );
-  };
-  getEditorData = Key => {
-    return JSON.parse(localStorage.getItem(Key)).saveData;
   };
 
   //render
   render() {
     return (
       <ReactBlocklyComponent.BlocklyEditor
-        toolboxCategories={parseWorkspaceXml(this.state.toolbox)}
+        toolboxCategories={parseWorkspaceXml(this.toolbox)}
         workspaceConfiguration={{
           grid: {
             spacing: 20,

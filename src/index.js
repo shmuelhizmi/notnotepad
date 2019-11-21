@@ -6,37 +6,11 @@ import * as serviceWorker from "./serviceWorker";
 //defualt styling
 import "./index.css";
 
-//firebase
-import * as firebase from "firebase";
-
-//test
-import BlocklyEditor from "./Editor/Code_Editors/Blockly_Editor/blockly_Editor";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDk2TmMUiqmD-AVCKD2dZNW__AfN0EdRFE",
-  authDomain: "hardy-pattern-239921.firebaseapp.com",
-  databaseURL: "https://hardy-pattern-239921.firebaseio.com",
-  projectId: "hardy-pattern-239921",
-  storageBucket: "hardy-pattern-239921.appspot.com",
-  messagingSenderId: "790984134789",
-  appId: "1:790984134789:web:6e2d14fa63c6ce3013d9ec",
-  measurementId: "G-QSE6M2LQQ1"
-};
-
-firebase.initializeApp(firebaseConfig);
+import WindowsLayout from "./WindowsLayout";
 
 ReactDOM.render(
-  <BlocklyEditor
-    name="html"
-    INITIAL_XML=""
-    IDkey="htmlExmple"
-    documentName="index.html"
-  ></BlocklyEditor>,
+  <WindowsLayout></WindowsLayout>,
   document.getElementById("editor")
 );
-//ReactDOM.render(<a>{Editor.state.Code}</a>, document.getElementById("code"));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
