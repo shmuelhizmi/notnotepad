@@ -17,9 +17,8 @@ import "@blueprintjs/core/lib/css/blueprint.css";
 import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 import "./App.css";
 
-import BlocklyEditor from "./Editor/Code_Editors/Blockly_Editor/blockly_Editor";
-import Viewport from "./LayoutComponents/Viewport/viewport";
-let windowCount = 3;
+import ViewportWindow from "./LayoutComponents/Viewport/ViewportsWindow";
+import EditorWindow from "./LayoutComponents/Editor/EditorsWindow";
 
 export const THEMES = {
   ["Blueprint"]: "mosaic-blueprint-theme",
@@ -35,7 +34,6 @@ const EMPTY_ARRAY = [];
 
 export class WindowsLayout extends React.PureComponent {
   state = {
-    openDocument: "index.html",
     currentNode: {
       direction: "column",
       first: {
@@ -47,52 +45,47 @@ export class WindowsLayout extends React.PureComponent {
       second: 3,
       splitPercentage: 70
     },
-    currentTheme: "Blueprint"
+    currentTheme: "Blueprint Dark"
   };
 
-  windows = [
-    {
-      name: "Editor",
-      body: (
-        <BlocklyEditor
-          IDkey="exmp_key"
-          documentName={this.state.openDocument}
-          name="html"
-        ></BlocklyEditor>
-      )
-    },
-    {
-      name: "code viewer",
-      body: <Viewport document={this.state.openDocument}></Viewport>
-    },
-    {
-      name: "Explorer",
-      body: (
-        <div>
-          code
-          <h1>Explorer</h1>
-        </div>
-      )
-    }
-  ];
-
+  windows = () => {
+    return [
+      {
+        name: "Editor",
+        body: <EditorWindow documents={["index.html"]}></EditorWindow>
+      },
+      {
+        name: "code viewer",
+        body: <ViewportWindow documents={["index.html"]}></ViewportWindow>
+      },
+      {
+        name: "Explorer",
+        body: (
+          <div>
+            code
+            <h1>Explorer</h1>
+          </div>
+        )
+      }
+    ];
+  };
   render() {
     return (
-      <React.StrictMode>
-        <div>
+      <div>
+        <React.StrictMode>
           <Mosaic
             renderTile={(count, path) => (
               <MosaicWindow
                 additionalControls={
                   count === 3 ? additionalControls : EMPTY_ARRAY
                 }
-                title={this.windows[count - 1].name}
+                title={this.windows()[count - 1].name}
                 createNode={this.createNode}
                 path={path}
                 onDragStart={() => console.log("MosaicWindow.onDragStart")}
                 onDragEnd={type => console.log("MosaicWindow.onDragEnd", type)}
               >
-                <div>{this.windows[count - 1].body}</div>
+                <div>{this.windows()[count - 1].body}</div>
               </MosaicWindow>
             )}
             zeroStateView={<MosaicZeroState createNode={this.createNode} />}
@@ -101,8 +94,8 @@ export class WindowsLayout extends React.PureComponent {
             onRelease={this.onRelease}
             className={THEMES[this.state.currentTheme]}
           />
-        </div>
-      </React.StrictMode>
+        </React.StrictMode>
+      </div>
     );
   }
 

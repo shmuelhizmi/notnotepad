@@ -39,6 +39,5 @@ const StoragePageView = () => {
   const location = useLocation();
   const pageName = location.pathname.replace("/webView/", "");
   const pageData = JSON.parse(localStorage.getItem(pageName));
-  console.log(pageData);
   return <iframe srcDoc={pageData.code} className="Fill"></iframe>;
 };

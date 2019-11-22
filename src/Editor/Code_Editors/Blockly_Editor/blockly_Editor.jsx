@@ -10,7 +10,6 @@ import makeBlock from "./blockly_files_editors/html/tag/block_gen";
 export default class BlocklyEditor extends CodeEditor {
   constructor(props) {
     super(props);
-    console.log(this.getEditorData().saveData);
     this.init = this.initializationFileToData(props.name);
     this.blockData = this.getBlocksDataFromInitializationData(this.init);
     this.toolboxCategories = makeToolboxCategories(this.blockData); //toolblox categories for reinitialization
@@ -24,15 +23,15 @@ export default class BlocklyEditor extends CodeEditor {
 
   //workspace updated
   workspaceDidChange = workspace => {
+    if (this.state.newDocument) {
+      Blockly.Xml.textToDom(this.state.saveData);
+    }
     this.setState({
       code: this.generator.workspaceToCode(workspace),
-      savedData: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
+      saveData: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
     });
     this.saveEditorData();
     Blockly.svgResize(workspace);
-    console.log(
-      "code : \n" + this.state.code + "\nsave data : " + this.state.savedData
-    );
   };
 
   //render
@@ -103,7 +102,6 @@ export default class BlocklyEditor extends CodeEditor {
     blocks.forEach(block => {
       let makeBlockCode = () => {}; //empty void
       makeBlockCode = BlockCodeMakers[block.type]; //load function
-      console.log(makeBlockCode);
       this.registerBlockCodeFromData(makeBlockCode(block));
     });
   };

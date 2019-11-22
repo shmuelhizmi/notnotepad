@@ -11,15 +11,27 @@ class CodeEditor extends Component {
     this.state = {
       documentName: props.documentName,
       code: "",
-      savedData: ""
+      saveData: "",
+      newDocument: false
     };
   }
 
   componentDidMount = () => {};
-
+  componentWillUnmount = () => {
+    this.saveEditorData();
+  };
+  switchDocument = newDoc => {
+    const newEditorData = this.getEditorData(newDoc);
+    this.setState({
+      newDocument: true,
+      documentName: newDoc,
+      saveData: newEditorData.saveData,
+      code: newEditorData.code
+    });
+  };
   saveEditorData = () => {
     this.StorageManager.safeWriteToFile(this.state.documentName, {
-      saveData: this.state.savedData,
+      saveData: this.state.saveData,
       code: this.state.code
     });
   };
@@ -28,7 +40,7 @@ class CodeEditor extends Component {
       return this.StorageManager.getFile(this.state.documentName);
     } else {
       this.StorageManager.createFile(this.state.documentName, {
-        saveData: this.state.savedData,
+        saveData: this.state.saveData,
         code: this.state.code
       });
       return this.StorageManager.getFile(this.state.documentName);

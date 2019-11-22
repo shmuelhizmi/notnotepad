@@ -2,29 +2,35 @@ import React, { Component } from "react";
 
 import { Tab, Tabs } from "@blueprintjs/core";
 
-import EditorWindow from "../EditorWindow";
-
 import Highlight, { defaultProps } from "prism-react-renderer";
 
 import StorageManager from "../../Storage/storageManager";
+import { getDocumentLanguage } from "../fileutils";
 
-class Viewport extends EditorWindow {
+class Viewport extends Component {
   constructor(props) {
     super(props);
     this.Storage = new StorageManager("Storage Manager");
-    this.setState({
-      selectedTabId: "code"
-    });
+    this.state = {
+      document: props.document,
+      selectedTabId: "wb",
+      index: 0
+    };
+    this.code = this.Storage.getFile(this.state.document).code;
     this.update();
   }
-  getDocumentLanguage = name => {
-    return name.slice(name.indexOf(".") + 1, name.lenght);
-  };
   update = async () => {
-    this.forceUpdate();
+    const newCode = this.Storage.getFile(this.state.document).code;
+    if (this.code != newCode) {
+      this.code = newCode;
+      this.forceUpdate();
+      this.setState({
+        index: Math.random(100)
+      });
+    }
     setTimeout(() => {
       this.update();
-    }, 500);
+    }, 200);
   };
   render() {
     return (
@@ -35,24 +41,28 @@ class Viewport extends EditorWindow {
         selectedTabId={this.state.selectedTabId}
       >
         <Tab
-          id="web"
+          id="wb"
           title="web view"
           panel={
-            <iframe
-              className="Fill"
-              src={"./webView/" + this.state.openDocument}
-            ></iframe>
+            <div>
+              <iframe
+                className="Fill"
+                key={this.state.index}
+                title="web view"
+                src={"./webView/" + this.state.document}
+              ></iframe>
+            </div>
           }
         />
         <Tab
-          id="code"
+          id="cd"
           title="code view"
           panel={
             <div>
               <Highlight
                 {...defaultProps}
-                code={this.Storage.getFile(this.state.openDocument).code}
-                language={this.getDocumentLanguage(this.state.openDocument)}
+                code={this.code}
+                language={getDocumentLanguage(this.state.document)}
               >
                 {({
                   className,
@@ -78,7 +88,9 @@ class Viewport extends EditorWindow {
       </Tabs>
     );
   }
-  handleTabChange = e => {};
+  handleTabChange = e => {
+    this.setState({ selectedTabId: e });
+  };
 }
 
 export default Viewport;
