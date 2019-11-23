@@ -1,0 +1,118 @@
+{
+  "blocks": {
+    "deafult": {
+      "colourPrimary": "#4fc961",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "basic": {
+      "colourPrimary": "#4fc961",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "basic text": {
+      "colourPrimary": "#F2960C",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "document": {
+      "colourPrimary": "#0CC0F2",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "links": {
+      "colourPrimary": "#5E8BF8",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "information": {
+      "colourPrimary": "#697979",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "contact": {
+      "colourPrimary": "#A92BBF",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "images": {
+      "colourPrimary": "#9E1A19",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "text formating": {
+      "colourPrimary": "#F2960C",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "metadata": {
+      "colourPrimary": "#39007E",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "input tags": {
+      "colourPrimary": "#63A000",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "styling": {
+      "colourPrimary": "#9044FF",
+      "colourSecondary": "#B7B200",
+      "colourTertiary": "#00ABB7"
+    },
+    "lists": {
+      "colourPrimary": "#01579b",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
+    "frame": {
+      "colourPrimary": "#573200",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    }
+  },
+  "categories": {
+    "default": {
+      "colour": "#4fc961"
+    },
+    "basic": {
+      "colours": "#4fc961"
+    },
+    "basic text": {
+      "colour": "#4fc961"
+    },
+    "document": {
+      "colour": "#0CC0F2"
+    },
+    "links": {
+      "colour": "#5E8BF8"
+    },
+    "information": {
+      "colour": "#697979"
+    },
+    "contact": {
+      "colour": "#A92BBF"
+    },
+    "images": {
+      "colour": "#9E1A19"
+    },
+    "text formating": {
+      "colour": "#F2960C"
+    },
+    "metadata": {
+      "colour": "#39007E"
+    },
+    "input tags": {
+      "colour": "#63A000"
+    },
+    "styling": {
+      "colour": "#8D2570"
+    },
+    "lists": {
+      "colour": "#01579b"
+    },
+    "frame": {
+      "colour": "#573200"
+    }
+  }
+}

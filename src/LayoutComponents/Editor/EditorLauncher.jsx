@@ -6,22 +6,26 @@ class EditorLauncher extends Component {
     super(props);
     this.state = {
       document: props.document,
-      Editor: props.editor
+      editor: props.editor
     };
   }
   render() {
-    switch (this.state.Editor) {
+    switch (this.state.editor) {
       case "Blockly": {
-        return React.createElement(BlocklyEditor, {
-          documentName: this.state.document,
-          name: getDocumentLanguage(this.state.document)
-        });
+        return (
+          <BlocklyEditor
+            documentName={this.state.document}
+            name={getDocumentLanguage(this.state.document)}
+          ></BlocklyEditor>
+        );
       }
       default: {
-        return React.createElement(BlocklyEditor, {
-          documentName: this.state.document,
-          name: getDocumentLanguage(this.state.document)
-        });
+        return (
+          <BlocklyEditor
+            documentName={this.state.document}
+            name={getDocumentLanguage(this.state.document)}
+          ></BlocklyEditor>
+        );
       }
     }
   }

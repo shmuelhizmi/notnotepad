@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 class StorageManager {
   constructor(name) {
     this.name = name;
@@ -19,7 +17,7 @@ class StorageManager {
   FileArrayExist = () => {
     if (
       localStorage.getItem(this.name) != null &&
-      localStorage.getItem(this.name) != "undefined"
+      localStorage.getItem(this.name) !== "undefined"
     ) {
       return true;
     } else {

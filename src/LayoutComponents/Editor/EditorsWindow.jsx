@@ -3,12 +3,20 @@ import EditorLauncher from "./EditorLauncher";
 import Window from "../window";
 import { getDocumentLanguage } from "../fileutils";
 class EditorWindow extends Window {
-  makePanel = document => {
+  constructor(props) {
+    super(props);
+    this.setState({
+      editor: props.editor
+    });
+  }
+  makePanel = (document, id) => {
     return (
-      <EditorLauncher
-        document={document}
-        editor={getDocumentLanguage(document)}
-      ></EditorLauncher>
+      <div style={{ height: "auto" }}>
+        <EditorLauncher
+          document={document}
+          editor={this.props.editor}
+        ></EditorLauncher>
+      </div>
     );
   };
 }

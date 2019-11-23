@@ -1,5 +1,4 @@
-import { Classes, HTMLSelect } from "@blueprintjs/core";
-import { IconNames } from "@blueprintjs/icons";
+import { Classes } from "@blueprintjs/core";
 import classNames from "classnames";
 import React from "react";
 
@@ -52,11 +51,20 @@ export class WindowsLayout extends React.PureComponent {
     return [
       {
         name: "Editor",
-        body: <EditorWindow documents={["index.html"]}></EditorWindow>
+        body: (
+          <EditorWindow
+            documents={["page.html", "index.html"]}
+            editor="Blockly"
+          ></EditorWindow>
+        )
       },
       {
         name: "code viewer",
-        body: <ViewportWindow documents={["index.html"]}></ViewportWindow>
+        body: (
+          <ViewportWindow
+            documents={["page.html", "index.html"]}
+          ></ViewportWindow>
+        )
       },
       {
         name: "Explorer",

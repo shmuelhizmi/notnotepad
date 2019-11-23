@@ -5,19 +5,18 @@
   "dependencies": {
     "@blueprintjs/core": "^3.17.2",
     "firebase": "^7.2.2",
+    "git": "^0.1.5",
     "lodash": "^4.17.15",
     "prism-react-renderer": "^1.0.2",
     "react": "^16.11.0",
-    "react-blockly": "^4.1.0",
+    "react-blockly": "https://github.com/shmuelhizmi/react-blockly.git",
     "react-dom": "^16.11.0",
     "react-mosaic-component": "^3.2.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "redux": "^4.0.4",
-    "semantic-ui-react": "^0.88.1",
-    "styled-components": "^4.4.1",
-    "utf8": "^3.0.0"
+    "styled-components": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -2,7 +2,7 @@ import React from "react";
 import Viewport from "./viewport";
 import Window from "../window";
 class ViewportWindow extends Window {
-  makePanel = document => {
+  makePanel = (document, id) => {
     return <Viewport document={document}></Viewport>;
   };
 }

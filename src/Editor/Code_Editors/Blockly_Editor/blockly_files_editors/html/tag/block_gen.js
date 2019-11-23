@@ -29,7 +29,8 @@ const makeBlock = block => {
     helpURL,
     true,
     !noPerent,
-    haveMetadata ? block.metadata : {}
+    haveMetadata ? block.metadata : {},
+    block.hasOwnProperty("tags") ? block.tags[0] : "default"
   );
 };
 export default makeBlock;

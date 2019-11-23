@@ -21,7 +21,7 @@ class Viewport extends Component {
   }
   update = async () => {
     const newCode = this.Storage.getFile(this.state.document).code;
-    if (this.code != newCode) {
+    if (this.code !== newCode) {
       this.code = newCode;
       this.forceUpdate();
       this.setState({
@@ -35,7 +35,6 @@ class Viewport extends Component {
   render() {
     return (
       <Tabs
-        className="Fill"
         id="ViewportTabs"
         onChange={this.handleTabChange}
         selectedTabId={this.state.selectedTabId}

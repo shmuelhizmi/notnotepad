@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import { Component } from "react";
 
 import StorageManager from "../Storage/storageManager";
-import { file } from "@babel/types";
 
 class CodeEditor extends Component {
   constructor(props) {

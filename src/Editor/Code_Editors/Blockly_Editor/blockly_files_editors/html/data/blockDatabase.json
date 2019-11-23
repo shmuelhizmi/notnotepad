@@ -15,9 +15,10 @@
     "tags": ["document", "basic"],
     "metadata": {
       "noAttributes": true,
-      "openTag": "!--",
-      "closeTag": "--",
-      "childTag": "text"
+      "openTag": "<!--",
+      "closeTag": "-->",
+      "childTag": "text",
+      "useAngleBrackets": false
     },
     "helpURL": "https://www.w3schools.com/html/html_comments.asp"
   },
@@ -50,7 +51,7 @@
     "description": "visit the help url to learn more",
     "helpURL": "https://htmlreference.io/element/abbr",
     "type": "tag",
-    "tags": [],
+    "tags": ["information"],
     "metadata": false
   },
   {
@@ -380,7 +381,7 @@
     "name": "hr",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "tags": ["hr"],
+    "tags": ["styling"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/hr"
   },
@@ -580,9 +581,9 @@
     "name": "pre",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["text formating"],
     "metadata": false,
-    "helpURL": "https://htmlreference.io/element/pre",
-    "tags": ["text formating"]
+    "helpURL": "https://htmlreference.io/element/pre"
   },
   {
     "name": "progress",

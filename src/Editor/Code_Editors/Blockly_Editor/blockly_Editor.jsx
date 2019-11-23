@@ -6,7 +6,7 @@ import Blockly from "blockly";
 import ReactBlocklyComponent from "react-blockly";
 import parseWorkspaceXml from "react-blockly/src/BlocklyHelper";
 import CodeEditor from "../../CodeEditor";
-import makeBlock from "./blockly_files_editors/html/tag/block_gen";
+
 export default class BlocklyEditor extends CodeEditor {
   constructor(props) {
     super(props);
@@ -19,10 +19,27 @@ export default class BlocklyEditor extends CodeEditor {
     this.toolbox = genarateToolboxFromCategories(this.toolboxCategories);
     this.Initial_xml = this.getEditorData().saveData;
     this.makeBlocksByCategory(this.init, this.blockData);
+    this.theme = this.getThemeFromInitializationData();
+    this.theme.setComponentStyle("toolbox", "#293742");
+    this.lastWorkspace = null;
+    this.theme.setComponentStyle("workspace", "#293742");
+    //this.theme.setComponentStyle("flyoutOpacity", "0");
   }
+  componentDidMount = () => {
+    this.loop();
+  };
+  loop = async () => {
+    if (this.lastWorkspace) {
+      Blockly.svgResize(this.lastWorkspace);
+    }
 
+    setTimeout(() => {
+      this.loop();
+    }, 200);
+  };
   //workspace updated
   workspaceDidChange = workspace => {
+    this.lastWorkspace = workspace;
     if (this.state.newDocument) {
       Blockly.Xml.textToDom(this.state.saveData);
     }
@@ -31,7 +48,6 @@ export default class BlocklyEditor extends CodeEditor {
       saveData: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
     });
     this.saveEditorData();
-    Blockly.svgResize(workspace);
   };
 
   //render
@@ -40,12 +56,7 @@ export default class BlocklyEditor extends CodeEditor {
       <ReactBlocklyComponent.BlocklyEditor
         toolboxCategories={parseWorkspaceXml(this.toolbox)}
         workspaceConfiguration={{
-          grid: {
-            spacing: 20,
-            length: 3,
-            colour: "#ccc",
-            snap: true
-          }
+          theme: this.theme
         }}
         initialXml={this.Initial_xml}
         wrapperDivClassName="fill-height"
@@ -65,6 +76,14 @@ export default class BlocklyEditor extends CodeEditor {
       "/" +
       init.dataDir +
       "/blockDatabase.json");
+  };
+  getThemeFromInitializationData = () => {
+    const theme = require("./blockly_files_editors/" +
+      this.init.name +
+      "/" +
+      this.init.dataDir +
+      "/theme.json");
+    return new Blockly.Theme(theme.blocks, theme.categories);
   };
 
   makeBlocksByCategory = (
@@ -184,7 +203,12 @@ const makeToolboxCategories = (data, categories = []) => {
 const genarateToolboxFromCategories = categories => {
   let results = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">\n`;
   categories.forEach(category => {
-    results += ` <category name="${category.name}" >\n`;
+    results +=
+      ' <category name="' +
+      category.name +
+      '" categorystyle="' +
+      category.name +
+      '" >\n';
     category.elements.forEach(element => {
       results += `    <block type="${element}" ></block>\n`;
     });

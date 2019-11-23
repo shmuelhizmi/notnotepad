@@ -8,6 +8,7 @@ export const UniversalBlockMaker = (
   inputsInline = false,
   hasPerent = false,
   metadata = {},
+  style = "default",
   leftOutput = false
 ) => {
   let message0 = name;
@@ -19,10 +20,10 @@ export const UniversalBlockMaker = (
     message0: message0,
     args0: inputArguments,
     inputsInline: inputsInline,
-    colour: color,
     tooltip: tooltip,
     helpUrl: helpUrl,
-    metadata: metadata
+    metadata: metadata,
+    style: style
   };
   if (hasPerent) {
     result.nextStatement = null;

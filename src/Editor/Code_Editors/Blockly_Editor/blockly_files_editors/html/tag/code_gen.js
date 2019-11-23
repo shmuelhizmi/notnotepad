@@ -16,6 +16,10 @@ const makeBlockCode = block => {
     haveMetadata && block.metadata.hasOwnProperty("last")
       ? !block.metadata.last
       : true;
+  const useAngleBrackets =
+    haveMetadata && block.metadata.hasOwnProperty("useAngleBrackets")
+      ? block.metadata.last
+      : true;
 
   let statement_inputs = [];
   if (attributeExist) statement_inputs.push(attribute);
@@ -23,14 +27,16 @@ const makeBlockCode = block => {
   return {
     name: TagName,
     blockText:
-      "<" +
+      (useAngleBrackets ? "<" : "") +
       (block.metadata.openTag || TagName) +
       (attributeExist ? "%" + attribute + "%" : "") +
-      ">\n" +
+      (useAngleBrackets ? ">" : "") +
+      "\n" +
       (bodyExist ? "%" + body + "%" : "") +
-      "\n</" +
+      "\n" +
+      (useAngleBrackets ? "<" : "") +
       (block.metadata.closeTag || TagName) +
-      ">" +
+      (useAngleBrackets ? ">" : "") +
       (notLast ? "%" + nextStatement + "%" : ""),
 
     statement_inputs: statement_inputs,

@@ -5,11 +5,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory,
-  useLocation,
-  useParams
+  useLocation
 } from "react-router-dom";
-import utf8 from "utf8";
 class WebRouter extends Component {
   constructor(props) {
     super(props);
@@ -39,5 +36,7 @@ const StoragePageView = () => {
   const location = useLocation();
   const pageName = location.pathname.replace("/webView/", "");
   const pageData = JSON.parse(localStorage.getItem(pageName));
-  return <iframe srcDoc={pageData.code} className="Fill"></iframe>;
+  return (
+    <iframe title="webPreview" srcDoc={pageData.code} className="Fill"></iframe>
+  );
 };
