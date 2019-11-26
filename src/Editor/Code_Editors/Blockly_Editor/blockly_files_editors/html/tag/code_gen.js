@@ -9,8 +9,8 @@ const makeBlockCode = block => {
       ? !block.metadata.noAttributes
       : true;
   const bodyExist =
-    haveMetadata && block.metadata.hasOwnProperty("nobody")
-      ? !block.metadata.nobody
+    haveMetadata && block.metadata.hasOwnProperty("noBody")
+      ? !block.metadata.noBody
       : true;
   const notLast =
     haveMetadata && block.metadata.hasOwnProperty("last")
@@ -18,8 +18,12 @@ const makeBlockCode = block => {
       : true;
   const useAngleBrackets =
     haveMetadata && block.metadata.hasOwnProperty("useAngleBrackets")
-      ? block.metadata.last
+      ? block.metadata.useAngleBrackets
       : true;
+  const inLineValue =
+    haveMetadata && block.metadata.hasOwnProperty("inLineValue")
+      ? block.metadata.inLineValue
+      : false;
 
   let statement_inputs = [];
   if (attributeExist) statement_inputs.push(attribute);
@@ -30,15 +34,18 @@ const makeBlockCode = block => {
       (useAngleBrackets ? "<" : "") +
       (block.metadata.openTag || TagName) +
       (attributeExist ? "%" + attribute + "%" : "") +
-      (useAngleBrackets ? ">" : "") +
-      "\n" +
-      (bodyExist ? "%" + body + "%" : "") +
-      "\n" +
-      (useAngleBrackets ? "<" : "") +
-      (block.metadata.closeTag || TagName) +
-      (useAngleBrackets ? ">" : "") +
+      (bodyExist
+        ? (useAngleBrackets ? ">" : "") +
+          (!inLineValue ? "\n" : "") +
+          "%" +
+          body +
+          "%" +
+          (!inLineValue ? "\n" : "") +
+          (useAngleBrackets ? "</" : "") +
+          (block.metadata.closeTag || TagName) +
+          (useAngleBrackets ? ">" : "")
+        : "></" + (block.metadata.closeTag || TagName) + ">") +
       (notLast ? "%" + nextStatement + "%" : ""),
-
     statement_inputs: statement_inputs,
     value_inputs: [],
     field_values: [],

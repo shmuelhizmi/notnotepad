@@ -11,7 +11,7 @@ class EditorWindow extends Window {
   }
   makePanel = (document, id) => {
     return (
-      <div style={{ height: "auto" }}>
+      <div>
         <EditorLauncher
           document={document}
           editor={this.props.editor}

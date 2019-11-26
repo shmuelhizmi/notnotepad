@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Tabs, Tab } from "@blueprintjs/core";
+import { Tabs, Tab, Card } from "@blueprintjs/core";
 
 class Window extends Component {
   constructor(props) {
@@ -34,7 +34,11 @@ class Window extends Component {
             key={"doc" + index}
             id={"doc" + index}
             title={document}
-            panel={this.makePanel(document, "doc" + index)}
+            panel={
+              <div style={{ height: "93%", marginTop: "-1%" }}>
+                {this.makePanel(document, "doc" + index)}
+              </div>
+            }
           ></Tab>
         ))}
       </Tabs>

@@ -19,6 +19,7 @@ export default class BlocklyEditor extends CodeEditor {
     this.toolbox = genarateToolboxFromCategories(this.toolboxCategories);
     this.Initial_xml = this.getEditorData().saveData;
     this.makeBlocksByCategory(this.init, this.blockData);
+    this.initializeHotkeys();
     this.theme = this.getThemeFromInitializationData();
     this.theme.setComponentStyle("toolbox", "#293742");
     this.lastWorkspace = null;
@@ -53,15 +54,17 @@ export default class BlocklyEditor extends CodeEditor {
   //render
   render() {
     return (
-      <ReactBlocklyComponent.BlocklyEditor
-        toolboxCategories={parseWorkspaceXml(this.toolbox)}
-        workspaceConfiguration={{
-          theme: this.theme
-        }}
-        initialXml={this.Initial_xml}
-        wrapperDivClassName="fill-height"
-        workspaceDidChange={this.workspaceDidChange}
-      ></ReactBlocklyComponent.BlocklyEditor>
+      <div>
+        <ReactBlocklyComponent.BlocklyEditor
+          toolboxCategories={parseWorkspaceXml(this.toolbox)}
+          workspaceConfiguration={{
+            theme: this.theme
+          }}
+          initialXml={this.Initial_xml}
+          wrapperDivClassName="fill-height"
+          workspaceDidChange={this.workspaceDidChange}
+        ></ReactBlocklyComponent.BlocklyEditor>
+      </div>
     );
   }
 

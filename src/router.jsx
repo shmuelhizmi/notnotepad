@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import WindowsLayout from "./WindowsLayout";
-
+import StoragePageView from "./Storage/storagePageView";
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,7 +21,7 @@ class WebRouter extends Component {
               <WindowsLayout></WindowsLayout>
             </Route>
             <Router exact path="/webView/:page">
-              <StoragePageView></StoragePageView>
+              <CreateStoragePageView></CreateStoragePageView>
             </Router>
           </Switch>
         </Router>
@@ -32,11 +32,8 @@ class WebRouter extends Component {
 
 export default WebRouter;
 
-const StoragePageView = () => {
+const CreateStoragePageView = () => {
   const location = useLocation();
   const pageName = location.pathname.replace("/webView/", "");
-  const pageData = JSON.parse(localStorage.getItem(pageName));
-  return (
-    <iframe title="webPreview" srcDoc={pageData.code} className="Fill"></iframe>
-  );
+  return <StoragePageView page={pageName} objectPath="code"></StoragePageView>;
 };

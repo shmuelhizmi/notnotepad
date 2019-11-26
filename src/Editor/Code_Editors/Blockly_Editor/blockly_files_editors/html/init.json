@@ -2,5 +2,5 @@
   "name": "html",
   "blocksDir": ["attribute", "tag", "text"],
   "dataDir": "data",
-  "languageType": "markup"
+  "defualtPageData": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"!DOCTYPE\" x=\"190\" y=\"141\"><statement name=\"tag_body_input\"><block type=\"html\"><statement name=\"tag_body_input\"><block type=\"head\" ><next><block type=\"body\" ><statement name=\"tag_body_input\"><block type=\"h1\" ><statement name=\"tag_body_input\"><block type=\"text\" ><field name=\"text_input\">headline</field></block></statement></block></statement></block></next></block></statement></block></statement></block></xml>"
 }

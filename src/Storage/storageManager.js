@@ -1,24 +1,32 @@
+import fileDownload from "js-file-download";
+
 class StorageManager {
   constructor(name) {
+    this.id = Math.random();
     this.name = name;
     this.InitFilesArray();
+    this.downloadTimeout = false;
   }
-  InitFilesArray = (value = []) => {
+  setDownloadTimeout = async () => {
+    this.downloadTimeout = true;
+    setTimeout(() => {
+      this.downloadTimeout = false;
+    }, 1500);
+  };
+  InitFilesArray = (value = { files: [] }) => {
     if (!this.FileArrayExist()) {
       localStorage.setItem(this.name, JSON.stringify(value));
     }
   };
   getFilesArray = () => {
-    return JSON.parse(localStorage.getItem(this.name));
+    return JSON.parse(localStorage.getItem(this.name)).files;
   };
   setFilesArray = newArray => {
-    localStorage.setItem(this.name, JSON.stringify(newArray));
+    localStorage.setItem(this.name, JSON.stringify({ files: newArray }));
   };
   FileArrayExist = () => {
-    if (
-      localStorage.getItem(this.name) != null &&
-      localStorage.getItem(this.name) !== "undefined"
-    ) {
+    const fileArray = localStorage.getItem(this.name);
+    if (fileArray != null && fileArray !== "undefined" && fileArray !== "") {
       return true;
     } else {
       return false;
@@ -39,6 +47,17 @@ class StorageManager {
       return JSON.parse(localStorage.getItem(fileName));
     }
     return null;
+  };
+  downloadFile = (fileName, exportFileName, objectPath = null) => {
+    if (!this.downloadTimeout) {
+      console.log(this.id);
+      const data =
+        objectPath !== null
+          ? this.getFile(fileName)[objectPath]
+          : JSON.stringify(this.getFile(fileName));
+      fileDownload(data, exportFileName);
+      this.setDownloadTimeout();
+    }
   };
   fileExist = fileName => {
     if (this.getFilesArray().includes(fileName)) {

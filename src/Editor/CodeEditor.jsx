@@ -1,5 +1,5 @@
-import { Component } from "react";
-
+import React, { Component } from "react";
+import hotkeys from "hotkeys-js";
 import StorageManager from "../Storage/storageManager";
 
 class CodeEditor extends Component {
@@ -14,7 +14,6 @@ class CodeEditor extends Component {
       newDocument: false
     };
   }
-
   componentDidMount = () => {};
   componentWillUnmount = () => {
     this.saveEditorData();
@@ -44,6 +43,23 @@ class CodeEditor extends Component {
       });
       return this.StorageManager.getFile(this.state.documentName);
     }
+  };
+  initializeHotkeys = () => {
+    hotkeys("ctrl+s", (event, handler) => {
+      event.preventDefault();
+      this.StorageManager.downloadFile(
+        this.state.documentName,
+        this.state.documentName + ".visualss"
+      );
+    });
+    hotkeys("ctrl+shift+s", (event, handler) => {
+      event.preventDefault();
+      this.StorageManager.downloadFile(
+        this.state.documentName,
+        this.state.documentName,
+        "code"
+      );
+    });
   };
 }
 

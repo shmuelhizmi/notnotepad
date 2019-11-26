@@ -7,6 +7,7 @@ const makeBlock = block => {
   const tooltip = block.description;
   const haveMetadata = block.hasOwnProperty("metadata");
   const haveValueList = block.metadata.hasOwnProperty("valueList") || false;
+  const helpURL = block.hasOwnProperty("helpURL") || "";
   let args = [];
   if (haveValueList) {
     let dropDownValues = [];
@@ -25,16 +26,18 @@ const makeBlock = block => {
       text: ""
     });
   }
+  args.push({ type: "input_value", name: "next_attrinute" });
   return UniversalBlockMaker(
     type,
     name,
     args,
     color,
     tooltip,
-    "",
-    true,
+    helpURL,
+    false,
     false,
     haveMetadata ? block.metadata : {},
+    block.hasOwnProperty("tags") ? block.tags[0] : "default",
     true
   );
 };

@@ -29,22 +29,23 @@
     "type": "tag",
     "tags": ["document", "basic"],
     "metadata": {
-      "openTag": "!DOCTYPE html",
-      "closeTag": "!-- End of document --",
+      "openTag": "<!DOCTYPE html>\n<html>",
+      "closeTag": "</html>\n<!-- End of document -->",
       "noPerent": true,
       "last": true,
-      "noAttributes": true
+      "noAttributes": true,
+      "useAngleBrackets": false
     },
     "helpURL": "https://htmlreference.io/"
   },
   {
     "name": "a",
-    "displayName": "link",
+    "displayName": "url link",
     "description": "visit the help url to learn more",
     "helpURL": "https://htmlreference.io/element/a",
     "type": "tag",
-    "tags": ["links"],
-    "metadata": false
+    "tags": ["links", "navigation"],
+    "metadata": { "inLineValue": true }
   },
   {
     "name": "abbr",
@@ -88,6 +89,7 @@
     "name": "audio",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["media"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/audio"
   },
@@ -101,6 +103,7 @@
   },
   {
     "name": "base",
+    "displayName": "base url",
     "description": "visit the help url to learn more",
     "type": "tag",
     "tags": ["metadata"],
@@ -143,22 +146,24 @@
     "name": "button",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "metadata": false,
+    "metadata": { "inLineValue": true },
     "helpURL": "https://htmlreference.io/element/button",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "canvas",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "tags": ["images"],
+    "tags": ["images", "media"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/canvas"
   },
   {
     "name": "caption",
+    "displayName": "table caption",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["tables"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/caption"
   },
@@ -180,15 +185,19 @@
   },
   {
     "name": "col",
+    "displayName": "column properties",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["tables"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/col"
   },
   {
     "name": "colgroup",
+    "displayName": "columns group",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["tables"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/colgroup"
   },
@@ -205,12 +214,14 @@
     "type": "tag",
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/datalist",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "dd",
+    "displayName": "description list tearm item",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["lists"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/dd"
   },
@@ -247,6 +258,7 @@
   },
   {
     "name": "dl",
+    "displayName": "description list",
     "description": "visit the help url to learn more",
     "type": "tag",
     "tags": ["lists"],
@@ -255,8 +267,10 @@
   },
   {
     "name": "dt",
+    "displayName": "description list tearm",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["lists"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/dt"
   },
@@ -270,8 +284,10 @@
   },
   {
     "name": "embed",
+    "displayName": "application container",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["programming"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/embed"
   },
@@ -281,13 +297,13 @@
     "type": "tag",
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/fieldset",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "figcaption",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "tags": ["images"],
+    "tags": ["images", "media"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/figcaption"
   },
@@ -295,7 +311,7 @@
     "name": "figure",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "tags": ["images"],
+    "tags": ["images", "media"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/figure"
   },
@@ -307,15 +323,17 @@
     "helpURL": "https://htmlreference.io/element/footer"
   },
   {
-    "name": "form",
+    "name": "form tag",
+    "displayName": "form",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "metadata": false,
+    "metadata": { "openTag": "form", "closeTag": "form" },
     "helpURL": "https://htmlreference.io/element/form",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "h1",
+    "displayName": "extra large headline",
     "description": "visit the help url to learn more",
     "type": "tag",
     "tags": ["basic text", "basic"],
@@ -324,6 +342,7 @@
   },
   {
     "name": "h2",
+    "displayName": "large headline",
     "description": "visit the help url to learn more",
     "type": "tag",
     "tags": ["basic text", "basic"],
@@ -332,6 +351,7 @@
   },
   {
     "name": "h3",
+    "displayName": "big headline",
     "description": "visit the help url to learn more",
     "type": "tag",
     "tags": ["basic text", "basic"],
@@ -340,6 +360,7 @@
   },
   {
     "name": "h4",
+    "displayName": "medium large headline",
     "description": "visit the help url to learn more",
     "type": "tag",
     "tags": ["basic text", "basic"],
@@ -348,6 +369,7 @@
   },
   {
     "name": "h5",
+    "displayName": "small large headline",
     "description": "visit the help url to learn more",
     "type": "tag",
     "tags": ["basic text", "basic"],
@@ -356,6 +378,7 @@
   },
   {
     "name": "h6",
+    "displayName": "extra small headline",
     "description": "visit the help url to learn more",
     "type": "tag",
     "tags": ["basic text", "basic"],
@@ -366,7 +389,7 @@
     "name": "head",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "tags": ["document", "basic"],
+    "tags": ["document", "basic", "metadata"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/head"
   },
@@ -384,14 +407,6 @@
     "tags": ["styling"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/hr"
-  },
-  {
-    "name": "html",
-    "description": "visit the help url to learn more",
-    "type": "tag",
-    "tags": ["document", "basic"],
-    "metadata": { "perentTag": "!DOCTYPE" },
-    "helpURL": "https://htmlreference.io/element/html"
   },
   {
     "name": "i",
@@ -413,7 +428,7 @@
     "name": "img",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "tags": ["images"],
+    "tags": ["images", "media"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/img"
   },
@@ -421,9 +436,9 @@
     "name": "input",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "metadata": false,
+    "metadata": { "noBody": true },
     "helpURL": "https://htmlreference.io/element/input",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "ins",
@@ -447,7 +462,7 @@
     "type": "tag",
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/label",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "legend",
@@ -455,27 +470,33 @@
     "type": "tag",
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/legend",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "li",
+    "displayName": "list",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "metadata": false,
+    "tags": ["lists"],
+    "metadata": {
+      "inLineValue": true
+    },
     "helpURL": "https://htmlreference.io/element/li"
   },
   {
     "name": "link",
+    "displayName": "document link",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "metadata": false,
+    "tags": ["links"],
+    "metadata": { "noBody": true },
     "helpURL": "https://htmlreference.io/element/link"
   },
   {
     "name": "map",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "tags": ["images"],
+    "tags": ["images", "media"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/map"
   },
@@ -496,8 +517,10 @@
   },
   {
     "name": "meta",
+    "displayName": "metadata",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["metadata"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/meta"
   },
@@ -511,15 +534,19 @@
   },
   {
     "name": "nav",
+    "displayName": "navigation bar",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["links", "navigation"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/nav"
   },
   {
     "name": "noscript",
+    "displayName": "no script",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["programming"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/noscript"
   },
@@ -527,13 +554,16 @@
     "name": "object",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["programming"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/object"
   },
   {
     "name": "ol",
+    "displayName": "ordered list",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["lists"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/ol"
   },
@@ -543,7 +573,7 @@
     "type": "tag",
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/optgroup",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "option",
@@ -551,7 +581,7 @@
     "type": "tag",
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/option",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "output",
@@ -559,7 +589,7 @@
     "type": "tag",
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/output",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "p",
@@ -571,10 +601,20 @@
   },
   {
     "name": "param",
+    "displayName": "object parameter",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["programming"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/param"
+  },
+  {
+    "name": "picture",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["images", "media"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/picture"
   },
 
   {
@@ -645,7 +685,16 @@
     "name": "script",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "metadata": true,
+    "tags": ["programming"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/script"
+  },
+  {
+    "name": "script link",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["programming"],
+    "metadata": { "openTag": "script", "closeTag": "script", "noBody": true },
     "helpURL": "https://htmlreference.io/element/script"
   },
   {
@@ -661,7 +710,7 @@
     "type": "tag",
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/select",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "small",
@@ -675,14 +724,17 @@
     "name": "source",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["media", "images"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/source"
   },
   {
-    "name": "span",
+    "name": "span tag",
+    "displayName": "span",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "metadata": false,
+    "tags": ["styling"],
+    "metadata": { "openTag": "span", "closeTag": "span" },
     "helpURL": "https://htmlreference.io/element/span"
   },
   {
@@ -692,6 +744,14 @@
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/strong",
     "tags": ["text formating"]
+  },
+  {
+    "name": "svg",
+    "description": "visit the help url to learn more",
+    "type": "tag",
+    "tags": ["images", "media"],
+    "metadata": false,
+    "helpURL": "https://htmlreference.io/element/svg"
   },
   {
     "name": "style",
@@ -720,18 +780,22 @@
     "name": "table",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["tables"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/table"
   },
   {
     "name": "tbody",
+    "displayName": "table body cells group",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["tables"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/tbody"
   },
   {
     "name": "td",
+    "displayName": "table cell",
     "description": "visit the help url to learn more",
     "type": "tag",
     "metadata": false,
@@ -743,26 +807,32 @@
     "type": "tag",
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/textarea",
-    "tags": ["input tags"]
+    "tags": ["input"]
   },
   {
     "name": "tfoot",
+    "displayName": "table footer cells group",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["tables"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/tfoot"
   },
   {
     "name": "th",
+    "displayName": "table header cell",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["tables"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/th"
   },
   {
     "name": "thead",
+    "displayName": "table header cells group",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["tables"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/thead"
   },
@@ -775,18 +845,20 @@
     "tags": ["text formating"]
   },
   {
-    "name": "title",
-    "displayName": "page title",
+    "name": "title tag",
+    "displayName": "title",
     "description": "visit the help url to learn more",
     "type": "tag",
-    "tags": ["metadata", "basic"],
-    "metadata": { "noAttributes": true },
-    "helpURL": "https://htmlreference.io/element/page title"
+    "metadata": { "openTag": "title", "closeTag": "title" },
+    "helpURL": "https://htmlreference.io/element/title",
+    "tags": ["metadata", "basic"]
   },
   {
     "name": "tr",
+    "displayName": "table row",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["tables"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/tr"
   },
@@ -794,6 +866,7 @@
     "name": "track",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["media"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/track"
   },
@@ -807,8 +880,10 @@
   },
   {
     "name": "ul",
+    "displayName": "unordered list",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["lists"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/ul"
   },
@@ -824,6 +899,7 @@
     "name": "video",
     "description": "visit the help url to learn more",
     "type": "tag",
+    "tags": ["media"],
     "metadata": false,
     "helpURL": "https://htmlreference.io/element/video"
   },
@@ -1179,6 +1255,7 @@
     "belongTo": ["a", "area", "base", "link"],
     "description": "visit the help url to learn more",
     "type": "attribute",
+    "tags": ["links", "basic"],
     "metadata": false,
     "helpURL": "https://www.google.com/search?q=html%20attribute%20href"
   },
@@ -1986,6 +2063,7 @@
     "belongTo": ["a", "area", "link"],
     "description": "visit the help url to learn more",
     "type": "attribute",
+    "tags": ["links", "basic"],
     "metadata": false,
     "helpURL": "https://www.google.com/search?q=html%20attribute%20rel"
   },
@@ -2108,6 +2186,7 @@
     ],
     "description": "visit the help url to learn more",
     "type": "attribute",
+    "tags": ["links", "programming", "media", "images"],
     "metadata": false,
     "helpURL": "https://www.google.com/search?q=html%20attribute%20src"
   },
@@ -2180,6 +2259,7 @@
     "belongTo": ["ALL"],
     "description": "visit the help url to learn more",
     "type": "attribute",
+    "tags": ["metadata"],
     "metadata": false,
     "helpURL": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title"
   },
@@ -2206,6 +2286,7 @@
     ],
     "description": "visit the help url to learn more",
     "type": "attribute",
+    "tags": ["input"],
     "metadata": false,
     "helpURL": "https://www.google.com/search?q=html%20attribute%20type"
   },

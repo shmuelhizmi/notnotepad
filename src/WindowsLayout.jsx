@@ -1,4 +1,4 @@
-import { Classes } from "@blueprintjs/core";
+import { Classes, Button, Tooltip, ButtonGroup } from "@blueprintjs/core";
 import classNames from "classnames";
 import React from "react";
 
@@ -17,6 +17,7 @@ import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 import "./App.css";
 
 import ViewportWindow from "./LayoutComponents/Viewport/ViewportsWindow";
+import Explorer from "./LayoutComponents/Explorer/Explorer";
 import EditorWindow from "./LayoutComponents/Editor/EditorsWindow";
 
 export const THEMES = {
@@ -25,55 +26,75 @@ export const THEMES = {
   ["None"]: ""
 };
 
-const additionalControls = React.Children.toArray([
-  //<CloseAdditionalControlsButton />
-]);
-
 const EMPTY_ARRAY = [];
 
 export class WindowsLayout extends React.PureComponent {
   state = {
     currentNode: {
-      direction: "column",
+      direction: "row",
       first: {
         direction: "row",
-        first: 1,
-        second: 2,
-        splitPercentage: 65
+        first: 3,
+        second: 1,
+        splitPercentage: 20
       },
-      second: 3,
+      second: 2,
       splitPercentage: 70
     },
-    currentTheme: "Blueprint Dark"
+    currentTheme: "Blueprint Dark",
+    openDocuments: []
   };
-
-  windows = () => {
+  openFile = name => {
+    let openDocument = this.state.openDocuments;
+    openDocument.push(name);
+    this.setState({ openDocuments: openDocument });
+    console.log(this.state.openDocuments);
+    this.forceUpdate();
+  };
+  Tabs = openDocument => {
     return [
       {
         name: "Editor",
+        toolbarControls: React.Children.toArray([
+          ,
+          <Tooltip content="save code">
+            <Button minimal icon="code" />
+          </Tooltip>,
+          <Tooltip content="save">
+            <Button minimal icon="saved" />
+          </Tooltip>
+        ]),
         body: (
           <EditorWindow
-            documents={["page.html", "index.html"]}
+            documents={openDocument}
             editor="Blockly"
           ></EditorWindow>
         )
       },
       {
-        name: "code viewer",
-        body: (
-          <ViewportWindow
-            documents={["page.html", "index.html"]}
-          ></ViewportWindow>
-        )
+        name: "Viewport",
+        toolbarControls: React.Children.toArray([
+          <Button minimal icon="application">
+            open in new window
+          </Button>
+        ]),
+        body: <ViewportWindow documents={openDocument}></ViewportWindow>
       },
       {
         name: "Explorer",
-        body: (
-          <div>
-            code
-            <h1>Explorer</h1>
-          </div>
-        )
+        toolbarControls: React.Children.toArray([
+          <Tooltip content="save project">
+            <Button small minimal icon="download" />
+          </Tooltip>,
+
+          <Tooltip content="open project">
+            <Button small minimal icon="folder-open" />
+          </Tooltip>,
+          <Tooltip content="compile and download project">
+            <Button small minimal intent="success" icon="build" />
+          </Tooltip>
+        ]),
+        body: <Explorer openFile={this.openFile}></Explorer>
       }
     ];
   };
@@ -84,16 +105,17 @@ export class WindowsLayout extends React.PureComponent {
           <Mosaic
             renderTile={(count, path) => (
               <MosaicWindow
-                additionalControls={
-                  count === 3 ? additionalControls : EMPTY_ARRAY
-                }
-                title={this.windows()[count - 1].name}
+                additionalControls={[]}
+                title={this.Tabs()[count - 1].name}
                 createNode={this.createNode}
+                toolbarControls={
+                  this.Tabs(this.state.openDocuments)[count - 1].toolbarControls
+                }
                 path={path}
                 onDragStart={() => console.log("MosaicWindow.onDragStart")}
                 onDragEnd={type => console.log("MosaicWindow.onDragEnd", type)}
               >
-                <div>{this.windows()[count - 1].body}</div>
+                <div>{this.Tabs(this.state.openDocuments)[count - 1].body}</div>
               </MosaicWindow>
             )}
             zeroStateView={<MosaicZeroState createNode={this.createNode} />}

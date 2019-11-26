@@ -11,7 +11,7 @@
       "colourTertiary": "#293742"
     },
     "basic text": {
-      "colourPrimary": "#F2960C",
+      "colourPrimary": "#FF6D34",
       "colourSecondary": "#293742",
       "colourTertiary": "#293742"
     },
@@ -40,17 +40,22 @@
       "colourSecondary": "#293742",
       "colourTertiary": "#293742"
     },
+    "media": {
+      "colourPrimary": "#9E1A19",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
     "text formating": {
-      "colourPrimary": "#F2960C",
+      "colourPrimary": "#FF6D34",
       "colourSecondary": "#293742",
       "colourTertiary": "#293742"
     },
     "metadata": {
-      "colourPrimary": "#39007E",
+      "colourPrimary": "#8A63DE",
       "colourSecondary": "#293742",
       "colourTertiary": "#293742"
     },
-    "input tags": {
+    "input": {
       "colourPrimary": "#63A000",
       "colourSecondary": "#293742",
       "colourTertiary": "#293742"
@@ -60,13 +65,23 @@
       "colourSecondary": "#B7B200",
       "colourTertiary": "#00ABB7"
     },
+    "tables": {
+      "colourPrimary": "#01579b",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
     "lists": {
       "colourPrimary": "#01579b",
       "colourSecondary": "#293742",
       "colourTertiary": "#293742"
     },
+    "programming": {
+      "colourPrimary": "#F2960C",
+      "colourSecondary": "#293742",
+      "colourTertiary": "#293742"
+    },
     "frame": {
-      "colourPrimary": "#573200",
+      "colourPrimary": "#02987F",
       "colourSecondary": "#293742",
       "colourTertiary": "#293742"
     }
@@ -79,7 +94,7 @@
       "colours": "#4fc961"
     },
     "basic text": {
-      "colour": "#4fc961"
+      "colour": "#FF6D34"
     },
     "document": {
       "colour": "#0CC0F2"
@@ -97,12 +112,12 @@
       "colour": "#9E1A19"
     },
     "text formating": {
-      "colour": "#F2960C"
+      "colour": "#FF6D34"
     },
     "metadata": {
-      "colour": "#39007E"
+      "colour": "#8A63DE"
     },
-    "input tags": {
+    "input": {
       "colour": "#63A000"
     },
     "styling": {
@@ -111,8 +126,14 @@
     "lists": {
       "colour": "#01579b"
     },
+    "tables": {
+      "colour": "#01579b"
+    },
+    "programming": {
+      "colour": "#FFCA28"
+    },
     "frame": {
-      "colour": "#573200"
+      "colour": "#02987F"
     }
   }
 }

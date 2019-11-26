@@ -8,6 +8,7 @@ const makeBlock = block => {
   const helpURL = block.helpURL || "";
   const haveMetadata = block.hasOwnProperty("metadata");
   const noPerent = block.metadata.noPerent || false;
+  const noBody = block.metadata.noBody || false;
 
   let args = [
     {
@@ -17,7 +18,7 @@ const makeBlock = block => {
   if (haveMetadata == false || block.metadata.noAttributes == null) {
     args.push({ type: "input_value", name: "attribute_input" });
   }
-  if (haveMetadata == false || block.metadata.nobody == null) {
+  if (haveMetadata == false || !noBody) {
     args.push({ type: "input_statement", name: "tag_body_input" });
   }
   return UniversalBlockMaker(
