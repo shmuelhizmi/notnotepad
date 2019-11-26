@@ -26,8 +26,6 @@ export const THEMES = {
   ["None"]: ""
 };
 
-const EMPTY_ARRAY = [];
-
 export class WindowsLayout extends React.PureComponent {
   state = {
     currentNode: {
@@ -45,12 +43,15 @@ export class WindowsLayout extends React.PureComponent {
     openDocuments: []
   };
   openFile = name => {
-    let openDocument = this.state.openDocuments;
-    openDocument.push(name);
-    this.setState({ openDocuments: openDocument });
+    let openDocuments = this.state.openDocuments;
+    if (!openDocuments.includes(name)) {
+      openDocuments.push(name);
+    }
+    this.setState({ openDocuments: openDocuments });
     console.log(this.state.openDocuments);
     this.forceUpdate();
   };
+  closeFile = name => {};
   Tabs = openDocument => {
     return [
       {
@@ -83,10 +84,12 @@ export class WindowsLayout extends React.PureComponent {
       {
         name: "Explorer",
         toolbarControls: React.Children.toArray([
+          <Tooltip content="create file">
+            <Button small minimal icon="add" />
+          </Tooltip>,
           <Tooltip content="save project">
             <Button small minimal icon="download" />
           </Tooltip>,
-
           <Tooltip content="open project">
             <Button small minimal icon="folder-open" />
           </Tooltip>,

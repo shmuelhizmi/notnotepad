@@ -3,8 +3,8 @@ import React from "react";
 import Blockly from "blockly";
 
 //blockly rederer
-import ReactBlocklyComponent from "react-blockly";
-import parseWorkspaceXml from "react-blockly/src/BlocklyHelper";
+import ReactBlocklyComponent from "react-blockly-updated";
+import parseWorkspaceXml from "react-blockly-updated/src/BlocklyHelper";
 import CodeEditor from "../../CodeEditor";
 
 export default class BlocklyEditor extends CodeEditor {

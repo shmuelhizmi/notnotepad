@@ -8294,9 +8294,10 @@ react-app-polyfill@^1.0.4:
     regenerator-runtime "0.13.3"
     whatwg-fetch "3.0.0"
 
-"react-blockly@https://github.com/shmuelhizmi/react-blockly.git":
-  version "4.1.0"
-  resolved "https://github.com/shmuelhizmi/react-blockly.git#565173a5caa23eef8dd19ef72425f4a3d4d47871"
+react-blockly-updated@^0.3.19:
+  version "0.3.19"
+  resolved "https://registry.yarnpkg.com/react-blockly-updated/-/react-blockly-updated-0.3.19.tgz#e547ad47d4a03083c72df095b2b58fe1a436bd1f"
+  integrity sha512-8lZk1bQFdCYhiPfHSaiE8x3zpaAoR1Oi7UmJDzpHM92BOHNUbGZ1CzgvAbV9Pej3CndEueibroA1ww1auP8UEg==
   dependencies:
     blockly "^3.20191014.4"
     immutable "^3.8.2"

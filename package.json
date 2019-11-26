@@ -10,7 +10,7 @@
     "lodash": "^4.17.15",
     "prism-react-renderer": "^1.0.2",
     "react": "^16.11.0",
-    "react-blockly": "https://github.com/shmuelhizmi/react-blockly.git",
+    "react-blockly-updated": "^0.3.19",
     "react-dom": "^16.11.0",
     "react-mosaic-component": "^3.2.0",
     "react-redux": "^7.1.1",

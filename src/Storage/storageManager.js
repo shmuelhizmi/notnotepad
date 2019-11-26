@@ -13,10 +13,13 @@ class StorageManager {
       this.downloadTimeout = false;
     }, 1500);
   };
-  InitFilesArray = (value = { files: [] }) => {
+  InitFilesArray = (value = { files: ["index.html"] }) => {
     if (!this.FileArrayExist()) {
       localStorage.setItem(this.name, JSON.stringify(value));
     }
+    value.files.forEach(file => {
+      localStorage.setItem(file, '{"saveData":"","code":""}');
+    });
   };
   getFilesArray = () => {
     return JSON.parse(localStorage.getItem(this.name)).files;
