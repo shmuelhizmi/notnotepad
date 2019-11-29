@@ -5,11 +5,13 @@ import { getDocumentLanguage } from "../fileutils";
 class EditorWindow extends Window {
   constructor(props) {
     super(props);
-    this.setState({
+    this.state = {
+      ...this.state,
       editor: props.editor
-    });
+    };
   }
-  makePanel = (document, id) => {
+  makePanel = document => {
+    console.log(document);
     return (
       <div>
         <EditorLauncher

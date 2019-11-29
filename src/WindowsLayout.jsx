@@ -19,6 +19,7 @@ import "./App.css";
 import ViewportWindow from "./LayoutComponents/Viewport/ViewportsWindow";
 import Explorer from "./LayoutComponents/Explorer/Explorer";
 import EditorWindow from "./LayoutComponents/Editor/EditorsWindow";
+import FullExplorer from "./LayoutComponents/Explorer/FullExplorer";
 
 export const THEMES = {
   ["Blueprint"]: "mosaic-blueprint-theme",
@@ -40,19 +41,16 @@ export class WindowsLayout extends React.PureComponent {
       splitPercentage: 70
     },
     currentTheme: "Blueprint Dark",
-    openDocuments: []
+    openDocument: null
   };
   openFile = name => {
-    let openDocuments = this.state.openDocuments;
-    if (!openDocuments.includes(name)) {
-      openDocuments.push(name);
-    }
-    this.setState({ openDocuments: openDocuments });
-    console.log(this.state.openDocuments);
-    this.forceUpdate();
+    this.setState({ openDocument: name }, () => {
+      console.log(this.state.openDocument);
+      this.forceUpdate();
+    });
   };
-  closeFile = name => {};
-  Tabs = openDocument => {
+  Tabs = () => {
+    const openDocument = this.state.openDocument;
     return [
       {
         name: "Editor",
@@ -66,10 +64,7 @@ export class WindowsLayout extends React.PureComponent {
           </Tooltip>
         ]),
         body: (
-          <EditorWindow
-            documents={openDocument}
-            editor="Blockly"
-          ></EditorWindow>
+          <EditorWindow document={openDocument} editor="Blockly"></EditorWindow>
         )
       },
       {
@@ -79,55 +74,43 @@ export class WindowsLayout extends React.PureComponent {
             open in new window
           </Button>
         ]),
-        body: <ViewportWindow documents={openDocument}></ViewportWindow>
+        body: <ViewportWindow document={openDocument}></ViewportWindow>
       },
       {
         name: "Explorer",
-        toolbarControls: React.Children.toArray([
-          <Tooltip content="create file">
-            <Button small minimal icon="add" />
-          </Tooltip>,
-          <Tooltip content="save project">
-            <Button small minimal icon="download" />
-          </Tooltip>,
-          <Tooltip content="open project">
-            <Button small minimal icon="folder-open" />
-          </Tooltip>,
-          <Tooltip content="compile and download project">
-            <Button small minimal intent="success" icon="build" />
-          </Tooltip>
-        ]),
-        body: <Explorer openFile={this.openFile}></Explorer>
+        toolbarControls: React.Children.toArray([]),
+        body: (
+          <div>
+            <FullExplorer openFile={this.openFile}></FullExplorer>
+            <Explorer openFile={this.openFile}></Explorer>
+          </div>
+        )
       }
     ];
   };
   render() {
     return (
       <div>
-        <React.StrictMode>
-          <Mosaic
-            renderTile={(count, path) => (
-              <MosaicWindow
-                additionalControls={[]}
-                title={this.Tabs()[count - 1].name}
-                createNode={this.createNode}
-                toolbarControls={
-                  this.Tabs(this.state.openDocuments)[count - 1].toolbarControls
-                }
-                path={path}
-                onDragStart={() => console.log("MosaicWindow.onDragStart")}
-                onDragEnd={type => console.log("MosaicWindow.onDragEnd", type)}
-              >
-                <div>{this.Tabs(this.state.openDocuments)[count - 1].body}</div>
-              </MosaicWindow>
-            )}
-            zeroStateView={<MosaicZeroState createNode={this.createNode} />}
-            value={this.state.currentNode}
-            onChange={this.onChange}
-            onRelease={this.onRelease}
-            className={THEMES[this.state.currentTheme]}
-          />
-        </React.StrictMode>
+        <Mosaic
+          renderTile={(count, path) => (
+            <MosaicWindow
+              additionalControls={[]}
+              title={this.Tabs()[count - 1].name}
+              createNode={this.createNode}
+              toolbarControls={this.Tabs()[count - 1].toolbarControls}
+              path={path}
+              onDragStart={() => console.log("MosaicWindow.onDragStart")}
+              onDragEnd={type => console.log("MosaicWindow.onDragEnd", type)}
+            >
+              <div>{this.Tabs()[count - 1].body}</div>
+            </MosaicWindow>
+          )}
+          zeroStateView={<MosaicZeroState createNode={this.createNode} />}
+          value={this.state.currentNode}
+          onChange={this.onChange}
+          onRelease={this.onRelease}
+          className={THEMES[this.state.currentTheme]}
+        />
       </div>
     );
   }

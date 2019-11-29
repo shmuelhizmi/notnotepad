@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@blueprintjs/core": "^3.17.2",
+    "@blueprintjs/core": "^3.21.0",
+    "@monaco-editor/react": "^2.3.0",
     "git": "^0.1.5",
     "hotkeys-js": "^3.7.3",
     "js-file-download": "^0.4.8",

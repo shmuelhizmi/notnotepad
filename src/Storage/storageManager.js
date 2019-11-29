@@ -1,4 +1,5 @@
 import fileDownload from "js-file-download";
+import STORAGE_RESUALT from "./resualt";
 
 class StorageManager {
   constructor(name) {
@@ -7,6 +8,9 @@ class StorageManager {
     this.InitFilesArray();
     this.downloadTimeout = false;
   }
+  getDocumentTemplate = () => {
+    return { saveData: "", code: "" };
+  };
   setDownloadTimeout = async () => {
     this.downloadTimeout = true;
     setTimeout(() => {
@@ -37,13 +41,51 @@ class StorageManager {
   };
 
   createFile = (fileName, fileValue) => {
+    let res;
     if (!this.fileExist(fileName)) {
       let arr = this.getFilesArray();
       arr.push(fileName);
       this.setFilesArray(arr);
-      console.log(arr);
       localStorage.setItem(fileName, JSON.stringify(fileValue));
+      res = STORAGE_RESUALT.SUCCESS;
+    } else {
+      res = STORAGE_RESUALT.UNKNOWN;
     }
+    return res;
+  };
+  deleteFile = fileName => {
+    let res;
+    if (this.fileExist(fileName)) {
+      let arr = this.getFilesArray();
+      arr = arr.filter(value => {
+        if (value !== fileName) {
+          res = STORAGE_RESUALT.SUCCESS;
+          return true;
+        } else {
+          return false;
+        }
+      });
+      this.setFilesArray(arr);
+      localStorage.removeItem(fileName);
+    } else {
+      res = STORAGE_RESUALT.FILE_TO_FOUND;
+    }
+    return res;
+  };
+  renameFile = (originalName, newName) => {
+    let res = STORAGE_RESUALT.FILE_TO_FOUND;
+    let arr = this.getFilesArray();
+    arr.forEach((document, index) => {
+      if (document == originalName) {
+        arr[index] = newName;
+        localStorage.setItem(newName, localStorage.getItem(originalName));
+        localStorage.removeItem(originalName);
+        res = STORAGE_RESUALT.SUCCESS;
+      }
+    });
+    console.log(arr);
+    this.setFilesArray(arr);
+    return res;
   };
   getFile = fileName => {
     if (this.fileExist(fileName)) {

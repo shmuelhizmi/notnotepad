@@ -19,11 +19,15 @@ class Viewport extends Component {
       index: 0,
       code: ""
     };
-    this.setState({ code: this.Storage.getFile(this.state.document).code });
-    this.update();
   }
+  componentDidMount = () => {
+    this.update();
+  };
   update = async () => {
-    this.setState({ code: this.Storage.getFile(this.state.document).code });
+    const newCode = this.Storage.getFile(this.state.document).code;
+    if (this.state.code != newCode) {
+      this.setState({ code: newCode });
+    }
     setTimeout(() => {
       this.update();
     }, 500);

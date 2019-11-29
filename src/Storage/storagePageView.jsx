@@ -11,8 +11,10 @@ class StoragePageView extends Component {
       pageData: ""
     };
     this.Storage = new StorageManager("Storage Manager");
-    this.update();
   }
+  componentDidMount = () => {
+    this.update();
+  };
   update = async () => {
     const pageData = this.Storage.getFile(this.state.page)[
       this.state.objectPath
