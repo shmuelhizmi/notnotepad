@@ -7,7 +7,7 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import { DarkTheme } from "./theme";
 
 import StorageManager from "../../Storage/storageManager";
-import { getDocumentLanguage } from "../fileutils";
+import { getDocumentLanguage } from "../../Storage/fileutils";
 
 class Viewport extends Component {
   constructor(props) {

@@ -43,61 +43,57 @@
       "yml"
     ]
   },
-  "Editor": {
-    "blockly": {
+  "Editors": {
+    "Blockly": {
       "codeViewer": true,
-      "Languages": ["html", "css"]
+      "Languages": {
+        "html": ["html"],
+        "css": ["css"]
+      }
     },
     "Monaco": {
       "codeViewer": false,
-      "Languages": [
-        "abap",
-        "apex",
-        "azcli",
-        "bat",
-        "clojure",
-        "coffee script",
-        "cpp",
-        "csharp",
-        "csp",
-        "dockerfile",
-        "fsharp",
-        "go",
-        "graphql",
-        "handlebars",
-        "html",
-        "ini",
-        "java",
-        "javascript",
-        "lua",
-        "markdown",
-        "msdax",
-        "mysql",
-        "objective-c",
-        "pascal",
-        "pascaligo",
-        "pgsql",
-        "php",
-        "postiats",
-        "powershell",
-        "pug",
-        "python",
-        "r",
-        "razor",
-        "ruby",
-        "rust",
-        "small basic",
-        "scheme",
-        "solidity",
-        "sql",
-        "st",
-        "swift",
-        "twig",
-        "typescript",
-        "vb",
-        "xml",
-        "yaml"
-      ]
+      "Languages": {
+        "abap": ["abap"],
+        "cls": ["apex"],
+        "azcli": ["azcli"],
+        "bat": ["bat"],
+        "clj": ["clojure"],
+        "coffe": ["coffee-script"],
+        "cpp": ["cpp"],
+        "cs": ["csharp", "razor"],
+        "csp": ["csp"],
+        "dockerfile": ["dockerfile"],
+        "fs": ["fsharp"],
+        "go": ["go"],
+        "graphql": ["graphql"],
+        "html": ["html", "twig", "yaml"],
+        "ini": ["ini"],
+        "java": ["java"],
+        "js": ["javascript", "handlebars", "pug"],
+        "lua": ["lua"],
+        "md": ["markdown"],
+        "dax": ["msdax"],
+        "sql": ["sql", "mysql", "pgsql"],
+        "c": ["objective-c"],
+        "pas": ["pascal"],
+        "ligo": ["pascaligo"],
+        "php": ["php"],
+        "postiats": [""],
+        "ps1": ["powershell"],
+        "py": ["python"],
+        "R": ["r"],
+        "rb": ["ruby"],
+        "rs": ["rust"],
+        "sb": ["small basic"],
+        "rktscheme": [""],
+        "sol": ["solidity"],
+        "st": ["st"],
+        "swift": ["swift"],
+        "typescript": ["ts"],
+        "vb": ["vb"],
+        "xml": ["xml"]
+      }
     }
   }
 }

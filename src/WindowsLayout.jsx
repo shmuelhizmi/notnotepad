@@ -64,7 +64,7 @@ export class WindowsLayout extends React.PureComponent {
           </Tooltip>
         ]),
         body: (
-          <EditorWindow document={openDocument} editor="Blockly"></EditorWindow>
+          <EditorWindow document={openDocument} editor="Monaco"></EditorWindow>
         )
       },
       {

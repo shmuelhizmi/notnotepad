@@ -10,10 +10,10 @@ import CodeEditor from "../../CodeEditor";
 export default class BlocklyEditor extends CodeEditor {
   constructor(props) {
     super(props);
-    this.init = this.initializationFileToData(props.name);
+    this.init = this.initializationFileToData(this.state.language);
     this.blockData = this.getBlocksDataFromInitializationData(this.init);
     this.toolboxCategories = makeToolboxCategories(this.blockData); //toolblox categories for reinitialization
-    this.generator = new Blockly.Generator(props.name);
+    this.generator = new Blockly.Generator(this.state.language);
     this.generator.ORDER_ATOMIC = 0;
     this.generator.ORDER_NONE = 0;
     this.toolbox = genarateToolboxFromCategories(this.toolboxCategories);
@@ -27,6 +27,7 @@ export default class BlocklyEditor extends CodeEditor {
     //this.theme.setComponentStyle("flyoutOpacity", "0");
   }
   componentDidMount = () => {
+    this.setState({ editor: "Blockly" });
     this.loop();
   };
   loop = async () => {
