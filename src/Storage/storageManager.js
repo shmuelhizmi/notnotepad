@@ -1,5 +1,5 @@
 import fileDownload from "js-file-download";
-import STORAGE_RESUALT from "./resualt";
+import STORAGE_RESUALT from "./storage_resualt";
 
 class StorageManager {
   constructor(name) {

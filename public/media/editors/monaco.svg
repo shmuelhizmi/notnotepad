@@ -1,0 +1,12 @@
+<svg width="580" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>Layer 1</title>
+  <text font-style="italic" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="76" id="svg_1" y="256.5" x="72" stroke-width="0" stroke="#000" fill="#691c7b">MONACO</text>
+  <text font-style="italic" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="57" id="svg_2" y="335.4375" x="66.5" stroke-width="0" stroke="#000" fill="#691c7b">EDITOR</text>
+  <rect stroke="#000" transform="rotate(-30 380.86209106445307,101.17843627929692) " rx="6" id="svg_4" height="52.999998" width="269.336703" y="74.678439" x="246.193735" stroke-width="0" fill="#7e1f96"/>
+  <rect stroke="#000" transform="rotate(30 368.3700256347656,118.04264068603517) " rx="6" id="svg_5" height="52.999998" width="312.350906" y="91.542643" x="212.194579" stroke-width="0" fill="#972ab2"/>
+  <rect stroke="#000" transform="rotate(90 508.37005615234375,114.54264831542973) " rx="6" id="svg_6" height="52.999998" width="205.350917" y="88.042651" x="405.694571" stroke-width="0" fill="#931c91"/>
+ </g>
+</svg>

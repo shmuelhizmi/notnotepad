@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 import hotkeys from "hotkeys-js";
 import StorageManager from "../Storage/storageManager";
+
 class CodeEditor extends Component {
   constructor(props) {
     super(props);
     this.IDkey = props.IDkey;
     this.StorageManager = new StorageManager("Storage Manager");
     this.state = {
+      language: props.language,
       editor: null,
       documentName: props.documentName,
       code: "",
       saveData: "",
-      newDocument: false,
-      language: props.language
+      newDocument: false
     };
-    console.log(this.state.language);
   }
-
-  componentDidMount = () => {};
   componentWillUnmount = () => {
     this.saveEditorData();
   };

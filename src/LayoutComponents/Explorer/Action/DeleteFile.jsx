@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Alert } from "@blueprintjs/core";
 import StorageManager from "../../../Storage/storageManager";
-import STORAGE_RESUALT from "../../../Storage/resualt";
+import STORAGE_RESUALT from "../../../Storage/storage_resualt";
 
 class DeleteFile extends Component {
   constructor(props) {

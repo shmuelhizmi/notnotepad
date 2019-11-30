@@ -43,16 +43,20 @@
       "yml"
     ]
   },
-  "Editors": {
-    "Blockly": {
+  "Editors": [
+    {
+      "name": "Blockly",
+      "logo": "blockly.svg",
       "codeViewer": true,
       "Languages": {
         "html": ["html"],
         "css": ["css"]
       }
     },
-    "Monaco": {
+    {
+      "name": "Monaco",
       "codeViewer": false,
+      "logo": "monaco.svg",
       "Languages": {
         "abap": ["abap"],
         "cls": ["apex"],
@@ -95,5 +99,5 @@
         "xml": ["xml"]
       }
     }
-  }
+  ]
 }

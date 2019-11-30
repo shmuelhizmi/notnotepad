@@ -1,55 +1,53 @@
-import React from "react";
-import CodeEditor from "../../CodeEditor";
-import MonacoEditor from "@monaco-editor/react";
+import React, { useRef } from "react";
 
-export default class Monaco_Editor extends CodeEditor {
+import CodeEditor from "../../CodeEditor";
+import Editor from "@monaco-editor/react";
+
+export default class MonacoEditor extends CodeEditor {
   constructor(props) {
     super(props);
-    this.editor = null;
-    this.editorModel = null;
+    this.getCodeEditorData = null;
+    this.autoSaveLoop();
+    this.initCode = this.getEditorData().code;
   }
-  componentDidMount = () => {
-    this.setState({ editor: "Monaco" });
-    this.autoSave();
-  };
-  autoSave = () => {
-    this.saveToCode();
-    this.saveEditorData();
+  autoSaveLoop = async () => {
+    if (this.getCodeEditorData) {
+      this.setState({ code: this.getCodeEditorData() }, () => {
+        this.saveEditorData();
+      });
+    }
     setTimeout(() => {
-      this.autoSave();
-    }, 500);
+      this.autoSaveLoop();
+    }, 2000);
   };
-  saveToCode = () => {
-    if (this.editorModel) {
-      this.setState({
-        code: this.editorModel.getValue()
+  componentWillUnmount = () => {
+    if (this.getCodeEditorData) {
+      this.setState({ code: this.getCodeEditorData() }, () => {
+        this.saveEditorData();
       });
     }
   };
-  editorDidMount = (editor, monaco) => {
-    this.editor = editor;
-    console.log(editor);
-    //this.editor = editor.getModel();
+  componentDidMount = () => {
+    this.setState({ editor: "Monaco" });
   };
-  onChange = (newValue, e) => {
-    console.log(newValue);
-    this.setState({ code: newValue });
-    this.saveEditorData();
+  handleEditorDidMount = (_, editor) => {
+    this.getCodeEditorData = _;
+  };
+  handleValueChange = (e, value) => {
+    console.log(value);
   };
   render() {
-    const code = this.getEditorData().code;
-    console.log(code);
+    const code = this.initCode;
     return (
-      <div>
-        <MonacoEditor
-          width="100%"
+      <>
+        <Editor
+          theme={"dark"}
           language={this.state.language}
-          theme="vs-dark"
           value={code}
-          editorDidMount={this.editorDidMount}
-          onChange={this.onChange}
-        ></MonacoEditor>
-      </div>
+          editorDidMount={this.handleEditorDidMount}
+          onChange={this.handleValueChange}
+        ></Editor>
+      </>
     );
   }
 }
