@@ -75,6 +75,7 @@
         "ini": ["ini"],
         "java": ["java"],
         "js": ["javascript", "handlebars", "pug"],
+        "json": ["json"],
         "lua": ["lua"],
         "md": ["markdown"],
         "dax": ["msdax"],
@@ -97,6 +98,35 @@
         "typescript": ["ts"],
         "vb": ["vb"],
         "xml": ["xml"]
+      }
+    },
+    {
+      "name": "JsonView",
+      "logo": "jsonview.svg",
+      "codeViewer": false,
+      "Languages": {
+        "json": ["json"]
+      }
+    },
+    {
+      "name": "CKEditorEditor",
+      "logo": "ckeditor5.png",
+      "Languages": {
+        "html": ["html"]
+      }
+    },
+    {
+      "name": "CKEditor4Editor",
+      "logo": "ckeditor4.png",
+      "Languages": {
+        "html": ["html"]
+      }
+    },
+    {
+      "name": "MDEditor",
+      "logo": "md.png",
+      "Languages": {
+        "md": ["md"]
       }
     }
   ]

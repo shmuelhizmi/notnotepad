@@ -11,7 +11,6 @@ class EditorWindow extends Window {
     };
   }
   makePanel = document => {
-    console.log(document);
     return (
       <div>
         <EditorLauncher

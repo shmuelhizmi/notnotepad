@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import hotkeys from "hotkeys-js";
 import StorageManager from "../Storage/storageManager";
+import { ButtonGroup, Button } from "@blueprintjs/core";
 
 class CodeEditor extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class CodeEditor extends Component {
       saveData: "",
       newDocument: false
     };
+    this.setEditorDataDirct();
   }
   componentWillUnmount = () => {
     this.saveEditorData();
@@ -28,11 +30,15 @@ class CodeEditor extends Component {
       code: newEditorData.code
     });
   };
-  saveEditorData = () => {
+  saveEditorData = (
+    code = this.state.code,
+    saveData = this.state.saveData,
+    editor = this.state.editor
+  ) => {
     this.StorageManager.safeWriteToFile(this.state.documentName, {
-      editor: this.state.editor,
-      saveData: this.state.saveData,
-      code: this.state.code
+      editor: editor,
+      saveData: saveData,
+      code: code
     });
   };
   getEditorData = () => {
@@ -45,6 +51,18 @@ class CodeEditor extends Component {
       });
       return this.StorageManager.getFile(this.state.documentName);
     }
+  };
+  setEditorData = () => {
+    const editorData = this.getEditorData();
+    this.setState({
+      saveData: editorData.saveData,
+      code: editorData.code
+    });
+  };
+  setEditorDataDirct = () => {
+    const editorData = this.getEditorData();
+    this.state.saveData = editorData.saveData;
+    this.state.code = editorData.code;
   };
   initializeHotkeys = () => {
     hotkeys("ctrl+s", (event, handler) => {

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { Classes, Tree } from "@blueprintjs/core";
+import { Classes, Tree, Drawer, Button, ButtonGroup } from "@blueprintjs/core";
 import _ from "lodash";
+import CreateFile from "./Action/CreateFile";
+import DeleteFile from "./Action/DeleteFile";
+import RenameFile from "./Action/RenameFile";
 import StorageManager from "../../Storage/storageManager";
 
 class Explorer extends Component {
@@ -11,7 +14,10 @@ class Explorer extends Component {
     this.state = {
       nodes: [],
       seletedFile: "",
-      seletedFolder: ""
+      seletedFolder: "",
+      createFileDialogIsOpen: false,
+      deleteFileDialogIsOpen: false,
+      renameFileDialogIsOpen: false
     };
   }
   componentDidMount = () => {
@@ -21,16 +27,68 @@ class Explorer extends Component {
   };
   render() {
     return (
-      <Tree
-        contents={this.state.nodes}
-        onNodeClick={this.handleNodeClick}
-        onNodeDoubleClick={this.handleNodeDoubleClick}
-        onNodeCollapse={this.handleNodeCollapse}
-        onNodeExpand={this.handleNodeExpand}
-        className={Classes.ELEVATION_0}
-      ></Tree>
+      <>
+        <ButtonGroup fill minimal>
+          <Button icon="add" onClick={this.openCreateFileDialog}></Button>
+          <Button
+            onClick={this.OpenRenameFileDialog}
+            icon="text-highlight"
+          ></Button>
+          <Button onClick={this.openDeleteFileDialog} icon="remove"></Button>
+        </ButtonGroup>
+        <Tree
+          contents={this.state.nodes}
+          onNodeClick={this.handleNodeClick}
+          onNodeDoubleClick={this.handleNodeDoubleClick}
+          onNodeCollapse={this.handleNodeCollapse}
+          onNodeExpand={this.handleNodeExpand}
+          className={Classes.ELEVATION_0}
+        ></Tree>
+        <div>
+          <CreateFile
+            key={Math.random()}
+            isOpen={this.state.createFileDialogIsOpen}
+            folder={this.state.seletedFolder}
+            onClose={this.closeCreateFileDialog}
+          ></CreateFile>
+          <DeleteFile
+            key={Math.random()}
+            isOpen={this.state.deleteFileDialogIsOpen}
+            file={this.state.seletedFile}
+            onClose={this.closeDeleteFileDialog}
+          ></DeleteFile>
+          <RenameFile
+            key={Math.random()}
+            isOpen={this.state.renameDialogIsOpen}
+            fileName={this.state.seletedFile}
+            onClose={this.closeRenameFileDialog}
+          ></RenameFile>
+        </div>
+      </>
     );
   }
+  //actions
+  openCreateFileDialog = () => {
+    this.setState({ createFileDialogIsOpen: true }, () => {});
+  };
+  closeCreateFileDialog = () => {
+    this.setState({ createFileDialogIsOpen: false });
+  };
+  OpenRenameFileDialog = () => {
+    this.setState({ renameDialogIsOpen: true }, () => {});
+  };
+  closeRenameFileDialog = () => {
+    this.setState({ renameDialogIsOpen: false });
+  };
+  openDeleteFileDialog = () => {
+    if (this.state.seletedFile != "") {
+      this.setState({ deleteFileDialogIsOpen: true });
+    }
+  };
+  closeDeleteFileDialog = () => {
+    this.setState({ deleteFileDialogIsOpen: false });
+  };
+
   updateNodes = async () => {
     const oldStorage = this.StorageData;
     const newStorage = this.Storage.getFilesArray();

@@ -4,6 +4,10 @@ import { getDocumentLanguage } from "../../Storage/fileutils";
 import BlocklyEditor from "../../Editor/Code_Editors/Blockly_Editor/blockly_Editor";
 import MonacoEditor from "../../Editor/Code_Editors/Monaco_Editor/Monaco_Editor";
 import { Button, Card, ButtonGroup } from "@blueprintjs/core";
+import JsonView from "../../Editor/Code_Editors/Json_View/Json_View";
+import CKEditorEditor from "../../Editor/Code_Editors/CKEditor_Editor/CKEditor_Editor";
+import CKEditor4Editor from "../../Editor/Code_Editors/CKEditor4_Editor/CKEditor4_Editor";
+import MDEDitor from "../../Editor/Code_Editors/MDE_EDITOR/MDE_Editor";
 class EditorLauncher extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +26,6 @@ class EditorLauncher extends Component {
     if (editorName) {
       this.state.editorFound = true;
       this.state.editor = editorName;
-      console.log(this.state.editor);
     }
   };
   setEditorName = newName => {
@@ -92,12 +95,44 @@ class EditorLauncher extends Component {
             ></MonacoEditor>
           );
         }
-        default: {
+        case "JsonView": {
           return (
-            <BlocklyEditor
+            <JsonView
               documentName={this.state.document}
               language={this.getEditorLanguage()}
-            ></BlocklyEditor>
+            ></JsonView>
+          );
+        }
+        case "CKEditorEditor": {
+          return (
+            <CKEditorEditor
+              documentName={this.state.document}
+              language={this.getEditorLanguage()}
+            ></CKEditorEditor>
+          );
+        }
+        case "CKEditor4Editor": {
+          return (
+            <CKEditor4Editor
+              documentName={this.state.document}
+              language={this.getEditorLanguage()}
+            ></CKEditor4Editor>
+          );
+        }
+        case "MDEditor": {
+          return (
+            <MDEDitor
+              documentName={this.state.document}
+              language={this.getEditorLanguage()}
+            ></MDEDitor>
+          );
+        }
+        default: {
+          return (
+            <MonacoEditor
+              documentName={this.state.document}
+              language={""}
+            ></MonacoEditor>
           );
         }
       }
@@ -105,7 +140,7 @@ class EditorLauncher extends Component {
       return (
         <Card>
           <h3>Please select editor</h3>
-          <ButtonGroup minimal>
+          <ButtonGroup fill minimal>
             {this.getSupportedEditors().map((name, index) => (
               <SelectEditorButton
                 name={name}

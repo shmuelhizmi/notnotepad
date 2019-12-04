@@ -11,9 +11,7 @@ class FullExplorer extends Explorer {
     this.state = {
       ...this.state,
       isOpen: props.isOpen,
-      createFileDialogIsOpen: false,
-      deleteFileDialogIsOpen: false,
-      renameFileDialogIsOpen: false
+      importFromDriveDialogIsOpen: false
     };
   }
 
@@ -23,33 +21,7 @@ class FullExplorer extends Explorer {
   open = e => {
     this.setState({ isOpen: true });
   };
-  openCreateFileDialog = () => {
-    this.setState({ createFileDialogIsOpen: true }, () => {
-      console.log(this.state.createFileDialogIsOpen);
-    });
-  };
-  closeCreateFileDialog = () => {
-    this.setState({ createFileDialogIsOpen: false });
-  };
-  OpenRenameFileDialog = () => {
-    this.setState({ renameDialogIsOpen: true }, () => {
-      console.log(this.state.renameDialogIsOpen);
-    });
-  };
-  closeRenameFileDialog = () => {
-    this.setState({ renameDialogIsOpen: false });
-  };
-  openDeleteFileDialog = () => {
-    if (this.state.seletedFile != "") {
-      this.setState({ deleteFileDialogIsOpen: true });
-    }
-  };
-  closeDeleteFileDialog = () => {
-    this.setState({ deleteFileDialogIsOpen: false });
-  };
-
   render() {
-    console.log("rerender");
     return (
       <div>
         <Button
@@ -87,11 +59,45 @@ class FullExplorer extends Explorer {
             className={Classes.ELEVATION_0}
           ></Tree>
           <ButtonGroup fill minimal>
-            <Button icon="download">download file code</Button>
-            <Button icon="download">download file data</Button>
-            <Button icon="download">download project data</Button>
+            <Button
+              icon="download"
+              onClick={() => {
+                this.Storage.downloadFileCode(
+                  this.state.seletedFile,
+                  this.state.seletedFile
+                );
+              }}
+            >
+              download file code
+            </Button>
+            <Button
+              icon="download"
+              onClick={() => {
+                this.Storage.downloadFile(
+                  this.state.seletedFile,
+                  this.state.seletedFile + ".nppfile"
+                );
+              }}
+            >
+              download file data
+            </Button>
+            <Button
+              icon="download"
+              onClick={() => {
+                this.Storage.zipAndDwonloadData();
+              }}
+            >
+              download project data
+            </Button>
           </ButtonGroup>
-          <Button fill large icon="build">
+          <Button
+            fill
+            large
+            icon="build"
+            onClick={() => {
+              this.Storage.compileAndZipCode();
+            }}
+          >
             compile and dowload project
           </Button>
         </Drawer>

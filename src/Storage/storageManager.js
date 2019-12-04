@@ -1,5 +1,6 @@
 import fileDownload from "js-file-download";
 import STORAGE_RESUALT from "./storage_resualt";
+import JSZip from "jszip";
 
 class StorageManager {
   constructor(name) {
@@ -17,16 +18,24 @@ class StorageManager {
       this.downloadTimeout = false;
     }, 1500);
   };
-  InitFilesArray = (value = { files: ["index.html"] }) => {
+  InitFilesArray = (value = { files: ["index.html"], tokens: [] }) => {
     if (!this.FileArrayExist()) {
       localStorage.setItem(this.name, JSON.stringify(value));
+      value.files.forEach(file => {
+        localStorage.setItem(file, '{"saveData":"","code":""}');
+      });
     }
-    value.files.forEach(file => {
-      localStorage.setItem(file, '{"saveData":"","code":""}');
-    });
   };
   getFilesArray = () => {
     return JSON.parse(localStorage.getItem(this.name)).files;
+  };
+  getToken = appName => {
+    return JSON.parse(localStorage.getItem(this.name)).tokens[appName];
+  };
+  setToken = (appName, newValue) => {
+    const newStorage = JSON.parse(localStorage.getItem(this.name));
+    newStorage.tokens[appName] = newValue;
+    return localStorage.setItem(this.name, JSON.stringify(newStorage));
   };
   setFilesArray = newArray => {
     localStorage.setItem(this.name, JSON.stringify({ files: newArray }));
@@ -42,7 +51,7 @@ class StorageManager {
 
   createFile = (fileName, fileValue) => {
     let res;
-    if (!this.fileExist(fileName)) {
+    if (!this.fileExist(fileName) && fileName != this.name) {
       let arr = this.getFilesArray();
       arr.push(fileName);
       this.setFilesArray(arr);
@@ -83,7 +92,6 @@ class StorageManager {
         res = STORAGE_RESUALT.SUCCESS;
       }
     });
-    console.log(arr);
     this.setFilesArray(arr);
     return res;
   };
@@ -95,11 +103,17 @@ class StorageManager {
   };
   downloadFile = (fileName, exportFileName, objectPath = null) => {
     if (!this.downloadTimeout) {
-      console.log(this.id);
       const data =
         objectPath !== null
           ? this.getFile(fileName)[objectPath]
           : JSON.stringify(this.getFile(fileName));
+      fileDownload(data, exportFileName);
+      this.setDownloadTimeout();
+    }
+  };
+  downloadFileCode = (fileName, exportFileName) => {
+    if (!this.downloadTimeout) {
+      const data = this.getFile(fileName).code;
       fileDownload(data, exportFileName);
       this.setDownloadTimeout();
     }
@@ -114,6 +128,36 @@ class StorageManager {
     if (this.fileExist(fileName)) {
       localStorage.setItem(fileName, JSON.stringify(fileValue));
     }
+  };
+  compileAndZipCode = (rootFolder = "project") => {
+    const filesArray = this.getFilesArray();
+    const files = filesArray.map(file => ({
+      code: this.getFile(file).code,
+      name: file
+    }));
+    const zip = new JSZip();
+    files.forEach(file => {
+      zip.file(rootFolder + "/" + file.name, file.code);
+    });
+    zip.generateAsync({ type: "blob" }).then(content => {
+      // see FileSaver.js
+      fileDownload(content, "build.zip");
+    });
+  };
+  zipAndDwonloadData = () => {
+    const filesArray = this.getFilesArray();
+    const files = filesArray.map(file => ({
+      data: JSON.stringify(this.getFile(file)),
+      name: file
+    }));
+    const zip = new JSZip();
+    zip.file("files.json", JSON.stringify(files));
+    zip.file("filesArray.json", JSON.stringify(filesArray));
+
+    zip.generateAsync({ type: "blob" }).then(content => {
+      // see FileSaver.js
+      fileDownload(content, "save.nnp");
+    });
   };
 }
 export default StorageManager;

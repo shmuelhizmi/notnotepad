@@ -13,7 +13,7 @@ class Window extends Component {
   createPanel = props => {
     if (props.document) {
       return this.makePanel(props.document);
-    } else return <div>EMPTY</div>;
+    } else return <div></div>;
   };
   render() {
     return (

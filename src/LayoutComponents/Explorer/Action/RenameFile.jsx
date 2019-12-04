@@ -19,7 +19,7 @@ class RenameFile extends Component {
     };
     this.originalFileName = this.state.fileName;
   }
-  Create = e => {
+  Rename = e => {
     if (e.keyCode == 13) {
       const fileName = this.state.fileName;
       if (
@@ -37,11 +37,11 @@ class RenameFile extends Component {
       <Dialog
         isOpen={this.state.isOpen}
         onClose={this.props.onClose}
-        icon="add"
-        title="create file"
+        icon="text-highlight"
+        title="rename file"
       >
         <InputGroup
-          onKeyDown={this.Create}
+          onKeyDown={this.Rename}
           autoFocus
           large
           intent="primary"
@@ -49,7 +49,6 @@ class RenameFile extends Component {
           placeholder="enter new name"
           onChange={e => {
             this.setState({ fileName: e.target.value });
-            console.log(this.state.fileName);
           }}
         ></InputGroup>
         <Divider></Divider>

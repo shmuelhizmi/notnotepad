@@ -49,7 +49,6 @@ class CreateFile extends Component {
           placeholder="enter file name"
           onChange={e => {
             this.setState({ fileName: e.target.value });
-            console.log(this.state.fileName);
           }}
         ></InputGroup>
         <Divider></Divider>

@@ -13,7 +13,6 @@ class DeleteFile extends Component {
     };
   }
   DELETE = () => {
-    console.log(this.state);
     const res = this.Storage.deleteFile(this.state.file);
     if (res === STORAGE_RESUALT.SUCCESS) {
       this.props.onClose();

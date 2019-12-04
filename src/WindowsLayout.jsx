@@ -45,7 +45,6 @@ export class WindowsLayout extends React.PureComponent {
   };
   openFile = name => {
     this.setState({ openDocument: name }, () => {
-      console.log(this.state.openDocument);
       this.forceUpdate();
     });
   };
@@ -78,10 +77,11 @@ export class WindowsLayout extends React.PureComponent {
       },
       {
         name: "Explorer",
-        toolbarControls: React.Children.toArray([]),
+        toolbarControls: React.Children.toArray([
+          <FullExplorer openFile={this.openFile}></FullExplorer>
+        ]),
         body: (
           <div>
-            <FullExplorer openFile={this.openFile}></FullExplorer>
             <Explorer openFile={this.openFile}></Explorer>
           </div>
         )
@@ -99,8 +99,6 @@ export class WindowsLayout extends React.PureComponent {
               createNode={this.createNode}
               toolbarControls={this.Tabs()[count - 1].toolbarControls}
               path={path}
-              onDragStart={() => console.log("MosaicWindow.onDragStart")}
-              onDragEnd={type => console.log("MosaicWindow.onDragEnd", type)}
             >
               <div>{this.Tabs()[count - 1].body}</div>
             </MosaicWindow>
@@ -117,10 +115,6 @@ export class WindowsLayout extends React.PureComponent {
 
   onChange = currentNode => {
     this.setState({ currentNode });
-  };
-
-  onRelease = currentNode => {
-    console.log("Mosaic.onRelease():", currentNode);
   };
 
   autoArrange = () => {
