@@ -20,19 +20,12 @@ class Viewport extends Component {
       code: ""
     };
   }
-  componentDidMount = () => {
-    this.update();
-  };
-  update = async () => {
-    const newCode = this.Storage.getFile(this.state.document).code;
-    if (this.state.code != newCode) {
-      this.setState({ code: newCode });
-    }
-    setTimeout(() => {
-      this.update();
-    }, 500);
-  };
-
+  componentDidMount() {
+    this.codeUpdater = setInterval(() => this.codeTick(), 300);
+  }
+  codeTick() {
+    this.setState({ code: this.Storage.getFile(this.state.document).code });
+  }
   render() {
     return (
       <Tabs

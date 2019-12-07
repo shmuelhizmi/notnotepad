@@ -26,6 +26,8 @@ class EditorLauncher extends Component {
     if (editorName) {
       this.state.editorFound = true;
       this.state.editor = editorName;
+    } else {
+      this.state.editor = "Monaco";
     }
   };
   setEditorName = newName => {
@@ -54,6 +56,7 @@ class EditorLauncher extends Component {
     return res;
   };
   getEditorLanguage = () => {
+    console.log(getDocumentLanguage(this.state.document));
     return this.getEditorConfig().Languages[
       getDocumentLanguage(this.state.document)
     ][0];
@@ -64,7 +67,6 @@ class EditorLauncher extends Component {
 
   getSupportedEditors = () => {
     const fileLanguage = getDocumentLanguage(this.state.document);
-
     let supportedEditors = [];
     this.Editors.forEach(editor => {
       if (editor.Languages.hasOwnProperty(fileLanguage)) {

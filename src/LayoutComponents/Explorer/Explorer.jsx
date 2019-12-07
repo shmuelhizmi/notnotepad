@@ -150,49 +150,69 @@ class Explorer extends Component {
     }
   };
 }
-const listToTree = files => {
-  let newFiles = files;
-  let fileIndex = 0;
-  let folderIndex = -1;
-  return newFiles
-    .map(file => file.split("/")) // "folder/folder/file=>[folder],[folder],[file]"
-    .reduce((out, path) => {
-      // current output, current path
-      let top = out;
-      while (path.length > 0) {
-        let node = path.shift();
-        if (top.findIndex(n => n.label === node) === -1) {
-          top.push({
-            label: node,
-            id: fileIndex
-          });
-        }
 
-        let index = top.findIndex(n => n.label === node);
-        if (path.length > 0) {
-          top[index].id = folderIndex;
-          folderIndex--;
-          top[index].type = "folder";
-          top[index].icon = "folder-open";
-          top[index].path = files[fileIndex]
-            .slice(0, files[fileIndex].lastIndexOf("/"))
-            .toString();
-          top[index] = top[index] || {};
-          top[index].childNodes = top[index].childNodes || [];
-          top[index].childNodes.push({
-            label: path[0],
-            id: fileIndex
-          });
-          top = top[index].childNodes;
-        } else {
-          top[index].type = "file";
-          top[index].icon = "document";
-          top[index].path = files[fileIndex];
+const listToTree = files => {
+  let tree = {
+    childNodes: []
+  };
+  let filesParts = [];
+  files.forEach(file => {
+    const parts = file.split("/");
+    filesParts.push(parts);
+  });
+  let idsCount = [0];
+  const makeID = index => {
+    while (idsCount.length < index + 1) {
+      idsCount.push(idsCount[index - 1] + 1);
+    }
+    idsCount[index]++;
+    return idsCount[index];
+  };
+  const listPartsToTree = (tree, parts, partIndex) => {
+    let newParts = parts.filter((p, i) => i >= partIndex);
+    let currentTree = tree;
+    const currentPart = newParts[0];
+    let found = false;
+    const isFolder = newParts.length > 1 ? true : false;
+    if (isFolder) {
+      currentTree.childNodes.forEach(child => {
+        if (child.label === currentPart && child.type === "folder") {
+          found = true;
+          child = listPartsToTree(child, parts, partIndex + 1);
         }
+      });
+      if (!found) {
+        currentTree.childNodes.push(
+          listPartsToTree(
+            {
+              id: makeID(partIndex),
+              icon: "folder-close",
+              path: parts.filter((p, i) => i <= partIndex).join("/"),
+              label: currentPart,
+              type: "folder",
+              childNodes: []
+            },
+            parts,
+            partIndex + 1
+          )
+        );
       }
-      fileIndex++;
-      return out;
-    }, []);
+    } else {
+      currentTree.childNodes.push({
+        id: makeID(partIndex),
+        icon: "document",
+        path: parts.filter((p, i) => i <= partIndex).join("/"),
+        label: currentPart,
+        type: "file"
+      });
+    }
+    return currentTree;
+  };
+  filesParts.forEach((parts, index) => {
+    tree = listPartsToTree(tree, parts, 0);
+  });
+  console.log(tree);
+  return tree.childNodes;
 };
 
 export default Explorer;

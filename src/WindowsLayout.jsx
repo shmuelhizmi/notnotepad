@@ -20,6 +20,7 @@ import ViewportWindow from "./LayoutComponents/Viewport/ViewportsWindow";
 import Explorer from "./LayoutComponents/Explorer/Explorer";
 import EditorWindow from "./LayoutComponents/Editor/EditorsWindow";
 import FullExplorer from "./LayoutComponents/Explorer/FullExplorer";
+import Console from "./LayoutComponents/console/console";
 
 export const THEMES = {
   ["Blueprint"]: "mosaic-blueprint-theme",
@@ -37,7 +38,12 @@ export class WindowsLayout extends React.PureComponent {
         second: 1,
         splitPercentage: 20
       },
-      second: 2,
+      second: {
+        direction: "column",
+        first: 2,
+        second: 4,
+        splitPercentage: 60
+      },
       splitPercentage: 70
     },
     currentTheme: "Blueprint Dark",
@@ -48,46 +54,61 @@ export class WindowsLayout extends React.PureComponent {
       this.forceUpdate();
     });
   };
-  Tabs = () => {
-    const openDocument = this.state.openDocument;
-    return [
-      {
-        name: "Editor",
-        toolbarControls: React.Children.toArray([
-          ,
-          <Tooltip content="save code">
-            <Button minimal icon="code" />
-          </Tooltip>,
-          <Tooltip content="save">
-            <Button minimal icon="saved" />
-          </Tooltip>
-        ]),
-        body: (
-          <EditorWindow document={openDocument} editor="Monaco"></EditorWindow>
-        )
-      },
-      {
-        name: "Viewport",
-        toolbarControls: React.Children.toArray([
-          <Button minimal icon="application">
-            open in new window
-          </Button>
-        ]),
-        body: <ViewportWindow document={openDocument}></ViewportWindow>
-      },
-      {
-        name: "Explorer",
-        toolbarControls: React.Children.toArray([
-          <FullExplorer openFile={this.openFile}></FullExplorer>
-        ]),
-        body: (
-          <div>
-            <Explorer openFile={this.openFile}></Explorer>
-          </div>
-        )
-      }
-    ];
-  };
+  Tabs = () => [
+    {
+      name: "Editor",
+      toolbarControls: React.Children.toArray([
+        ,
+        <Tooltip content="save code">
+          <Button minimal icon="code" />
+        </Tooltip>,
+        <Tooltip content="save">
+          <Button minimal icon="saved" />
+        </Tooltip>
+      ]),
+      body: (
+        <EditorWindow
+          key={Math.random()}
+          document={this.state.openDocument}
+          editor="Monaco"
+        ></EditorWindow>
+      )
+    },
+    {
+      name: "Viewport",
+      toolbarControls: React.Children.toArray([
+        <Button minimal icon="application">
+          open in new window
+        </Button>
+      ]),
+      body: (
+        <ViewportWindow
+          key={Math.random()}
+          document={this.state.openDocument}
+        ></ViewportWindow>
+      )
+    },
+    {
+      name: "Explorer",
+      toolbarControls: React.Children.toArray([
+        <FullExplorer openFile={this.openFile}></FullExplorer>
+      ]),
+      body: (
+        <div>
+          <Explorer openFile={this.openFile}></Explorer>
+        </div>
+      )
+    },
+    {
+      name: "Console",
+      body: (
+        <div>
+          <Console />
+        </div>
+      )
+    }
+  ];
+
   render() {
     return (
       <div>

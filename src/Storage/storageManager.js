@@ -1,6 +1,7 @@
 import fileDownload from "js-file-download";
 import STORAGE_RESUALT from "./storage_resualt";
 import JSZip from "jszip";
+import { getDocumentLanguage } from "./fileutils";
 
 class StorageManager {
   constructor(name) {
@@ -58,7 +59,7 @@ class StorageManager {
       localStorage.setItem(fileName, JSON.stringify(fileValue));
       res = STORAGE_RESUALT.SUCCESS;
     } else {
-      res = STORAGE_RESUALT.UNKNOWN;
+      res = STORAGE_RESUALT.FILE_EXIST;
     }
     return res;
   };
@@ -77,12 +78,12 @@ class StorageManager {
       this.setFilesArray(arr);
       localStorage.removeItem(fileName);
     } else {
-      res = STORAGE_RESUALT.FILE_TO_FOUND;
+      res = STORAGE_RESUALT.FAIL_TO_FOUND;
     }
     return res;
   };
   renameFile = (originalName, newName) => {
-    let res = STORAGE_RESUALT.FILE_TO_FOUND;
+    let res = STORAGE_RESUALT.FAIL_TO_FOUND;
     let arr = this.getFilesArray();
     arr.forEach((document, index) => {
       if (document == originalName) {
@@ -127,6 +128,16 @@ class StorageManager {
   safeWriteToFile = (fileName, fileValue) => {
     if (this.fileExist(fileName)) {
       localStorage.setItem(fileName, JSON.stringify(fileValue));
+      return STORAGE_RESUALT.SUCCESS;
+    } else {
+      return STORAGE_RESUALT.FAIL_TO_FOUND;
+    }
+  };
+  safeWriteCodeToFile = (fileName, newCode) => {
+    if (this.fileExist(fileName)) {
+      const file = this.getFile(fileName);
+      file.code = newCode;
+      return this.safeWriteToFile(fileName, file);
     }
   };
   compileAndZipCode = (rootFolder = "project") => {
@@ -144,6 +155,36 @@ class StorageManager {
       fileDownload(content, "build.zip");
     });
   };
+  createLink = (path, target) => {
+    let res = this.createFile(path + ".link", {
+      code: target
+    });
+    if (res === STORAGE_RESUALT.FILE_EXIST) {
+      res = this.safeWriteCodeToFile(path, target);
+    }
+    return res;
+  };
+
+  isLink = path => (getDocumentLanguage(path) === "link" ? true : false);
+  lgetFile = path => {
+    if (this.fileExist(path)) {
+      if (this.isLink(path)) {
+        return this.getFile(this.getFile(path).code);
+      }
+      return this.getFile(path);
+    }
+    throw new Error(STORAGE_RESUALT.FAIL_TO_FOUND);
+  };
+  lsafeWriteCodeToFile = (path, newValue) => {
+    if (this.fileExist(path)) {
+      if (this.isLink(path)) {
+        return this.safeWriteCodeToFile(this.getFile(path).code, newValue);
+      }
+      return this.safeWriteCodeToFile(path, newValue);
+    }
+    return STORAGE_RESUALT.FAIL_TO_FOUND;
+  };
+
   zipAndDwonloadData = () => {
     const filesArray = this.getFilesArray();
     const files = filesArray.map(file => ({

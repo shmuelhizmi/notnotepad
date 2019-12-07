@@ -11,14 +11,14 @@ class Window extends Component {
     return <div>{document}</div>;
   };
   createPanel = props => {
-    if (props.document) {
-      return this.makePanel(props.document);
+    if (this.state.openDocument) {
+      return this.makePanel(this.state.openDocument);
     } else return <div></div>;
   };
   render() {
     return (
       <this.createPanel
-        document={this.props.document}
+        document={this.state.openDocument}
         key={Math.random(100)}
       ></this.createPanel>
     );

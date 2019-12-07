@@ -1,3 +1,8 @@
 export const getDocumentLanguage = name => {
-  return name.slice(name.indexOf(".") + 1, name.lenght);
+  const parts = name.split("/");
+  const last = parts[parts.length - 1];
+  if (last.includes(".")) {
+    return last.slice(last.lastIndexOf(".") + 1, last.length);
+  }
+  return "none";
 };

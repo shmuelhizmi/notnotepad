@@ -58,6 +58,7 @@
       "codeViewer": false,
       "logo": "monaco.svg",
       "Languages": {
+        "none": ["none"],
         "abap": ["abap"],
         "cls": ["apex"],
         "azcli": ["azcli"],
@@ -76,6 +77,7 @@
         "java": ["java"],
         "js": ["javascript", "handlebars", "pug"],
         "json": ["json"],
+        "link": ["link"],
         "lua": ["lua"],
         "md": ["markdown"],
         "dax": ["msdax"],

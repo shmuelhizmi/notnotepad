@@ -19,7 +19,6 @@ export default class BlocklyEditor extends CodeEditor {
     this.toolbox = genarateToolboxFromCategories(this.toolboxCategories);
     this.Initial_xml = this.getEditorData().saveData;
     this.makeBlocksByCategory(this.init, this.blockData);
-    this.initializeHotkeys();
     this.theme = this.getThemeFromInitializationData();
     this.theme.setComponentStyle("toolbox", "#293742");
     this.lastWorkspace = null;
