@@ -6,13 +6,13 @@ import { Pre, LineNo } from "./styles";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { DarkTheme } from "./theme";
 
-import StorageManager from "../../Storage/storageManager";
+import StorageManager, { codeDir } from "../../Storage/storageManager_new";
 import { getDocumentLanguage } from "../../Storage/fileutils";
 
 class Viewport extends Component {
   constructor(props) {
     super(props);
-    this.Storage = new StorageManager("Storage Manager");
+    this.Storage = new StorageManager();
     this.state = {
       document: props.document,
       selectedTabId: "wb",
@@ -21,10 +21,16 @@ class Viewport extends Component {
     };
   }
   componentDidMount() {
-    this.codeUpdater = setInterval(() => this.codeTick(), 300);
+    setInterval(() => this.codeTick(), 300);
   }
   codeTick() {
-    this.setState({ code: this.Storage.getFile(this.state.document).code });
+    this.Storage.getFile(this.state.document, codeDir)
+      .then(data => {
+        this.setState({
+          code: data
+        });
+      })
+      .catch(e => console.log(e));
   }
   render() {
     return (

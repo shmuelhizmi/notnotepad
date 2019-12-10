@@ -1,38 +1,37 @@
 import React, { Component } from "react";
 
-import StorageManager from "./storageManager";
+import StorageManager, { codeDir } from "./storageManager_new";
+import { Button } from "@blueprintjs/core";
 
 class StoragePageView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       page: props.page,
-      objectPath: props.objectPath,
       pageData: ""
     };
-    this.Storage = new StorageManager("Storage Manager");
+    this.Storage = new StorageManager();
   }
-  componentDidMount = () => {
-    this.update();
-  };
-  update = async () => {
-    const pageData = this.Storage.getFile(this.state.page)[
-      this.state.objectPath
-    ];
-    if (pageData != this.state.pageData) {
-      this.setState({ pageData: pageData });
-    }
-    setTimeout(() => {
-      this.update();
-    }, 1000);
-  };
+  updateCode() {
+    this.Storage.getFile(this.state.page, codeDir).then(code => {
+      console.log(code);
+      this.setState({
+        pageData: code
+      });
+    });
+  }
+  componentDidMount() {
+    this.updateCode();
+  }
   render() {
     return (
-      <iframe
-        title={this.state.page}
-        srcDoc={this.state.pageData}
-        className="Fill"
-      ></iframe>
+      <>
+        <iframe
+          title={this.state.page}
+          srcDoc={this.state.pageData}
+          className="Fill"
+        ></iframe>
+      </>
     );
   }
 }

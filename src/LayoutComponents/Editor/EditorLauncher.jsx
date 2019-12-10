@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import StorageManager from "../../Storage/storageManager";
+import StorageManager, {
+  codeDir,
+  editorDataDir,
+  editorDataDefualtValue
+} from "../../Storage/storageManager_new";
 import { getDocumentLanguage } from "../../Storage/fileutils";
 import BlocklyEditor from "../../Editor/Code_Editors/Blockly_Editor/blockly_Editor";
 import MonacoEditor from "../../Editor/Code_Editors/Monaco_Editor/Monaco_Editor";
@@ -12,7 +16,7 @@ class EditorLauncher extends Component {
   constructor(props) {
     super(props);
     this.Editors = require("../../config/EditorsConfig.json").Editors;
-    this.StorageManager = new StorageManager("Storage Manager");
+    this.StorageManager = new StorageManager();
     this.state = {
       document: props.document,
       editor: null,
@@ -20,23 +24,39 @@ class EditorLauncher extends Component {
     };
     this.getEditorName();
   }
-  getEditorName = () => {
+  getEditorName() {
     const document = this.state.document;
-    const editorName = this.StorageManager.getFile(document).editor;
+    const documentData = this.StorageManager.syncGetFile(
+      document,
+      editorDataDir,
+      editorDataDefualtValue
+    );
+    const editorName = JSON.parse(documentData).editor;
     if (editorName) {
       this.state.editorFound = true;
       this.state.editor = editorName;
     } else {
       this.state.editor = "Monaco";
     }
-  };
-  setEditorName = newName => {
+  }
+  setEditorName(newName) {
     const document = this.state.document;
-    const newValue = this.StorageManager.getFile(document);
-    newValue.editor = newName;
-    this.StorageManager.safeWriteToFile(document, newValue);
-    this.setState({ editor: newName, editorFound: true });
-  };
+    this.StorageManager.getFile(
+      document,
+      editorDataDir,
+      editorDataDefualtValue
+    ).then(editorData => {
+      let editorObject = JSON.parse(editorData);
+      editorObject.editor = newName;
+      this.StorageManager.setFile(
+        document,
+        JSON.stringify(editorObject),
+        editorDataDir
+      ).then(() => {
+        this.setState({ editor: newName, editorFound: true });
+      });
+    });
+  }
   getEditorConfig = () => {
     let res = null;
     this.Editors.forEach(Editor => {
@@ -56,10 +76,17 @@ class EditorLauncher extends Component {
     return res;
   };
   getEditorLanguage = () => {
-    console.log(getDocumentLanguage(this.state.document));
-    return this.getEditorConfig().Languages[
-      getDocumentLanguage(this.state.document)
-    ][0];
+    const documentLangusage = getDocumentLanguage(this.state.document);
+    const languages = this.getEditorConfig().Languages;
+
+    if (languages && documentLangusage) {
+      const editorLanguage = languages[documentLangusage];
+      if (editorLanguage) {
+        console.log(editorLanguage[0]);
+        return editorLanguage[0];
+      }
+    }
+    return "";
   };
   getEditorLogoPath = name => {
     return "./media/editors/" + this.getEditorByName(name).logo;
@@ -73,6 +100,9 @@ class EditorLauncher extends Component {
         supportedEditors.push(editor.name);
       }
     });
+    if (supportedEditors.length == 0) {
+      supportedEditors.push("Monaco");
+    }
     return supportedEditors;
   };
 
@@ -146,7 +176,7 @@ class EditorLauncher extends Component {
             {this.getSupportedEditors().map((name, index) => (
               <SelectEditorButton
                 name={name}
-                onClick={this.setEditorName}
+                onClick={() => this.setEditorName(name)}
                 logoPath={this.getEditorLogoPath(name)}
                 key={index}
               ></SelectEditorButton>

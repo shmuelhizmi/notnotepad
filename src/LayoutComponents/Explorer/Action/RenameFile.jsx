@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import StorageManager from "../../../Storage/storageManager";
+import StorageManager from "../../../Storage/storageManager_new";
 import {
   Dialog,
   InputGroup,
@@ -12,7 +12,7 @@ import {
 class RenameFile extends Component {
   constructor(props) {
     super(props);
-    this.Storage = new StorageManager("Storage Manager");
+    this.Storage = new StorageManager();
     this.state = {
       isOpen: props.isOpen,
       fileName: this.props.fileName
@@ -27,8 +27,11 @@ class RenameFile extends Component {
         fileName != this.originalFileName &&
         fileName != this.props.folder
       ) {
-        this.Storage.renameFile(this.originalFileName, fileName);
-        this.props.onClose();
+        this.Storage.renameDocument(this.originalFileName, fileName).then(
+          () => {
+            this.props.onClose();
+          }
+        );
       }
     }
   };

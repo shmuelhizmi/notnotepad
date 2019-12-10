@@ -35,5 +35,5 @@ export default WebRouter;
 const CreateStoragePageView = () => {
   const location = useLocation();
   const pageName = location.pathname.replace("/webView/", "");
-  return <StoragePageView page={pageName} objectPath="code"></StoragePageView>;
+  return <StoragePageView page={pageName}></StoragePageView>;
 };

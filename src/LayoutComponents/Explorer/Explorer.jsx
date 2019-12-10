@@ -4,15 +4,18 @@ import _ from "lodash";
 import CreateFile from "./Action/CreateFile";
 import DeleteFile from "./Action/DeleteFile";
 import RenameFile from "./Action/RenameFile";
-import StorageManager from "../../Storage/storageManager";
+import Scrollbars from "react-custom-scrollbars";
+import StorageManager, {
+  codeDir,
+  editorDataDir
+} from "../../Storage/storageManager_new";
 
 class Explorer extends Component {
   constructor(props) {
     super(props);
-    this.Storage = new StorageManager("Storage Manager");
-    this.StorageData = this.Storage.getFilesArray();
+    this.Storage = new StorageManager();
     this.state = {
-      nodes: [],
+      nodes: null,
       seletedFile: "",
       seletedFolder: "",
       createFileDialogIsOpen: false,
@@ -21,14 +24,13 @@ class Explorer extends Component {
     };
   }
   componentDidMount = () => {
-    this.setState({ nodes: this.makeTree(this.StorageData) }, () => {
-      this.updateNodes();
-    });
+    this.updateNodes();
   };
   render() {
     return (
       <>
         <ButtonGroup fill minimal>
+          <Button icon="refresh" onClick={this.updateNodes}></Button>
           <Button icon="add" onClick={this.openCreateFileDialog}></Button>
           <Button
             onClick={this.OpenRenameFileDialog}
@@ -36,14 +38,16 @@ class Explorer extends Component {
           ></Button>
           <Button onClick={this.openDeleteFileDialog} icon="remove"></Button>
         </ButtonGroup>
-        <Tree
-          contents={this.state.nodes}
-          onNodeClick={this.handleNodeClick}
-          onNodeDoubleClick={this.handleNodeDoubleClick}
-          onNodeCollapse={this.handleNodeCollapse}
-          onNodeExpand={this.handleNodeExpand}
-          className={Classes.ELEVATION_0}
-        ></Tree>
+        <Scrollbars style={{ height: "95%" }}>
+          <Tree
+            contents={this.state.nodes}
+            onNodeClick={this.handleNodeClick}
+            onNodeDoubleClick={this.handleNodeDoubleClick}
+            onNodeCollapse={this.handleNodeCollapse}
+            onNodeExpand={this.handleNodeExpand}
+            className={Classes.ELEVATION_0}
+          ></Tree>
+        </Scrollbars>
         <div>
           <CreateFile
             key={Math.random()}
@@ -72,12 +76,14 @@ class Explorer extends Component {
     this.setState({ createFileDialogIsOpen: true }, () => {});
   };
   closeCreateFileDialog = () => {
+    this.updateNodes();
     this.setState({ createFileDialogIsOpen: false });
   };
   OpenRenameFileDialog = () => {
     this.setState({ renameDialogIsOpen: true }, () => {});
   };
   closeRenameFileDialog = () => {
+    this.updateNodes();
     this.setState({ renameDialogIsOpen: false });
   };
   openDeleteFileDialog = () => {
@@ -86,24 +92,68 @@ class Explorer extends Component {
     }
   };
   closeDeleteFileDialog = () => {
+    this.updateNodes();
     this.setState({ deleteFileDialogIsOpen: false });
   };
 
-  updateNodes = async () => {
-    const oldStorage = this.StorageData;
-    const newStorage = this.Storage.getFilesArray();
-    if (!_.isEqual(oldStorage, newStorage)) {
-      this.StorageData = newStorage;
-      this.setState({ nodes: this.makeTree(this.StorageData) });
-    }
-    setTimeout(() => {
-      this.updateNodes();
-    }, 500);
-  };
-  makeTree = filesPathArray => {
-    return listToTree(filesPathArray);
+  updateNodes = () => {
+    this.makeTree().then(tree => {
+      setTimeout(() => {
+        if (!_.isEqual(tree, this.state.nodes)) {
+          this.setState({ nodes: tree });
+        }
+      }, 2);
+    });
   };
 
+  makeTree() {
+    const getName = path => {
+      return path.slice(path.lastIndexOf("/") + 1, path.length);
+    };
+    const makeLevel = (path, storage, id = 0) => {
+      return new Promise((resolve, reject) => {
+        this.Storage.listDirectoryToCategories(path, storage)
+          .then(level => {
+            let levelTree = [];
+            level.forEach(async (file, index) => {
+              const currentID = index + id;
+              if (file.isDirectory) {
+                levelTree.push({
+                  id: currentID,
+                  label: getName(file.path),
+                  path: file.path,
+                  type: "folder",
+                  icon: "folder-open",
+                  childNodes: await makeLevel(
+                    file.path + "/",
+                    codeDir,
+                    currentID + 1
+                  )
+                });
+              } else {
+                levelTree.push({
+                  id: currentID,
+                  label: getName(file.path),
+                  path: file.path,
+                  type: "file",
+                  icon: "document"
+                });
+              }
+            });
+
+            resolve(levelTree);
+          })
+          .catch(reject);
+      });
+    };
+    return new Promise((resolve, reject) => {
+      makeLevel("", codeDir)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(reject);
+    });
+  }
   handleNodeClick = (nodeData, _nodePath, e) => {
     const originallySelected = nodeData.isSelected;
     const selectedType = nodeData.type;
@@ -150,69 +200,5 @@ class Explorer extends Component {
     }
   };
 }
-
-const listToTree = files => {
-  let tree = {
-    childNodes: []
-  };
-  let filesParts = [];
-  files.forEach(file => {
-    const parts = file.split("/");
-    filesParts.push(parts);
-  });
-  let idsCount = [0];
-  const makeID = index => {
-    while (idsCount.length < index + 1) {
-      idsCount.push(idsCount[index - 1] + 1);
-    }
-    idsCount[index]++;
-    return idsCount[index];
-  };
-  const listPartsToTree = (tree, parts, partIndex) => {
-    let newParts = parts.filter((p, i) => i >= partIndex);
-    let currentTree = tree;
-    const currentPart = newParts[0];
-    let found = false;
-    const isFolder = newParts.length > 1 ? true : false;
-    if (isFolder) {
-      currentTree.childNodes.forEach(child => {
-        if (child.label === currentPart && child.type === "folder") {
-          found = true;
-          child = listPartsToTree(child, parts, partIndex + 1);
-        }
-      });
-      if (!found) {
-        currentTree.childNodes.push(
-          listPartsToTree(
-            {
-              id: makeID(partIndex),
-              icon: "folder-close",
-              path: parts.filter((p, i) => i <= partIndex).join("/"),
-              label: currentPart,
-              type: "folder",
-              childNodes: []
-            },
-            parts,
-            partIndex + 1
-          )
-        );
-      }
-    } else {
-      currentTree.childNodes.push({
-        id: makeID(partIndex),
-        icon: "document",
-        path: parts.filter((p, i) => i <= partIndex).join("/"),
-        label: currentPart,
-        type: "file"
-      });
-    }
-    return currentTree;
-  };
-  filesParts.forEach((parts, index) => {
-    tree = listPartsToTree(tree, parts, 0);
-  });
-  console.log(tree);
-  return tree.childNodes;
-};
 
 export default Explorer;

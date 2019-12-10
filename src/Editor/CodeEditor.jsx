@@ -1,60 +1,76 @@
 import React, { Component } from "react";
-import hotkeys from "hotkeys-js";
-import StorageManager from "../Storage/storageManager";
-import { ButtonGroup, Button } from "@blueprintjs/core";
+import StorageManager, {
+  codeDir,
+  editorDataDir,
+  editorDataDefualtValue
+} from "../Storage/storageManager_new";
 
 class CodeEditor extends Component {
   constructor(props) {
     super(props);
     this.IDkey = props.IDkey;
-    this.StorageManager = new StorageManager("Storage Manager");
+    this.StorageManager = new StorageManager();
     this.state = {
       language: props.language,
       editor: null,
       documentName: props.documentName,
       code: "",
-      saveData: ""
+      editorData: ""
     };
     this.setEditorDataDirct();
   }
+  componentDidMount() {}
   componentWillUnmount = () => {
     this.saveEditorData();
   };
 
   saveEditorData = (
     code = this.state.code,
-    saveData = this.state.saveData,
+    editorData = this.state.editorData,
     editor = this.state.editor
   ) => {
-    this.StorageManager.safeWriteToFile(this.state.documentName, {
+    this.StorageManager.updateFile(this.state.documentName, code, {
       editor: editor,
-      saveData: saveData,
-      code: code
+      editorData: editorData
     });
   };
-  getEditorData = () => {
-    if (this.StorageManager.fileExist(this.state.documentName)) {
-      return this.StorageManager.getFile(this.state.documentName);
-    } else {
-      this.StorageManager.createFile(this.state.documentName, {
-        saveData: this.state.saveData,
-        code: this.state.code
-      });
-      return this.StorageManager.getFile(this.state.documentName);
-    }
+  saveEditorData = code => {
+    this.StorageManager.updateFile(this.state.documentName, code);
   };
-  setEditorData = () => {
-    const editorData = this.getEditorData();
-    this.setState({
-      saveData: editorData.saveData,
-      code: editorData.code
-    });
-  };
+
   setEditorDataDirct = () => {
-    const editorData = this.getEditorData();
-    this.state.saveData = editorData.saveData;
-    this.state.code = editorData.code;
+    const documentData = this.StorageManager.syncGetFile(
+      this.state.documentName,
+      editorDataDir,
+      editorDataDefualtValue
+    );
+    const documentCode = this.StorageManager.syncGetFile(
+      this.state.documentName,
+      codeDir
+    );
+    console.log(documentCode);
+    const editorData = JSON.parse(documentData);
+    this.state.editorData = editorData.editorData;
+    this.state.editor = editorData.editor;
+    this.state.code = documentCode;
   };
+  saveEditorData() {
+    this.StorageManager.updateFile(this.state.documentName, this.state.code, {
+      editor: this.state.editor,
+      editorData: this.state.editorData
+    });
+  }
+  saveEditorData(code, editorData) {
+    let editorDataObject;
+    if (editorData) {
+      editorDataObject = { editor: this.state.editor, editorData: editorData };
+    }
+    this.StorageManager.updateFile(
+      this.state.documentName,
+      code,
+      editorDataObject
+    );
+  }
 }
 
 export default CodeEditor;
