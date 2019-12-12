@@ -22,6 +22,7 @@
     "react-blockly-updated": "^0.3.19",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.11.0",
+    "react-draggable": "^4.2.0",
     "react-hackterm": "^1.2.5",
     "react-json-view": "^1.19.1",
     "react-mde": "^7.6.2",

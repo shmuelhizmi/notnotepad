@@ -1,6 +1,3 @@
-"use strict";
-
-// Converted automatically using ./tools/themeFromVsCode
 export const DarkTheme = {
   plain: {
     color: "#9CDCFE",

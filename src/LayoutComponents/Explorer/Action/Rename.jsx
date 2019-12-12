@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import StorageManager from "../../../Storage/storageManager_new";
+import StorageManager from "../../../Storage/storageManager";
 import {
   Dialog,
   InputGroup,
@@ -20,12 +20,12 @@ class RenameFile extends Component {
     this.originalFileName = this.state.fileName;
   }
   Rename = e => {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       const fileName = this.state.fileName;
       if (
-        fileName != "" &&
-        fileName != this.originalFileName &&
-        fileName != this.props.folder
+        fileName &&
+        fileName !== this.originalFileName &&
+        fileName !== this.props.folder
       ) {
         this.Storage.renameDocument(this.originalFileName, fileName).then(
           () => {

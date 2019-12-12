@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import { Classes, Tree, Drawer, Button, ButtonGroup } from "@blueprintjs/core";
+import { Classes, Tree, Button, ButtonGroup } from "@blueprintjs/core";
 import _ from "lodash";
-import CreateFile from "./Action/CreateFile";
-import DeleteFile from "./Action/DeleteFile";
-import RenameFile from "./Action/RenameFile";
+import CreateFile from "./Action/Create";
+import DeleteFile from "./Action/Delete";
+import RenameFile from "./Action/Rename";
 import Scrollbars from "react-custom-scrollbars";
-import StorageManager, {
-  codeDir,
-  editorDataDir
-} from "../../Storage/storageManager_new";
+import StorageManager, { codeDir } from "../../Storage/storageManager";
 
 class Explorer extends Component {
   constructor(props) {
@@ -87,7 +84,7 @@ class Explorer extends Component {
     this.setState({ renameDialogIsOpen: false });
   };
   openDeleteFileDialog = () => {
-    if (this.state.seletedFile != "") {
+    if (this.state.seletedFile) {
       this.setState({ deleteFileDialogIsOpen: true });
     }
   };
@@ -163,11 +160,11 @@ class Explorer extends Component {
     }
     nodeData.isSelected =
       originallySelected == null ? true : !originallySelected;
-    if (selectedType == "file") {
+    if (selectedType === "file") {
       this.setState({ seletedFile: selectedPath, selectedFolder: "" });
     }
-    if (selectedType == "folder") {
-      if (selectedPath != this.state.seletedFolder) {
+    if (selectedType === "folder") {
+      if (selectedPath !== this.state.seletedFolder) {
         this.setState({ seletedFolder: selectedPath, seletedFile: "" });
       } else {
         this.setState({ seletedFolder: "" });
@@ -175,7 +172,7 @@ class Explorer extends Component {
     }
   };
   handleNodeDoubleClick = (nodeData, _nodePath, e) => {
-    if (nodeData.type == "file") {
+    if (nodeData.type === "file") {
       this.props.openFile(nodeData.path);
     }
     this.setState(this.state);

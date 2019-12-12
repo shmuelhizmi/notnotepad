@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import CodeEditor from "../../CodeEditor";
 import ReactJson from "react-json-view";
 export default class JsonView extends CodeEditor {
   constructor(props) {
     super(props);
+    this.JsonValidationCheck();
   }
   componentDidMount = () => {
     this.setState({ editor: "JsonView" });
@@ -16,11 +17,11 @@ export default class JsonView extends CodeEditor {
     this.setState({
       code: newCode
     });
-    this.saveEditorData(newCode);
+    this.saveEditorCode(newCode);
   };
 
   JsonValidationCheck = () => {
-    if (this.state.code == "") {
+    if (this.state.code) {
       this.state.code = '{"name":"newFile"}';
     }
   };

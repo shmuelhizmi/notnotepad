@@ -5,37 +5,28 @@ import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 import WebRouter from "./router";
 import BrowserFSStorage from "./Storage/BrowerFS";
-import GIT_API from "./APIS/git/git";
-import StorageManager, {
-  codeDir,
-  editorDataDir
-} from "./Storage/storageManager_new";
-import * as BrowserFS from "browserfs/dist/node/core/browserfs";
+import StorageManager, { codeDir } from "./Storage/storageManager";
+import WellcomePage from "./wellcomePage";
+
+ReactDOM.render(
+  <WellcomePage></WellcomePage>,
+  document.getElementById("editor")
+);
 BrowserFSStorage((e, fs) => {
   if (e) {
     throw e;
   }
   window.fs = fs;
-  console.log(window.fs);
-
-  //testing area
-  const storage = new StorageManager();
-  const gitapi = new GIT_API();
-  //-------------
-
-  //defualt styling
 
   console.log(
     `
-    ╬╬╬╬╬╬╬╬╬╬╬╬╬┌┐╬╬╬╬╬╬╬╬╬╬╬╬╬┌┐╬╬╬╬╬╬╬╬╬╬╬┌┐╬╬╬╬╬┌┐╬╬╬╬
-    ╬╬╬╬╬╬╬╬╬╬╬╬╬││╬╬╬╬╬╬╬╬╬╬╬╬┌┘└┐╬╬╬╬╬╬╬╬╬┌┘└┐╬╬╬╬││╬╬╬╬
-    ┌┐┌┬┬──┬┐┌┬──┤│╬┌──┬──┬─┬┬─┴┐┌┼┬─┐┌──┐┌─┴┐┌┼┐┌┬─┘├┬──┐
-    │└┘├┤──┤│││┌┐││╬│──┤┌─┤┌┼┤┌┐││├┤┌┐┤┌┐││──┤│││││┌┐├┤┌┐│
-    └┐┌┤├──│└┘│┌┐│└┐├──│└─┤│││└┘│└┤││││└┘│├──│└┤└┘│└┘││└┘│
-    ╬└┘└┴──┴──┴┘└┴─┘└──┴──┴┘└┤┌─┴─┴┴┘└┴─┐│└──┴─┴──┴──┴┴──┘
-    ╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬││╬╬╬╬╬╬╬┌─┘│╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬
-    ╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬└┘╬╬╬╬╬╬╬└──┘╬╬╬╬╬╬©shmuelHizmi
-  `
+    ╔═╦╦═╦══╗█╔═╦╦═╦══╦═╗╔═╦══╦══╗
+    ║║║║║╠╗╔╩═╣║║║║╠╗╔╣╦╝║╬║╔╗╠╗╗║
+    ║║║║║║║╠══╣║║║║║║║║╩╗║╔╣╠╣╠╩╝║
+    ╚╩═╩═╝╚╝██╚╩═╩═╝╚╝╚═╝╚╝╚╝╚╩══╝
+    
+
+    `
   );
 
   ReactDOM.render(<WebRouter></WebRouter>, document.getElementById("editor"));

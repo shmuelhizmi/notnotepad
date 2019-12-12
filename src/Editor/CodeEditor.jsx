@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import StorageManager, {
   codeDir,
   editorDataDir,
   editorDataDefualtValue
-} from "../Storage/storageManager_new";
+} from "../Storage/storageManager";
 
 class CodeEditor extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class CodeEditor extends Component {
       editorData: editorData
     });
   };
-  saveEditorData = code => {
+  saveEditorCode = code => {
     this.StorageManager.updateFile(this.state.documentName, code);
   };
 
@@ -48,13 +48,12 @@ class CodeEditor extends Component {
       this.state.documentName,
       codeDir
     );
-    console.log(documentCode);
     const editorData = JSON.parse(documentData);
     this.state.editorData = editorData.editorData;
     this.state.editor = editorData.editor;
     this.state.code = documentCode;
   };
-  saveEditorData() {
+  saveEditorDataFromState() {
     this.StorageManager.updateFile(this.state.documentName, this.state.code, {
       editor: this.state.editor,
       editorData: this.state.editorData

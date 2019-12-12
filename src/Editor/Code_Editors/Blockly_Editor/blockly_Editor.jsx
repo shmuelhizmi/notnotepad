@@ -17,39 +17,37 @@ export default class BlocklyEditor extends CodeEditor {
     this.generator.ORDER_ATOMIC = 0;
     this.generator.ORDER_NONE = 0;
     this.toolbox = genarateToolboxFromCategories(this.toolboxCategories);
-    this.Initial_xml = this.getEditorData().saveData;
+    this.Initial_xml = this.state.editorData;
     this.makeBlocksByCategory(this.init, this.blockData);
     this.theme = this.getThemeFromInitializationData();
     this.theme.setComponentStyle("toolbox", "#293742");
-    this.lastWorkspace = null;
+    this.workspace = null;
     this.theme.setComponentStyle("workspace", "#293742");
-    //this.theme.setComponentStyle("flyoutOpacity", "0");
   }
   componentDidMount = () => {
     this.setState({ editor: "Blockly" });
     this.loop();
   };
   loop = async () => {
-    if (this.lastWorkspace) {
-      Blockly.svgResize(this.lastWorkspace);
+    if (this.workspace) {
+      Blockly.svgResize(this.workspace);
     }
-
     setTimeout(() => {
       this.loop();
     }, 200);
   };
   //workspace updated
   workspaceDidChange = workspace => {
-    this.lastWorkspace = workspace;
-    if (this.state.newDocument) {
-      Blockly.Xml.textToDom(this.state.saveData);
-    }
-    this.setState({
-      editor: this.state.editor,
-      code: this.generator.workspaceToCode(workspace),
-      saveData: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
-    });
-    this.saveEditorData();
+    this.workspace = workspace;
+    this.setState(
+      {
+        code: this.generator.workspaceToCode(workspace),
+        editorData: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
+      },
+      () => {
+        this.saveEditorData(this.state.code, this.state.editorData);
+      }
+    );
   };
 
   //render
@@ -158,7 +156,7 @@ export default class BlocklyEditor extends CodeEditor {
         resultCode = replace(
           resultCode,
           "%" + blockData.nextStatement.str + "%",
-          nextBlockCode != "" ? "\n" + nextBlockCode : ""
+          nextBlockCode ? "\n" + nextBlockCode : ""
         );
       }
       return resultCode;

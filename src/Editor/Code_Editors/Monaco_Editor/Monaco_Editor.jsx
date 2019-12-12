@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 
 import CodeEditor from "../../CodeEditor";
 import { ControlledEditor } from "@monaco-editor/react";
@@ -14,11 +14,9 @@ export default class MonacoEditor extends CodeEditor {
   };
   onEditorMount = (getEditorValue, editor) => {
     this.editor = editor;
-    console.log(editor);
   };
   onChange = (event, newCode) => {
-    console.log(event);
-    this.saveEditorData(newCode);
+    this.saveEditorCode(newCode);
   };
   render() {
     const code = this.state.code;

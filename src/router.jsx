@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import WindowsLayout from "./WindowsLayout";
-import StoragePageView from "./Storage/storagePageView";
+import PageView from "./Storage/storagePageView.js";
 import {
   BrowserRouter as Router,
   Switch,
@@ -35,5 +35,7 @@ export default WebRouter;
 const CreateStoragePageView = () => {
   const location = useLocation();
   const pageName = location.pathname.replace("/webView/", "");
-  return <StoragePageView page={pageName}></StoragePageView>;
+  const page = new PageView(pageName);
+  page.start();
+  return <></>;
 };

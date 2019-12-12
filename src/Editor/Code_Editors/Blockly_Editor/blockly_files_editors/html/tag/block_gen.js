@@ -15,10 +15,10 @@ const makeBlock = block => {
       type: "input_dummy"
     }
   ];
-  if (haveMetadata == false || block.metadata.noAttributes == null) {
+  if (!haveMetadata || !block.metadata.noAttributes) {
     args.push({ type: "input_value", name: "attribute_input" });
   }
-  if (haveMetadata == false || !noBody) {
+  if (haveMetadata || !noBody) {
     args.push({ type: "input_statement", name: "tag_body_input" });
   }
   return UniversalBlockMaker(

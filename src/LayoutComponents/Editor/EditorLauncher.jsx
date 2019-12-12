@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import StorageManager, {
-  codeDir,
   editorDataDir,
   editorDataDefualtValue
-} from "../../Storage/storageManager_new";
+} from "../../Storage/storageManager";
 import { getDocumentLanguage } from "../../Storage/fileutils";
 import BlocklyEditor from "../../Editor/Code_Editors/Blockly_Editor/blockly_Editor";
 import MonacoEditor from "../../Editor/Code_Editors/Monaco_Editor/Monaco_Editor";
@@ -11,7 +10,7 @@ import { Button, Card, ButtonGroup } from "@blueprintjs/core";
 import JsonView from "../../Editor/Code_Editors/Json_View/Json_View";
 import CKEditorEditor from "../../Editor/Code_Editors/CKEditor_Editor/CKEditor_Editor";
 import CKEditor4Editor from "../../Editor/Code_Editors/CKEditor4_Editor/CKEditor4_Editor";
-import MDEDitor from "../../Editor/Code_Editors/MDE_EDITOR/MDE_Editor";
+import MDEDitor from "../../Editor/Code_Editors/MDE_Editor/MDE_Editor";
 class EditorLauncher extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +59,7 @@ class EditorLauncher extends Component {
   getEditorConfig = () => {
     let res = null;
     this.Editors.forEach(Editor => {
-      if (Editor.name == this.state.editor) {
+      if (Editor.name === this.state.editor) {
         res = Editor;
       }
     });
@@ -69,7 +68,7 @@ class EditorLauncher extends Component {
   getEditorByName = name => {
     let res;
     this.Editors.forEach(editor => {
-      if (editor.name == name) {
+      if (editor.name === name) {
         res = editor;
       }
     });
@@ -82,7 +81,6 @@ class EditorLauncher extends Component {
     if (languages && documentLangusage) {
       const editorLanguage = languages[documentLangusage];
       if (editorLanguage) {
-        console.log(editorLanguage[0]);
         return editorLanguage[0];
       }
     }
@@ -100,7 +98,7 @@ class EditorLauncher extends Component {
         supportedEditors.push(editor.name);
       }
     });
-    if (supportedEditors.length == 0) {
+    if (supportedEditors.length === 0) {
       supportedEditors.push("Monaco");
     }
     return supportedEditors;
@@ -195,7 +193,7 @@ const SelectEditorButton = props => {
   return (
     <>
       <Button onClick={click}>
-        <img width="75" height="75" src={props.logoPath}></img>
+        <img width="75" alt={props.name} height="75" src={props.logoPath}></img>
       </Button>
     </>
   );

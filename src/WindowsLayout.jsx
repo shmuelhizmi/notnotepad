@@ -1,4 +1,4 @@
-import { Classes, Button, Tooltip, ButtonGroup } from "@blueprintjs/core";
+import { Classes, Button, Tooltip } from "@blueprintjs/core";
 import classNames from "classnames";
 import React from "react";
 
@@ -20,7 +20,7 @@ import ViewportWindow from "./LayoutComponents/Viewport/ViewportsWindow";
 import Explorer from "./LayoutComponents/Explorer/Explorer";
 import EditorWindow from "./LayoutComponents/Editor/EditorsWindow";
 import FullExplorer from "./LayoutComponents/Explorer/FullExplorer";
-import Console from "./LayoutComponents/console/console";
+import Terminal from "./LayoutComponents/console/terminal";
 
 export const THEMES = {
   ["Blueprint"]: "mosaic-blueprint-theme",
@@ -58,7 +58,6 @@ export class WindowsLayout extends React.PureComponent {
     {
       name: "Editor",
       toolbarControls: React.Children.toArray([
-        ,
         <Tooltip content="save code">
           <Button minimal icon="code" />
         </Tooltip>,
@@ -77,7 +76,17 @@ export class WindowsLayout extends React.PureComponent {
     {
       name: "Viewport",
       toolbarControls: React.Children.toArray([
-        <Button minimal icon="application">
+        <Button
+          onClick={() => {
+            window.open(
+              "./webView/" + this.state.openDocument,
+              "webview",
+              "width=550,height=700"
+            );
+          }}
+          minimal
+          icon="application"
+        >
           open in new window
         </Button>
       ]),
@@ -103,7 +112,7 @@ export class WindowsLayout extends React.PureComponent {
       name: "Console",
       body: (
         <div>
-          <Console />
+          <Terminal uid={0} />
         </div>
       )
     }
@@ -111,7 +120,7 @@ export class WindowsLayout extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <div style={{ backgroundColor: "rgb(39,44,41,0.5)" }}>
         <Mosaic
           renderTile={(count, path) => (
             <MosaicWindow

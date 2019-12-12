@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import StorageManager from "../../../Storage/storageManager_new";
+import StorageManager from "../../../Storage/storageManager";
 import {
   Dialog,
   InputGroup,
@@ -15,17 +15,17 @@ class CreateFile extends Component {
     this.Storage = new StorageManager();
     this.state = {
       isOpen: props.isOpen,
-      fileName: this.props.folder != "" ? this.props.folder + "/" : ""
+      fileName: this.props.folder ? this.props.folder + "/" : ""
     };
     this.originalFileName = this.state.fileName;
   }
   Create = e => {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       const fileName = this.state.fileName;
       if (
-        fileName != "" &&
-        fileName != this.originalFileName &&
-        fileName != this.props.folder
+        fileName &&
+        fileName !== this.originalFileName &&
+        fileName !== this.props.folder
       ) {
         this.Storage.MakeDocument(fileName).then(() => {
           this.props.onClose();

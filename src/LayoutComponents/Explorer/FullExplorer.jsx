@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Classes, Tree, Drawer, Button, ButtonGroup } from "@blueprintjs/core";
 import Explorer from "./Explorer";
-import CreateFile from "./Action/CreateFile";
-import DeleteFile from "./Action/DeleteFile";
-import RenameFile from "./Action/RenameFile";
+import CreateFile from "./Action/Create";
+import DeleteFile from "./Action/Delete";
+import RenameFile from "./Action/Rename";
 
 class FullExplorer extends Explorer {
   constructor(props) {
@@ -51,6 +51,7 @@ class FullExplorer extends Explorer {
             </Button>
           </ButtonGroup>
           <Tree
+            style={{ backgroundColor: "rgb(39,44,41,0.5)" }}
             contents={this.state.nodes}
             onNodeClick={this.handleNodeClick}
             onNodeDoubleClick={this.handleNodeDoubleClick}
@@ -59,32 +60,16 @@ class FullExplorer extends Explorer {
             className={Classes.ELEVATION_0}
           ></Tree>
           <ButtonGroup fill minimal>
-            <Button
-              icon="download"
-              onClick={() => {
-                this.Storage.downloadFileCode(
-                  this.state.seletedFile,
-                  this.state.seletedFile
-                );
-              }}
-            >
+            <Button icon="download" onClick={() => {}}>
               download file code
             </Button>
-            <Button
-              icon="download"
-              onClick={() => {
-                this.Storage.downloadFile(
-                  this.state.seletedFile,
-                  this.state.seletedFile + ".nppfile"
-                );
-              }}
-            >
+            <Button icon="download" onClick={() => {}}>
               download file data
             </Button>
             <Button
               icon="download"
               onClick={() => {
-                this.Storage.zipAndDwonloadData();
+                this.Storage.download();
               }}
             >
               download project data
@@ -95,7 +80,7 @@ class FullExplorer extends Explorer {
             large
             icon="build"
             onClick={() => {
-              this.Storage.compileAndZipCode();
+              this.Storage.downloadCode();
             }}
           >
             compile and dowload project

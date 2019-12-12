@@ -6,7 +6,7 @@ import { Pre, LineNo } from "./styles";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { DarkTheme } from "./theme";
 
-import StorageManager, { codeDir } from "../../Storage/storageManager_new";
+import StorageManager, { codeDir } from "../../Storage/storageManager";
 import { getDocumentLanguage } from "../../Storage/fileutils";
 
 class Viewport extends Component {
@@ -45,10 +45,10 @@ class Viewport extends Component {
           panel={
             <div style={{ height: "93%", marginTop: "-3%" }}>
               <iframe
+                title="page view"
                 className="Fill"
                 key={this.state.index}
-                title="web view"
-                src={"./webView/" + this.state.document}
+                srcDoc={this.state.code}
               ></iframe>
             </div>
           }
