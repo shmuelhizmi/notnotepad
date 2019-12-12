@@ -1,6 +1,8 @@
-# NoteNotePad
+# NoteNotePad - [Live Demo](https://vss-master.shmuelhizmi.now.sh/)
 
-![](https://i.imgur.com/631OVT9.png =768x432)
+![](https://i.imgur.com/ZKHZFUz.png =450x250)
+![](https://i.imgur.com/xunV3r4.png =450x250)
+![](https://i.imgur.com/hiEab3A.png =450x250)
 
 **to start run:**
 
@@ -17,6 +19,22 @@
   5.  MD editor - [react-mde](https://github.com/andrerpena/react-mde)
 - **full node like file system** - [BrowserFS](https://github.com/jvilk/BrowserFS)
 - **live code/page view**
-- **console emulator**
+- **terminal**
 
 ##todo
+
+- console emulator
+  1. add more git functionality
+  2. improve terminal file-system commands
+  3. static hosting
+  4. console extension apps support
+  5. console media output
+- editor shortcuts support
+- extension support
+  1. console extension apps support
+  2. editor windows extension apps support
+  3. extension code editors
+- move to typescript
+- live static hosting
+- node packages support
+- create app windows
