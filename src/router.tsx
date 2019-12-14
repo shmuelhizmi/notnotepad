@@ -1,30 +1,22 @@
 import React, { Component } from "react";
 import WindowsLayout from "./WindowsLayout";
 import PageView from "./Storage/storagePageView.js";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation
-} from "react-router-dom";
+import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
+
 class WebRouter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   render() {
     return (
       <div>
-        <Router>
+        <BrowserRouter>
           <Switch>
             <Route exact path="/">
               <WindowsLayout></WindowsLayout>
             </Route>
-            <Router exact path="/webView/:page">
+            <Route exact path="/webView/:page">
               <CreateStoragePageView></CreateStoragePageView>
-            </Router>
+            </Route>
           </Switch>
-        </Router>
+        </BrowserRouter>
       </div>
     );
   }

@@ -41,10 +41,10 @@ export default class WellcomePage extends Component {
               }}
             >
               <Draggable>
-                <H1 style={{ marginTop: "30%" }}>
-                  wellcome to NotNotePad
+                <div>
+                  <H1 style={{ marginTop: "30%" }}>wellcome to NotNotePad</H1>
                   <H3>large project may take a wilde to load...</H3>
-                </H1>
+                </div>
               </Draggable>
               <Divider />
               <Draggable>
@@ -61,7 +61,7 @@ export default class WellcomePage extends Component {
             src="./media/editors/monaco.svg"
             width={100}
             height={100}
-            draggable="false"
+            draggable={false}
           ></img>
         </Draggable>
         <Draggable>
@@ -70,7 +70,7 @@ export default class WellcomePage extends Component {
             src="./media/editors/md.png"
             width={100}
             height={100}
-            draggable="false"
+            draggable={false}
           ></img>
         </Draggable>
         <Draggable>
@@ -79,7 +79,7 @@ export default class WellcomePage extends Component {
             src="./media/editors/ckeditor5.png"
             width={100}
             height={100}
-            draggable="false"
+            draggable={false}
           ></img>
         </Draggable>
         <Draggable>
@@ -88,7 +88,7 @@ export default class WellcomePage extends Component {
             src="./media/editors/ckeditor4.png"
             width={100}
             height={100}
-            draggable="false"
+            draggable={false}
           ></img>
         </Draggable>
         <Draggable>
@@ -97,7 +97,7 @@ export default class WellcomePage extends Component {
             src="./media/editors/blockly.svg"
             width={100}
             height={100}
-            draggable="false"
+            draggable={false}
           ></img>
         </Draggable>
         <Draggable>
@@ -106,7 +106,7 @@ export default class WellcomePage extends Component {
             src="./media/editors/jsonview.svg"
             width={100}
             height={100}
-            draggable="false"
+            draggable={false}
           ></img>
         </Draggable>
       </div>

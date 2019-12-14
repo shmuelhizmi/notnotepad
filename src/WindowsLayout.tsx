@@ -1,24 +1,22 @@
-import { Classes, Button, Tooltip } from "@blueprintjs/core";
+import { Classes, Button, Tooltip, H1 } from "@blueprintjs/core";
 import classNames from "classnames";
-import React from "react";
+import React, { PureComponent } from "react";
 
 import {
   createBalancedTreeFromLeaves,
   getLeaves,
   Mosaic,
+  MosaicNode,
   MosaicWindow,
   MosaicZeroState
 } from "react-mosaic-component";
 
-//import { CloseAdditionalControlsButton } from "react-mosaic-component";
-
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "@blueprintjs/icons/lib/css/blueprint-icons.css";
-import "./App.css";
 
 import ViewportWindow from "./LayoutComponents/Viewport/ViewportsWindow";
 import Explorer from "./LayoutComponents/Explorer/Explorer";
-import EditorWindow from "./LayoutComponents/Editor/EditorsWindow";
+import EditorWindow from "./LayoutComponents/Editor/EditorWindow";
 import FullExplorer from "./LayoutComponents/Explorer/FullExplorer";
 import Terminal from "./LayoutComponents/console/terminal";
 
@@ -27,9 +25,15 @@ export const THEMES = {
   ["Blueprint Dark"]: classNames("mosaic-blueprint-theme", Classes.DARK),
   ["None"]: ""
 };
+export type Theme = keyof typeof THEMES;
 
-export class WindowsLayout extends React.PureComponent {
-  state = {
+export interface WindowsLayoutState {
+  currentNode: MosaicNode<number> | null;
+  currentTheme: Theme;
+  openDocument: string;
+}
+export class WindowsLayout extends React.PureComponent<{}, WindowsLayoutState> {
+  state: WindowsLayoutState = {
     currentNode: {
       direction: "row",
       first: {
@@ -47,13 +51,15 @@ export class WindowsLayout extends React.PureComponent {
       splitPercentage: 70
     },
     currentTheme: "Blueprint Dark",
-    openDocument: null
+    openDocument: ""
   };
-  openFile = name => {
+  openFile = (name: string) => {
+    console.log(name);
     this.setState({ openDocument: name }, () => {
       this.forceUpdate();
     });
   };
+
   Tabs = () => [
     {
       name: "Editor",
@@ -67,7 +73,7 @@ export class WindowsLayout extends React.PureComponent {
       ]),
       body: (
         <EditorWindow
-          key={Math.random()}
+          key={this.state.openDocument}
           document={this.state.openDocument}
           editor="Monaco"
         ></EditorWindow>
@@ -92,7 +98,7 @@ export class WindowsLayout extends React.PureComponent {
       ]),
       body: (
         <ViewportWindow
-          key={Math.random()}
+          key={this.state.openDocument}
           document={this.state.openDocument}
         ></ViewportWindow>
       )
@@ -112,18 +118,20 @@ export class WindowsLayout extends React.PureComponent {
       name: "Console",
       body: (
         <div>
-          <Terminal uid={0} />
+          <Terminal />
         </div>
       )
     }
   ];
-
   render() {
     return (
-      <div style={{ backgroundColor: "rgb(39,44,41,0.5)" }}>
-        <Mosaic
+      <div
+        className="windows-layout"
+        style={{ backgroundColor: "rgb(39,44,41,0.5)" }}
+      >
+        <Mosaic<number>
           renderTile={(count, path) => (
-            <MosaicWindow
+            <MosaicWindow<number>
               additionalControls={[]}
               title={this.Tabs()[count - 1].name}
               createNode={this.createNode}
@@ -136,14 +144,17 @@ export class WindowsLayout extends React.PureComponent {
           zeroStateView={<MosaicZeroState createNode={this.createNode} />}
           value={this.state.currentNode}
           onChange={this.onChange}
-          onRelease={this.onRelease}
-          className={THEMES[this.state.currentTheme]}
+          className={THEMES["Blueprint Dark"]}
         />
       </div>
     );
   }
 
-  onChange = currentNode => {
+  createNode = () => {
+    return -1;
+  };
+
+  onChange = (currentNode: MosaicNode<number> | null) => {
     this.setState({ currentNode });
   };
 

@@ -5,7 +5,6 @@ import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 import WebRouter from "./router";
 import BrowserFSStorage from "./Storage/BrowerFS";
-import StorageManager, { codeDir } from "./Storage/storageManager";
 import WellcomePage from "./wellcomePage";
 
 ReactDOM.render(

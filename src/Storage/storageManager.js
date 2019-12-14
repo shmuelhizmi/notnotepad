@@ -94,6 +94,15 @@ export default class StorageManager {
       );
     }
   }
+  setEditor(path, editor) {
+    this.getFile(path, editorDataDir, editorDataDefualtValue).then(
+      editorData => {
+        let editorDataObject = JSON.parse(editorData);
+        editorDataObject.editor = editor;
+        this.updateFile(path, false, editorDataObject);
+      }
+    );
+  }
   setFile(path, data, storage) {
     return new Promise((resolve, reject) => {
       this.fileSystem.writeFile(storage + path, data, e => {
@@ -135,8 +144,8 @@ export default class StorageManager {
   }
   makeDirectory(path) {
     return Promise.all([
-      this.CreateDirectory(path, codeDir),
-      this.CreateDirectory(path, editorDataDir)
+      this.createDirectory(path, codeDir),
+      this.createDirectory(path, editorDataDir)
     ]);
   }
   createDirectory(path, storage) {
@@ -325,8 +334,8 @@ export default class StorageManager {
     ]);
   }
   syncRenameDocument(path, newPath) {
-    this.syncRenameFile(path, newPath, editorDataDir);
-    this.syncRenameFile(path, newPath, codeDir);
+    this.syncRename(path, newPath, editorDataDir);
+    this.syncRename(path, newPath, codeDir);
   }
 
   renameFile(path, newPath, storage) {
@@ -378,9 +387,9 @@ export default class StorageManager {
   }
 
   downloadCode() {
-    this.Storage.syncZipFolder("", codeDir)
+    this.syncZipFolder("", codeDir)
       .generateAsync({ type: "blob" })
-      .then(v => fileDownload(v));
+      .then(v => fileDownload(v, "project.zip"));
   }
   download() {
     const code = this.syncZipFolder("", codeDir);

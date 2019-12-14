@@ -9,8 +9,20 @@ import { DarkTheme } from "./theme";
 import StorageManager, { codeDir } from "../../Storage/storageManager";
 import { getDocumentLanguage } from "../../Storage/fileutils";
 
-class Viewport extends Component {
-  constructor(props) {
+interface ViewportProps {
+  document: string | null;
+}
+
+interface ViewportState {
+  document: string | null;
+  selectedTabId: string;
+  index: number;
+  code: string;
+}
+
+class Viewport extends Component<ViewportProps, ViewportState> {
+  Storage: StorageManager;
+  constructor(props: ViewportProps) {
     super(props);
     this.Storage = new StorageManager();
     this.state = {
@@ -21,16 +33,18 @@ class Viewport extends Component {
     };
   }
   componentDidMount() {
-    setInterval(() => this.codeTick(), 300);
+    setInterval(() => this.codeTick(), 1500);
   }
   codeTick() {
-    this.Storage.getFile(this.state.document, codeDir)
-      .then(data => {
-        this.setState({
-          code: data
-        });
-      })
-      .catch(e => console.log(e));
+    if (this.state.document) {
+      this.Storage.getFile(this.state.document, codeDir)
+        .then(data => {
+          this.setState({
+            code: data
+          });
+        })
+        .catch(e => console.log(e));
+    }
   }
   render() {
     return (
@@ -89,8 +103,8 @@ class Viewport extends Component {
       </Tabs>
     );
   }
-  handleTabChange = e => {
-    this.setState({ selectedTabId: e });
+  handleTabChange = (tab: string) => {
+    this.setState({ selectedTabId: tab });
   };
 }
 

@@ -1,24 +1,27 @@
 import React from "react";
 import { Classes, Tree, Drawer, Button, ButtonGroup } from "@blueprintjs/core";
-import Explorer from "./Explorer";
+import Explorer, { ExplorerProps } from "./Explorer";
 import CreateFile from "./Action/Create";
 import DeleteFile from "./Action/Delete";
 import RenameFile from "./Action/Rename";
 
+interface FullExplorerProps extends ExplorerProps {
+  isOpen: boolean;
+}
+
 class FullExplorer extends Explorer {
-  constructor(props) {
+  constructor(props: FullExplorerProps) {
     super(props);
     this.state = {
       ...this.state,
-      isOpen: props.isOpen,
-      importFromDriveDialogIsOpen: false
+      isOpen: props.isOpen
     };
   }
 
-  close = e => {
+  close = () => {
     this.setState({ isOpen: false });
   };
-  open = e => {
+  open = () => {
     this.setState({ isOpen: true });
   };
   render() {
@@ -51,7 +54,7 @@ class FullExplorer extends Explorer {
             </Button>
           </ButtonGroup>
           <Tree
-            style={{ backgroundColor: "rgb(39,44,41,0.5)" }}
+            //style={{ backgroundColor: "rgb(39,44,41,0.5)" }}
             contents={this.state.nodes}
             onNodeClick={this.handleNodeClick}
             onNodeDoubleClick={this.handleNodeDoubleClick}
@@ -69,7 +72,7 @@ class FullExplorer extends Explorer {
             <Button
               icon="download"
               onClick={() => {
-                this.Storage.download();
+                this.storage.download();
               }}
             >
               download project data
@@ -80,7 +83,7 @@ class FullExplorer extends Explorer {
             large
             icon="build"
             onClick={() => {
-              this.Storage.downloadCode();
+              this.storage.downloadCode();
             }}
           >
             compile and dowload project
@@ -90,19 +93,21 @@ class FullExplorer extends Explorer {
           <CreateFile
             key={Math.random()}
             isOpen={this.state.createFileDialogIsOpen}
-            folder={this.state.seletedFolder}
+            selected={this.state.selected}
             onClose={this.closeCreateFileDialog}
           ></CreateFile>
           <DeleteFile
             key={Math.random()}
             isOpen={this.state.deleteFileDialogIsOpen}
-            file={this.state.seletedFile}
+            selected={this.state.selected}
+            selectedIsDirectory={this.state.selectedIsDirectory}
             onClose={this.closeDeleteFileDialog}
           ></DeleteFile>
           <RenameFile
             key={Math.random()}
             isOpen={this.state.renameDialogIsOpen}
-            fileName={this.state.seletedFile}
+            selected={this.state.selected}
+            selectedIsDirectory={this.state.selectedIsDirectory}
             onClose={this.closeRenameFileDialog}
           ></RenameFile>
         </div>

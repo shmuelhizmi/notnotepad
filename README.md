@@ -1,9 +1,7 @@
 # NoteNotePad - [Live Demo](https://vss-master.shmuelhizmi.now.sh/)
 
-![](https://i.imgur.com/ZKHZFUz.png =450x250)
-![](https://i.imgur.com/xunV3r4.png =450x250)
-![](https://i.imgur.com/hiEab3A.png =450x250)
-
+![blockly](https://i.imgur.com/ZKHZFUz.png)
+![code](https://i.imgur.com/xunV3r4.png)
 **to start run:**
 
 1. `yarn install`
@@ -21,7 +19,7 @@
 - **live code/page view**
 - **terminal**
 
-##todo
+## todo
 
 - console emulator
   1. add more git functionality

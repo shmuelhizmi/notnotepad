@@ -11,20 +11,52 @@ import JsonView from "../../Editor/Code_Editors/Json_View/Json_View";
 import CKEditorEditor from "../../Editor/Code_Editors/CKEditor_Editor/CKEditor_Editor";
 import CKEditor4Editor from "../../Editor/Code_Editors/CKEditor4_Editor/CKEditor4_Editor";
 import MDEDitor from "../../Editor/Code_Editors/MDE_Editor/MDE_Editor";
-class EditorLauncher extends Component {
-  constructor(props) {
+
+interface EditorLauncherState {
+  document: string | null;
+  editor: string;
+  editorFound: boolean;
+}
+interface EditorLauncherProps {
+  document: string | null;
+  editor?: string | undefined | null;
+}
+
+export interface CodeViewer {
+  Languages: string[];
+}
+
+export interface Editor {
+  name: string;
+  logo: string;
+  codeViewer: boolean;
+  Languages: any;
+}
+
+export interface EditorsConfig {
+  codeViewer: CodeViewer;
+  Editors: Editor[];
+}
+
+class EditorLauncher extends Component<
+  EditorLauncherProps,
+  EditorLauncherState
+> {
+  Editors: Editor[];
+  StorageManager: StorageManager;
+  constructor(props: EditorLauncherProps) {
     super(props);
     this.Editors = require("../../config/EditorsConfig.json").Editors;
     this.StorageManager = new StorageManager();
+    const editor = this.getEditor(props);
     this.state = {
       document: props.document,
-      editor: null,
-      editorFound: false
+      editor: editor[0],
+      editorFound: editor[1]
     };
-    this.getEditorName();
   }
-  getEditorName() {
-    const document = this.state.document;
+  getEditor(props: EditorLauncherProps): [string, boolean] {
+    const document = props.document;
     const documentData = this.StorageManager.syncGetFile(
       document,
       editorDataDir,
@@ -32,62 +64,49 @@ class EditorLauncher extends Component {
     );
     const editorName = JSON.parse(documentData).editor;
     if (editorName) {
-      this.state.editorFound = true;
-      this.state.editor = editorName;
+      return [editorName, true];
     } else {
-      this.state.editor = "Monaco";
+      return ["", false];
     }
   }
-  setEditorName(newName) {
-    const document = this.state.document;
-    this.StorageManager.getFile(
-      document,
-      editorDataDir,
-      editorDataDefualtValue
-    ).then(editorData => {
-      let editorObject = JSON.parse(editorData);
-      editorObject.editor = newName;
-      this.StorageManager.setFile(
-        document,
-        JSON.stringify(editorObject),
-        editorDataDir
-      ).then(() => {
-        this.setState({ editor: newName, editorFound: true });
-      });
-    });
+  getEditorConfig(): Editor | null {
+    const editor = this.getEditorByName(this.state.editor);
+    if (editor) {
+      return editor;
+    }
+    return null;
   }
-  getEditorConfig = () => {
-    let res = null;
-    this.Editors.forEach(Editor => {
-      if (Editor.name === this.state.editor) {
-        res = Editor;
-      }
-    });
-    return res;
-  };
-  getEditorByName = name => {
-    let res;
+  getEditorByName(name: string): Editor | null {
+    let res: Editor | null;
+    res = null;
     this.Editors.forEach(editor => {
       if (editor.name === name) {
         res = editor;
       }
     });
     return res;
-  };
+  }
   getEditorLanguage = () => {
     const documentLangusage = getDocumentLanguage(this.state.document);
-    const languages = this.getEditorConfig().Languages;
+    const editor = this.getEditorConfig();
+    if (editor) {
+      const languages = editor.Languages;
 
-    if (languages && documentLangusage) {
-      const editorLanguage = languages[documentLangusage];
-      if (editorLanguage) {
-        return editorLanguage[0];
+      if (languages && documentLangusage) {
+        const editorLanguage = languages[documentLangusage];
+        if (editorLanguage) {
+          return editorLanguage[0];
+        }
       }
     }
     return "";
   };
-  getEditorLogoPath = name => {
-    return "./media/editors/" + this.getEditorByName(name).logo;
+  getEditorLogoPath = (name: string) => {
+    const editor = this.getEditorByName(name);
+    if (editor) {
+      return "./media/editors/" + editor.logo;
+    }
+    return null;
   };
 
   getSupportedEditors = () => {
@@ -104,7 +123,10 @@ class EditorLauncher extends Component {
     return supportedEditors;
   };
 
-  UISave = () => {};
+  setEditorName = (name: string) => {
+    this.StorageManager.setEditor(this.state.document, name);
+    this.setState({ editor: name, editorFound: true });
+  };
 
   render() {
     if (this.state.editorFound) {
@@ -186,14 +208,25 @@ class EditorLauncher extends Component {
   }
 }
 
-const SelectEditorButton = props => {
-  const click = e => {
+interface SelectEditorButtonProps {
+  name: string;
+  onClick: (name: string) => void;
+  logoPath: string | null;
+}
+
+const SelectEditorButton = (props: SelectEditorButtonProps) => {
+  const click = () => {
     props.onClick(props.name);
   };
   return (
     <>
       <Button onClick={click}>
-        <img width="75" alt={props.name} height="75" src={props.logoPath}></img>
+        <img
+          width="75"
+          alt={props.name}
+          height="75"
+          src={props.logoPath ? props.logoPath : ""}
+        ></img>
       </Button>
     </>
   );

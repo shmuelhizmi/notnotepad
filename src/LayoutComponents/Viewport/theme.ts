@@ -1,4 +1,6 @@
-export const DarkTheme = {
+import { PrismTheme } from "prism-react-renderer";
+
+export const DarkTheme: PrismTheme = {
   plain: {
     color: "#9CDCFE",
     backgroundColor: "#293742"

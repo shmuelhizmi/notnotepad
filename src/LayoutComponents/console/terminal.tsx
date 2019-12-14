@@ -20,15 +20,37 @@ const keyCodes = {
   arrowDown: 40
 };
 
-export default class Terminal extends Component {
-  constructor(props) {
+interface TerminalState {
+  location: string;
+  sudo: boolean;
+  terminalText: string;
+}
+interface TerminalProps {}
+interface startObject {
+  name: string;
+  fullArgs: string[];
+  location?: string;
+  sudo?: boolean;
+  strings: string[];
+  fullOptions: string[];
+  options: string[];
+}
+
+export default class Terminal extends Component<TerminalProps, TerminalState> {
+  storage: StorageManager;
+  inputRef: HTMLInputElement | null;
+  history: string[];
+  currentCommand: string;
+  currentPlaceInHistory: number;
+  scrollbar: Scrollbars | null;
+  constructor(props: TerminalProps) {
     super(props);
     this.storage = new StorageManager();
-    this.uid = props.uid;
     this.inputRef = null;
     this.currentCommand = "";
     this.history = [];
     this.currentPlaceInHistory = 0;
+    this.scrollbar = null;
     this.state = {
       location: "",
       sudo: false,
@@ -38,21 +60,21 @@ export default class Terminal extends Component {
       `
     };
   }
-  setInput = text => {
+  setInput = (text: string) => {
     if (this.inputRef) {
       this.inputRef.value = text;
     }
   };
-  getRef = ref => {
+  getRef = (ref: HTMLInputElement | null) => {
     this.inputRef = ref;
   };
-  autoComplite = current => {
+  autoComplite = (current: string) => {
     this.setInput("soon");
   };
-  onChange = event => {
+  onChange = (event: any) => {
     this.currentCommand = event.target.value;
   };
-  terminaListener = event => {
+  terminaListener = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const keyCode = event.keyCode;
     switch (keyCode) {
       case keyCodes.enter: {
@@ -76,16 +98,17 @@ export default class Terminal extends Component {
     this.currentPlaceInHistory = 0;
     this.setInput("");
   };
-  out = text => {
+  out = (text: string) => {
     this.setState(
       { terminalText: this.state.terminalText + "\n---\n" + text },
       () => {
-        const { scrollbars } = this.refs;
-        scrollbars.scrollToBottom();
+        if (this.scrollbar) {
+          this.scrollbar.scrollToBottom();
+        }
       }
     );
   };
-  startProgram = (startObject, out) => {
+  startProgram = (startObject: startObject, out: (output: string) => void) => {
     let newStartObject = { ...startObject };
     newStartObject.sudo = this.state.sudo;
     newStartObject.location = this.state.location;
@@ -128,7 +151,7 @@ export default class Terminal extends Component {
       }
     }
   };
-  cd = (startObject, out) => {
+  cd = (startObject: startObject, out: (output: string) => void) => {
     if (startObject.strings.length >= 1) {
       if (
         this.storage.syncFolderExists(
@@ -170,7 +193,10 @@ export default class Terminal extends Component {
             ></Button>
           </Tooltip>
         </ButtonGroup>
-        <Scrollbars ref="scrollbars" style={{ height: "83%" }}>
+        <Scrollbars
+          ref={scrollbar => (this.scrollbar = scrollbar)}
+          style={{ height: "83%" }}
+        >
           <Text className="bp3-monospace-text">
             {this.state.terminalText.split("\n").map((line, index) => (
               <div key={index}>{line}</div>
@@ -195,12 +221,12 @@ export default class Terminal extends Component {
     );
   }
 }
-const makeCmd = cmd => {
+const makeCmd = (cmd: string): startObject => {
   let command = cmd.split(" ");
-  let resualt = [];
-  let strings = [];
-  let options = [];
-  let fullOptions = [];
+  let resualt: string[] = [];
+  let strings: string[] = [];
+  let options: string[] = [];
+  let fullOptions: string[] = [];
   let currentCmd = "";
   let isInString = false;
   command.forEach(value => {
@@ -232,7 +258,7 @@ const makeCmd = cmd => {
   });
 
   //make args object
-  let program = {
+  let program: startObject = {
     name: resualt[0],
     fullArgs: resualt.length > 1 ? resualt.slice(1, resualt.length) : [],
     options: options,
