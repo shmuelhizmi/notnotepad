@@ -1,4 +1,4 @@
-# NoteNotePad - [Live Demo](https://vss-master.shmuelhizmi.now.sh/)
+# NoteNotePad - [Live Demo](https://notnotepad.now.sh/)
 
 ![blockly](https://i.imgur.com/ZKHZFUz.png)
 ![code](https://i.imgur.com/xunV3r4.png)
