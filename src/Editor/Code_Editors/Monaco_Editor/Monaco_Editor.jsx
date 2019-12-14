@@ -16,7 +16,7 @@ export default class MonacoEditor extends CodeEditor {
     this.editor = editor;
   };
   onChange = (event, newCode) => {
-    this.saveEditorCode(newCode);
+    this.saveEditorData(newCode);
   };
   render() {
     const code = this.state.code;

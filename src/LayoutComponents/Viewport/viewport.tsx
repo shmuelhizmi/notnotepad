@@ -35,6 +35,10 @@ class Viewport extends Component<ViewportProps, ViewportState> {
   componentDidMount() {
     setInterval(() => this.codeTick(), 1500);
   }
+  getPrismLangusage = () => {
+    const lang: any = getDocumentLanguage(this.state.document);
+    return lang;
+  };
   codeTick() {
     if (this.state.document) {
       this.Storage.getFile(this.state.document, codeDir)
@@ -76,7 +80,7 @@ class Viewport extends Component<ViewportProps, ViewportState> {
                 {...defaultProps}
                 code={this.state.code}
                 theme={DarkTheme}
-                language={getDocumentLanguage(this.state.document)}
+                language={this.getPrismLangusage()}
               >
                 {({
                   className,

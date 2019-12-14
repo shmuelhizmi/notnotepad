@@ -45,7 +45,7 @@ export default class BlocklyEditor extends CodeEditor {
         editorData: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
       },
       () => {
-        this.saveEditorData(this.state.code, this.state.editorData);
+        this.saveEditorDataFromState();
       }
     );
   };

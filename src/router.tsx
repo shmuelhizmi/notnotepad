@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import WindowsLayout from "./WindowsLayout";
-import PageView from "./Storage/storagePageView.js";
+import PageView from "./Storage/storagePageView";
 import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
 
 class WebRouter extends Component {

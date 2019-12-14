@@ -4,29 +4,29 @@ import ReactJson from "react-json-view";
 export default class JsonView extends CodeEditor {
   constructor(props) {
     super(props);
-    this.JsonValidationCheck();
   }
   componentDidMount = () => {
     this.setState({ editor: "JsonView" });
   };
   componentWillUnmount = () => {
-    this.saveEditorData();
+    this.saveEditorDataFromState();
   };
   updateCode = e => {
     const newCode = JSON.stringify(e.updated_src);
     this.setState({
       code: newCode
     });
-    this.saveEditorCode(newCode);
+    this.saveEditorData(newCode);
   };
-
-  JsonValidationCheck = () => {
-    if (this.state.code) {
-      this.state.code = '{"name":"newFile"}';
+  makeJSON(code) {
+    try {
+      return JSON.parse(code);
+    } catch {
+      return { name: this.state.documentName };
     }
-  };
+  }
   render() {
-    const code = JSON.parse(this.state.code);
+    const code = this.makeJSON(this.state.code);
     return (
       <ReactJson
         theme="ashes"

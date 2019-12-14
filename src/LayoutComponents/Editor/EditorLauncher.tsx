@@ -57,17 +57,18 @@ class EditorLauncher extends Component<
   }
   getEditor(props: EditorLauncherProps): [string, boolean] {
     const document = props.document;
-    const documentData = this.StorageManager.syncGetFile(
-      document,
-      editorDataDir,
-      editorDataDefualtValue
-    );
-    const editorName = JSON.parse(documentData).editor;
-    if (editorName) {
-      return [editorName, true];
-    } else {
-      return ["", false];
+    if (document) {
+      const documentData = this.StorageManager.syncGetFile(
+        document,
+        editorDataDir,
+        editorDataDefualtValue
+      );
+      const editorName = JSON.parse(documentData).editor;
+      if (editorName) {
+        return [editorName, true];
+      }
     }
+    return ["", false];
   }
   getEditorConfig(): Editor | null {
     const editor = this.getEditorByName(this.state.editor);
@@ -124,12 +125,14 @@ class EditorLauncher extends Component<
   };
 
   setEditorName = (name: string) => {
-    this.StorageManager.setEditor(this.state.document, name);
-    this.setState({ editor: name, editorFound: true });
+    if (this.state.document) {
+      this.StorageManager.setEditor(this.state.document, name);
+      this.setState({ editor: name, editorFound: true });
+    }
   };
 
   render() {
-    if (this.state.editorFound) {
+    if (this.state.editorFound && this.state.document) {
       switch (this.state.editor) {
         case "Blockly": {
           return (

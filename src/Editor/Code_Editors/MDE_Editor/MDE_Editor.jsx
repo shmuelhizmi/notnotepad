@@ -18,7 +18,7 @@ export default class MDEDitor extends CodeEditor {
     this.setState({ editor: "MDEditor" });
   };
   onEditorChange = newValue => {
-    this.saveEditorCode(newValue);
+    this.saveEditorData(newValue);
     this.setState({ code: newValue });
   };
   render() {
