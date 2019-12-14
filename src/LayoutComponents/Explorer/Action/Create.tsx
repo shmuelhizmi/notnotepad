@@ -35,7 +35,6 @@ class CreateFile extends Component<CreateFileProps, CreateFileState> {
     this.originalFileName = this.state.fileName;
   }
   Create = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log([this.state.fileName, e.keyCode, this.state.fileIsDirectory]);
     if (e.keyCode === 13) {
       const fileName = this.state.fileName;
       if (

@@ -54,7 +54,6 @@ export class WindowsLayout extends React.PureComponent<{}, WindowsLayoutState> {
     openDocument: ""
   };
   openFile = (name: string) => {
-    console.log(name);
     this.setState({ openDocument: name }, () => {
       this.forceUpdate();
     });

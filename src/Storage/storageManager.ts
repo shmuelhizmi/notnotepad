@@ -299,7 +299,6 @@ export default class StorageManager {
             this.listDirectoryToCategories(path + "/", storage, true).then(
               files => {
                 const promises: Promise<unknown>[] = [];
-                console.log(files);
                 files.forEach(file => {
                   if (file.isDirectory) {
                     promises.push(this.removeDirectory(file.path, storage));
