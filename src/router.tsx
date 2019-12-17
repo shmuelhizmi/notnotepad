@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import WindowsLayout from "./WindowsLayout";
 import PageView from "./Storage/storagePageView";
 import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
-
+import AuthRouter from "./auth/authRouter";
 class WebRouter extends Component {
   render() {
     return (
@@ -11,6 +11,9 @@ class WebRouter extends Component {
           <Switch>
             <Route exact path="/">
               <WindowsLayout></WindowsLayout>
+            </Route>
+            <Route path="/o/">
+              <AuthRouter></AuthRouter>
             </Route>
             <Route exact path="/webView/:page">
               <CreateStoragePageView></CreateStoragePageView>

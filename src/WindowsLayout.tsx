@@ -19,11 +19,12 @@ import Explorer from "./LayoutComponents/Explorer/Explorer";
 import EditorWindow from "./LayoutComponents/Editor/EditorWindow";
 import FullExplorer from "./LayoutComponents/Explorer/FullExplorer";
 import Terminal from "./LayoutComponents/console/terminal";
+import ProjectNavbar from "./LayoutComponents/navbar/ProjectNavbar";
 
 export const THEMES = {
-  ["Blueprint"]: "mosaic-blueprint-theme",
-  ["Blueprint Dark"]: classNames("mosaic-blueprint-theme", Classes.DARK),
-  ["None"]: ""
+  Blueprint: "mosaic-blueprint-theme",
+  "Blueprint Dark": classNames("mosaic-blueprint-theme", Classes.DARK),
+  None: ""
 };
 export type Theme = keyof typeof THEMES;
 
@@ -63,12 +64,10 @@ export class WindowsLayout extends React.PureComponent<{}, WindowsLayoutState> {
     {
       name: "Editor",
       toolbarControls: React.Children.toArray([
-        <Tooltip content="save code">
-          <Button minimal icon="code" />
-        </Tooltip>,
-        <Tooltip content="save">
-          <Button minimal icon="saved" />
-        </Tooltip>
+        <ProjectNavbar
+          document={this.state.openDocument}
+          theme={THEMES["Blueprint Dark"]}
+        ></ProjectNavbar>
       ]),
       body: (
         <EditorWindow

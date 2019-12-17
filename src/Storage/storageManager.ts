@@ -313,6 +313,8 @@ export default class StorageManager {
                   .catch(reject);
               }
             );
+          } else if (e.errno === ErrorCode.ENOENT) {
+            resolve();
           } else {
             reject(e);
           }
@@ -411,6 +413,23 @@ export default class StorageManager {
         });
       }
     );
+  }
+  syncListFilesToFilesArray(path: string, storage = "") {
+    const filesArray: { file: string; data: string }[] = [];
+    const makeLevel = (path: string, storage: string) => {
+      this.syncListDirectoryToCategories(path, storage).forEach(file => {
+        if (file.isDirectory) {
+          makeLevel(file.path + "/", storage);
+        } else {
+          filesArray.push({
+            file: storage + file.path,
+            data: this.syncGetFile(file.path, storage)
+          });
+        }
+      });
+    };
+    makeLevel(path, storage);
+    return filesArray;
   }
   //stat
   syncGetFileState(path: string, storage = "") {

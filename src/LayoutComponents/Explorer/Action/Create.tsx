@@ -57,7 +57,7 @@ class CreateFile extends Component<CreateFileProps, CreateFileState> {
     return (
       <Dialog
         isOpen={this.state.isOpen}
-        onClose={() => this.props.onClose}
+        onClose={() => this.props.onClose()}
         icon="add"
         title="create file"
       >
