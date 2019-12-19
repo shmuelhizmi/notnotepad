@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  ButtonGroup,
-  Button,
-  Popover,
-  HTMLSelect,
-  Classes,
-  Navbar,
-  NavbarGroup,
-  NavbarHeading
-} from "@blueprintjs/core";
+import { ButtonGroup, Button, Popover, Classes } from "@blueprintjs/core";
 import classNames from "classnames";
 import NowPanel from "../hosting/nowPanel";
 
@@ -92,13 +83,7 @@ export default class ProjectNavbar extends Component<NavbarProps, NavbarState> {
             <Button intent="success" text="Project"></Button>
           </Popover>
         </ButtonGroup>
-        <div>
-          <NowPanel
-            key={Math.random()}
-            isOpen={this.state.hostingPanelIsOpen}
-            onClose={() => this.setState({ hostingPanelIsOpen: false })}
-          ></NowPanel>
-        </div>
+        <div></div>
       </div>
     );
   }

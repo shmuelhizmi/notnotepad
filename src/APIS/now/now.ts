@@ -1,25 +1,58 @@
 import axios, { AxiosResponse } from "axios";
 
-export default class now {
+export default class Now {
   token: string;
   constructor(token: string) {
     this.token = token;
   }
-  deploy(files: { file: string; data: string }[], projectName: string) {
-    return new Promise((resolve, reject) => {
+  setToken = (token: string) => {
+    this.token = token;
+  };
+  requestLogin = (email: string, tokenName: string) => {
+    return new Promise((resolve: (res: Login) => void, reject) => {
       axios({
-        url: "https://api.zeit.co/v11/now/deployments",
+        url: "https://cors-anywhere.herokuapp.com/api.zeit.co/now/registration",
         method: "POST",
-        headers: [
-          "Authorization: Bearer " + this.token,
-          "Content-Type: application/json"
-        ],
-        responseType: "json"
+        headers: ["Content-Type: application/json"],
+        data: {
+          email,
+          tokenName
+        }
       })
-        .then((res: AxiosResponse<DeployResponse>) => resolve(res.data.url))
+        .then((res: AxiosResponse<Login>) => resolve(res.data))
         .catch(reject);
     });
+  };
+  verifyLogin = (email: string, token: string) => {
+    return new Promise((resolve: (token: string) => void, reject) => {
+      axios({
+        url:
+          "https://cors-anywhere.herokuapp.com/api.zeit.co/now/registration/verify",
+        params: { email, token }
+      })
+        .then((res: AxiosResponse<{ token: string }>) =>
+          resolve(res.data.token)
+        )
+        .catch(reject);
+    });
+  };
+  deploy(files: { file: string; data: string }[], name: string) {
+    return new Promise((resolve: (url: string) => void, reject) => {
+      axios
+        .post(
+          "https://cors-anywhere.herokuapp.com/api.zeit.co/v11/now/deployments",
+          { name, version: 2, files },
+          { headers: { Authorization: "bearer " + this.token } }
+        )
+        .then(res => resolve(res.data.url))
+        .catch(e => reject(e));
+    });
   }
+}
+
+export interface Login {
+  token: string;
+  securityCode: string;
 }
 export interface DeployResponse {
   id: string;

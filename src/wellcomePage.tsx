@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Draggable from "react-draggable";
-import { Spinner, Card, H1, Divider, ButtonGroup, H3 } from "@blueprintjs/core";
+import { Spinner, Card, H1, ButtonGroup, H3 } from "@blueprintjs/core";
 
 export default class WellcomePage extends Component {
   render() {

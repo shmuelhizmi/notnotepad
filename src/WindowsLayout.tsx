@@ -1,6 +1,6 @@
-import { Classes, Button, Tooltip, H1 } from "@blueprintjs/core";
+import { Classes, Button } from "@blueprintjs/core";
 import classNames from "classnames";
-import React, { PureComponent } from "react";
+import React from "react";
 
 import {
   createBalancedTreeFromLeaves,
@@ -122,6 +122,7 @@ export class WindowsLayout extends React.PureComponent<{}, WindowsLayoutState> {
     }
   ];
   render() {
+    console.log("windows layout render");
     return (
       <div
         className="windows-layout"

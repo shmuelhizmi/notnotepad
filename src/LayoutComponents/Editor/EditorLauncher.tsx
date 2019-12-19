@@ -11,6 +11,7 @@ import JsonView from "../../Editor/Code_Editors/Json_View/Json_View";
 import CKEditorEditor from "../../Editor/Code_Editors/CKEditor_Editor/CKEditor_Editor";
 import CKEditor4Editor from "../../Editor/Code_Editors/CKEditor4_Editor/CKEditor4_Editor";
 import MDEDitor from "../../Editor/Code_Editors/MDE_Editor/MDE_Editor";
+import CodeMirrorEditor from "../../Editor/Code_Editors/CodeMirror_Editor/CodeMirror_Editor";
 
 interface EditorLauncherState {
   document: string | null;
@@ -148,6 +149,14 @@ class EditorLauncher extends Component<
               documentName={this.state.document}
               language={this.getEditorLanguage()}
             ></MonacoEditor>
+          );
+        }
+        case "CodeMirror": {
+          return (
+            <CodeMirrorEditor
+              documentName={this.state.document}
+              language={this.getEditorLanguage()}
+            ></CodeMirrorEditor>
           );
         }
         case "JsonView": {

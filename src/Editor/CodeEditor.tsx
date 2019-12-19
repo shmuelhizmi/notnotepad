@@ -1,9 +1,5 @@
 import { Component } from "react";
-import StorageManager, {
-  codeDir,
-  editorDataDir,
-  editorDataDefualtValue
-} from "../Storage/storageManager";
+import StorageManager from "../Storage/storageManager";
 
 interface CodeEditorProps {
   language: string;
@@ -38,6 +34,12 @@ class CodeEditor extends Component<CodeEditorProps, CodeEditorState> {
       editorData: this.state.editorData
     });
   }
+  updateDocument = (
+    code?: string,
+    editorData?: { editorData: string; editor: string }
+  ) => {
+    this.storage.updateFile(this.state.documentName, code, editorData);
+  };
   saveEditorData(code: string, editorData: string) {
     let editorDataObject;
     if (editorData) {

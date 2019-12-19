@@ -11,7 +11,7 @@ export default class CKEditor4Editor extends CodeEditor {
   };
   onEditorChange = evt => {
     const data = evt.editor.getData();
-    this.saveEditorData(data);
+    this.updateDocument(data);
   };
   componentWillUnmount = () => {};
   render() {

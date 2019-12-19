@@ -1,22 +1,20 @@
 import React, { Component } from "react";
 import WindowsLayout from "./WindowsLayout";
-import PageView from "./Storage/storagePageView";
-import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
-import AuthRouter from "./auth/authRouter";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+
+import REDUXSTORE from "./states";
+
 class WebRouter extends Component {
   render() {
     return (
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/">
-              <WindowsLayout></WindowsLayout>
-            </Route>
-            <Route path="/o/">
-              <AuthRouter></AuthRouter>
-            </Route>
-            <Route exact path="/webView/:page">
-              <CreateStoragePageView></CreateStoragePageView>
+            <Route path="/">
+              <Provider store={REDUXSTORE}>
+                <WindowsLayout></WindowsLayout>
+              </Provider>
             </Route>
           </Switch>
         </BrowserRouter>
@@ -26,11 +24,3 @@ class WebRouter extends Component {
 }
 
 export default WebRouter;
-
-const CreateStoragePageView = () => {
-  const location = useLocation();
-  const pageName = location.pathname.replace("/webView/", "");
-  const page = new PageView(pageName);
-  page.start();
-  return <></>;
-};

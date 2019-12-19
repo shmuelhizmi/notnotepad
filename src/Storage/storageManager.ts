@@ -18,6 +18,8 @@ export interface editorDataObjectInterface {
   editor: string;
   editorData: string;
 }
+export const secretDir = "/secret/";
+export const configDir = "/conf/";
 export const codeDir = "/code/";
 export const editorDataDir = "/editorData/";
 export const editorDataDefualtValue = '{"editor":"","editorData":""}';
@@ -371,14 +373,17 @@ export default class StorageManager {
   syncListDirectoryToCategories(
     path: string,
     storage = "",
-    fullPath = true
+    fullPath = true,
+    includeStrage = false
   ): { path: string; isDirectory: boolean }[] {
-    return this.syncListDirectory(path, storage, false).map(file => {
-      return {
-        path: fullPath ? path + file : file,
-        isDirectory: this.syncGetFileState(path + file, storage).isDirectory()
-      };
-    });
+    return this.syncListDirectory(path, storage, false, includeStrage).map(
+      file => {
+        return {
+          path: fullPath ? path + file : file,
+          isDirectory: this.syncGetFileState(path + file, storage).isDirectory()
+        };
+      }
+    );
   }
   listDirectoryToCategories(path: string, storage = "", fullPath = true) {
     return new Promise(
@@ -422,7 +427,7 @@ export default class StorageManager {
           makeLevel(file.path + "/", storage);
         } else {
           filesArray.push({
-            file: storage + file.path,
+            file: file.path,
             data: this.syncGetFile(file.path, storage)
           });
         }

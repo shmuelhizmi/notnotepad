@@ -7,9 +7,9 @@ import {
   ITreeNode
 } from "@blueprintjs/core";
 import _ from "lodash";
-import CreateFile from "./Action/Create";
-import DeleteFile from "./Action/Delete";
-import RenameFile from "./Action/Rename";
+import CreateFile from "./actions/Create";
+import DeleteFile from "./actions/Delete";
+import RenameFile from "./actions/Rename";
 import Scrollbars from "react-custom-scrollbars";
 import StorageManager, { codeDir } from "../../Storage/storageManager";
 

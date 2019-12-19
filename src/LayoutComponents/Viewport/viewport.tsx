@@ -5,7 +5,7 @@ import { Pre, LineNo } from "./styles";
 
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { DarkTheme } from "./theme";
-
+import Now from "../hosting/nowPanel";
 import StorageManager, { codeDir } from "../../Storage/storageManager";
 import { getDocumentLanguage } from "../../Storage/fileutils";
 
@@ -27,7 +27,7 @@ class Viewport extends Component<ViewportProps, ViewportState> {
     this.Storage = new StorageManager();
     this.state = {
       document: props.document,
-      selectedTabId: "wb",
+      selectedTabId: "now",
       index: 0,
       code: ""
     };
@@ -51,12 +51,23 @@ class Viewport extends Component<ViewportProps, ViewportState> {
     }
   }
   render() {
+    console.log("viewport render");
+
     return (
       <Tabs
         id="ViewportTabs"
         onChange={this.handleTabChange}
         selectedTabId={this.state.selectedTabId}
       >
+        <Tab
+          id="now"
+          title="live preview"
+          panel={
+            <div style={{ height: "93%", marginTop: "-3%" }}>
+              <Now></Now>
+            </div>
+          }
+        />
         <Tab
           id="wb"
           title="web view"
