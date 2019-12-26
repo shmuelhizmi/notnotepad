@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import "./index.css";
+import "./app.scss";
 import WebRouter from "./router";
 import BrowserFSStorage from "./Storage/filesystems/BrowerFS";
 import WellcomePage from "./wellcomePage";
@@ -28,6 +29,7 @@ BrowserFSStorage((e, fs) => {
   window.fs = fs;
 
   //test area
+
   ////////////////////////////////////////
 
   ReactDOM.render(

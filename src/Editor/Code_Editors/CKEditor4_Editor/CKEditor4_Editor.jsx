@@ -4,7 +4,7 @@ import CKEditor from "ckeditor4-react";
 
 export default class CKEditor4Editor extends CodeEditor {
   componentWillMount = () => {
-    CKEditor.editorUrl = "http://localhost:3000/code/ckeditor4/ckeditor.js";
+    CKEditor.editorUrl = "https://notnotepad.now.sh/ckeditor.js";
   };
   componentDidMount = () => {
     this.setState({ editor: "CKEditor4Editor" });

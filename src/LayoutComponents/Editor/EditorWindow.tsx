@@ -18,7 +18,6 @@ class EditorWindow extends Component<EditorWindowProps, EditorWindowState> {
     };
   }
   render() {
-    console.log("editor window render");
     if (this.state.document) {
       return (
         <div>

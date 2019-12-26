@@ -14,7 +14,7 @@ export default (
     fs: FSModule
   ) => void
 ) => {
-  BrowserFS.FileSystem.IndexedDB.Create({}, (e, code) => {
+  BrowserFS.FileSystem.HTML5FS.Create({}, (e, code) => {
     if (code) {
       BrowserFS.FileSystem.LocalStorage.Create({}, (e, editorData) => {
         if (editorData) {

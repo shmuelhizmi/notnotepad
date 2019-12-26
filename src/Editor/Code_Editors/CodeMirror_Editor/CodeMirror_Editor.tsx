@@ -9,7 +9,6 @@ export default class CodeMirrorEditor extends CodeEditor {
       this.state.language +
       "/" +
       this.state.language);
-    console.log(this.state.language);
     return (
       <div style={{ height: "100%" }}>
         <CodeMirror

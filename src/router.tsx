@@ -11,10 +11,13 @@ class WebRouter extends Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Provider store={REDUXSTORE}>
                 <WindowsLayout></WindowsLayout>
               </Provider>
+            </Route>
+            <Route exact path="/apps/">
+              <div>AAA</div>
             </Route>
           </Switch>
         </BrowserRouter>

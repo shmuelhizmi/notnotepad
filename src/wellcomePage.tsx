@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Draggable from "react-draggable";
-import { Spinner, Card, H1, ButtonGroup, H3 } from "@blueprintjs/core";
+import { Spinner, Card, H1, ButtonGroup, H3, Tag } from "@blueprintjs/core";
 
 export default class WellcomePage extends Component {
   render() {
@@ -46,7 +46,11 @@ export default class WellcomePage extends Component {
                 <Draggable>
                   <div>
                     <H1>wellcome to NotNotePad</H1>
-                    <H3>large project may take a wilde to load...</H3>
+                    <H3>large project may take a while to load...</H3>
+                    <Tag intent="warning">
+                      {" "}
+                      recommend to use in chrome or firefox{" "}
+                    </Tag>
                   </div>
                 </Draggable>
               </div>

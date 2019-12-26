@@ -24,6 +24,9 @@ export default class Browser extends Component<BrowserProps, BrowserState> {
       rerender: 1
     };
   }
+  componentWillReceiveProps(props: BrowserProps) {
+    this.setState({ input: props.url, currentUrl: props.url });
+  }
   render() {
     return (
       <div>

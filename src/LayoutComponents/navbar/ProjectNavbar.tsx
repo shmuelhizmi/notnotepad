@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { ButtonGroup, Button, Popover, Classes } from "@blueprintjs/core";
 import classNames from "classnames";
-import NowPanel from "../hosting/nowPanel";
+import StorageManager from "../../Storage/storageManager";
 
 interface NavbarProps {
   document: string;
   theme: string;
+  openFile: (file: string) => void;
 }
 interface NavbarState {
   document: string;
@@ -16,8 +17,10 @@ interface NavbarState {
 export type panels = "now" | "github";
 
 export default class ProjectNavbar extends Component<NavbarProps, NavbarState> {
+  storage: StorageManager;
   constructor(props: NavbarProps) {
     super(props);
+    this.storage = new StorageManager();
     this.state = {
       document: props.document,
       theme: props.theme,
@@ -53,7 +56,14 @@ export default class ProjectNavbar extends Component<NavbarProps, NavbarState> {
             interactionKind="hover"
             content={
               <ButtonGroup vertical minimal style={ButtonGroupStyle}>
-                <Button intent="warning" text="switch editor"></Button>
+                <Button
+                  intent="warning"
+                  text="switch editor"
+                  onClick={() => {
+                    this.storage.setEditor(this.state.document, "");
+                    this.props.openFile("");
+                  }}
+                ></Button>
                 <Button text="rename"></Button>
                 <Button intent="danger" text="delete"></Button>
               </ButtonGroup>

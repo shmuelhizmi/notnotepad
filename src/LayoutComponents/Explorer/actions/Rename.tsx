@@ -18,7 +18,7 @@ interface RenameFileProps {
   selectedIsDirectory: boolean;
   isOpen: boolean;
   selected: string;
-  onClose: () => void;
+  onClose: (success: boolean, newName?: string) => void;
 }
 
 class RenameFile extends Component<RenameFileProps, RenameFileState> {
@@ -45,7 +45,7 @@ class RenameFile extends Component<RenameFileProps, RenameFileState> {
         this.storage
           .renameDocument(this.originalSelected, selected)
           .then(() => {
-            this.props.onClose();
+            this.props.onClose(true, selected);
           });
       }
     }
@@ -53,8 +53,8 @@ class RenameFile extends Component<RenameFileProps, RenameFileState> {
   render() {
     return (
       <Dialog
+        onClose={() => this.props.onClose(false)}
         isOpen={this.state.isOpen}
-        onClose={this.props.onClose}
         icon="text-highlight"
         title="rename file"
       >

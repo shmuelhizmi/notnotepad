@@ -1,7 +1,6 @@
 import * as BrowserFS from "browserfs/dist/node/core/browserfs";
 import { ErrorCode } from "browserfs/dist/node/core/api_error";
 
-import sjcl from "sjcl";
 //exports
 import fileDownload from "js-file-download";
 import JSZip from "jszip";

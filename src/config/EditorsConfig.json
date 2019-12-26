@@ -98,7 +98,7 @@
         "sol": ["solidity"],
         "st": ["st"],
         "swift": ["swift"],
-        "typescript": ["ts"],
+        "ts": ["typescript"],
         "vb": ["vb"],
         "xml": ["xml"]
       }

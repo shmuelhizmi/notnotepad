@@ -11,7 +11,6 @@ export default (
   out: (output: string) => void,
   consoleControls: consoleControls
 ) => {
-  console.log(startObject);
   if (startObject.fullArgs.length < 0) {
     out(help);
   } else {

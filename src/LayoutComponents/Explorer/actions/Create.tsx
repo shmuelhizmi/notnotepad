@@ -18,7 +18,7 @@ interface CreateFileState {
 interface CreateFileProps {
   isOpen: boolean;
   selected: string;
-  onClose: () => void;
+  onClose: (success: boolean) => void;
 }
 
 class CreateFile extends Component<CreateFileProps, CreateFileState> {
@@ -44,10 +44,10 @@ class CreateFile extends Component<CreateFileProps, CreateFileState> {
       ) {
         if (this.state.fileIsDirectory) {
           this.storage.makeDirectory(fileName);
-          this.props.onClose();
+          this.props.onClose(true);
         } else {
           this.storage.MakeDocument(fileName).then(() => {
-            this.props.onClose();
+            this.props.onClose(true);
           });
         }
       }
@@ -57,7 +57,7 @@ class CreateFile extends Component<CreateFileProps, CreateFileState> {
     return (
       <Dialog
         isOpen={this.state.isOpen}
-        onClose={() => this.props.onClose()}
+        onClose={() => this.props.onClose(false)}
         icon="add"
         title="create file"
       >

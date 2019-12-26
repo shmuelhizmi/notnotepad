@@ -11,7 +11,7 @@ interface RenameFileProps {
   selectedIsDirectory: boolean;
   isOpen: boolean;
   selected: string;
-  onClose: () => void;
+  onClose: (success: boolean) => void;
 }
 
 class DeleteFile extends Component<RenameFileProps, RenameFileState> {
@@ -28,11 +28,11 @@ class DeleteFile extends Component<RenameFileProps, RenameFileState> {
   DELETE = () => {
     if (this.state.selectedIsDirectory) {
       this.storage.removeDocumentDirectory(this.state.selected).then(() => {
-        this.props.onClose();
+        this.props.onClose(true);
       });
     } else {
       this.storage.removeDocument(this.state.selected).then(() => {
-        this.props.onClose();
+        this.props.onClose(true);
       });
     }
   };
@@ -45,7 +45,7 @@ class DeleteFile extends Component<RenameFileProps, RenameFileState> {
         confirmButtonText="DELETE"
         intent="danger"
         cancelButtonText="cancel"
-        onCancel={this.props.onClose}
+        onCancel={() => this.props.onClose(false)}
         onConfirm={this.DELETE}
       >
         <p>Are you sure you want to delete file? this action is permanent</p>

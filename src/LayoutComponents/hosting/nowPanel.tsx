@@ -22,8 +22,7 @@ import {
   ControlGroup,
   Collapse,
   H4,
-  Spinner,
-  Card
+  Spinner
 } from "@blueprintjs/core";
 
 interface NowPanelState {
@@ -101,7 +100,6 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
     this.nowClient
       .verifyLogin(this.state.email, this.state.activeToken)
       .then(token => {
-        console.log(token);
         this.storage.syncSetFile("now", token, secretDir);
         this.updateToken(token);
       });
@@ -116,16 +114,13 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
   publish = () => {
     this.setState({ requestLoginState: "loading" });
     const files = this.storage.syncListFilesToFilesArray("", codeDir);
-    this.nowClient
-      .deploy(files, "notpad")
-      .then(url => {
-        this.setState({
-          url: url,
-          requestLoginState: "publish"
-        });
-        this.props.setNowUrl(url);
-      })
-      .catch(e => console.log(e));
+    this.nowClient.deploy(files, "notpad").then(url => {
+      this.setState({
+        url: url,
+        requestLoginState: "publish"
+      });
+      this.props.setNowUrl(url);
+    });
   };
 
   render() {
@@ -242,8 +237,6 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
 }
 export default connect(
   (s: reduxState) => {
-    console.log(s);
-    console.log("state to props");
     return { enable: s.now.enabled, token: s.now.token, url: s.now.url };
   },
   { setNowEnable, setNowToken, setNowUrl }

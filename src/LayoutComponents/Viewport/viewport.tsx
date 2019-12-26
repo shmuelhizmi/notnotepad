@@ -8,13 +8,13 @@ import { DarkTheme } from "./theme";
 import Now from "../hosting/nowPanel";
 import StorageManager, { codeDir } from "../../Storage/storageManager";
 import { getDocumentLanguage } from "../../Storage/fileutils";
+import Scrollbars from "react-custom-scrollbars";
 
 interface ViewportProps {
   document: string | null;
 }
 
 interface ViewportState {
-  document: string | null;
   selectedTabId: string;
   index: number;
   code: string;
@@ -26,7 +26,6 @@ class Viewport extends Component<ViewportProps, ViewportState> {
     super(props);
     this.Storage = new StorageManager();
     this.state = {
-      document: props.document,
       selectedTabId: "now",
       index: 0,
       code: ""
@@ -36,23 +35,19 @@ class Viewport extends Component<ViewportProps, ViewportState> {
     setInterval(() => this.codeTick(), 1500);
   }
   getPrismLangusage = () => {
-    const lang: any = getDocumentLanguage(this.state.document);
+    const lang: any = getDocumentLanguage(this.props.document);
     return lang;
   };
   codeTick() {
-    if (this.state.document) {
-      this.Storage.getFile(this.state.document, codeDir)
-        .then(data => {
-          this.setState({
-            code: data
-          });
-        })
-        .catch(e => console.log(e));
+    if (this.props.document) {
+      this.Storage.getFile(this.props.document, codeDir).then(data => {
+        this.setState({
+          code: data
+        });
+      });
     }
   }
   render() {
-    console.log("viewport render");
-
     return (
       <Tabs
         id="ViewportTabs"
@@ -87,31 +82,33 @@ class Viewport extends Component<ViewportProps, ViewportState> {
           title="code view"
           panel={
             <div>
-              <Highlight
-                {...defaultProps}
-                code={this.state.code}
-                theme={DarkTheme}
-                language={this.getPrismLangusage()}
-              >
-                {({
-                  className,
-                  style,
-                  tokens,
-                  getLineProps,
-                  getTokenProps
-                }) => (
-                  <Pre className={className} style={style}>
-                    {tokens.map((line, i) => (
-                      <div {...getLineProps({ line, key: i })}>
-                        <LineNo>{i + 1}</LineNo>
-                        {line.map((token, key) => (
-                          <span {...getTokenProps({ token, key })} />
-                        ))}
-                      </div>
-                    ))}
-                  </Pre>
-                )}
-              </Highlight>
+              <Scrollbars style={{ height: "90%" }} autoHide>
+                <Highlight
+                  {...defaultProps}
+                  code={this.state.code}
+                  theme={DarkTheme}
+                  language={this.getPrismLangusage()}
+                >
+                  {({
+                    className,
+                    style,
+                    tokens,
+                    getLineProps,
+                    getTokenProps
+                  }) => (
+                    <Pre className={className} style={style}>
+                      {tokens.map((line, i) => (
+                        <div {...getLineProps({ line, key: i })}>
+                          <LineNo>{i + 1}</LineNo>
+                          {line.map((token, key) => (
+                            <span {...getTokenProps({ token, key })} />
+                          ))}
+                        </div>
+                      ))}
+                    </Pre>
+                  )}
+                </Highlight>
+              </Scrollbars>
             </div>
           }
         />

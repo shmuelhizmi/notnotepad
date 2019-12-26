@@ -1,19 +1,24 @@
 import { Component } from "react";
 import StorageManager from "../Storage/storageManager";
-
-interface CodeEditorProps {
+import hotkeys from "hotkeys-js";
+import { Toaster, Position } from "@blueprintjs/core";
+export interface CodeEditorProps {
   language: string;
   documentName: string;
 }
-interface CodeEditorState {
+export interface CodeEditorState {
   language: string;
   documentName: string;
   code: string;
   editor: string;
   editorData: string;
 }
+interface editorOptions {
+  saveHotky?: boolean;
+}
 
 class CodeEditor extends Component<CodeEditorProps, CodeEditorState> {
+  editorOptions?: editorOptions;
   storage: StorageManager;
   constructor(props: CodeEditorProps) {
     super(props);
@@ -27,6 +32,15 @@ class CodeEditor extends Component<CodeEditorProps, CodeEditorState> {
       editorData: editorData.editorData.editorData
     };
   }
+
+  registerOptions = (opt: editorOptions) => {
+    if (opt.saveHotky) {
+      hotkeys("ctrl+s", event => {
+        event.preventDefault();
+        this.saveEditorDataFromState();
+      });
+    }
+  };
 
   saveEditorDataFromState() {
     this.storage.updateFile(this.state.documentName, this.state.code, {
@@ -50,3 +64,9 @@ class CodeEditor extends Component<CodeEditorProps, CodeEditorState> {
 }
 
 export default CodeEditor;
+
+export const Toster = Toaster.create({
+  className: "recipe-toaster",
+  position: Position.BOTTOM,
+  maxToasts: 5
+});
