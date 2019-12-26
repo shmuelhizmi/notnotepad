@@ -1,6 +1,6 @@
 import StorageManager, { codeDir } from "../Storage/storageManager";
+import { makeTable } from "./terminalComponents";
 const storage = new StorageManager();
-
 export const rm = (startObject, out) => {
   const help = ` rm - remove
     exmple file : rm "file.c"
@@ -50,7 +50,10 @@ export const cat = (startObject, out) => {
 export const ls = (startObject, out) => {
   const help = ` ls - list file in current directory
     exmple file : ls -> file.c,file.js,file.nnp`;
-  storage.listDirectory(startObject.location, codeDir).then(out);
+  storage.listDirectory(startObject.location, codeDir).then(res => {
+    out(makeTable([res], "#0f0"));
+  });
+
   if (startObject.fullArgs.length > 0) {
     out(help);
   }

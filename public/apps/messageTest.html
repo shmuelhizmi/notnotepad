@@ -1,0 +1,24 @@
+<html>
+  <head></head>
+  <body>
+    <h1>APP message</h1>
+
+    <script>
+      var counter = 1;
+      var action = () => ({
+        type: "message",
+        id: counter,
+        data: {
+          message: "hi there - " + counter.toString(),
+          intent: "success",
+          icon: "info-sign"
+        }
+      });
+      setInterval(function() {
+        counter++;
+        console.log(parent.location.origin);
+        parent.postMessage(action(), parent.location.origin);
+      }, 1300);
+    </script>
+  </body>
+</html>

@@ -4,12 +4,14 @@ import {
   Tree,
   Button,
   ButtonGroup,
-  ITreeNode
+  ITreeNode,
+  Toaster,
+  Position
 } from "@blueprintjs/core";
 import _ from "lodash";
-import CreateFile from "./Action/Create";
-import DeleteFile from "./Action/Delete";
-import RenameFile from "./Action/Rename";
+import CreateFile from "./actions/Create";
+import DeleteFile from "./actions/Delete";
+import RenameFile from "./actions/Rename";
 import Scrollbars from "react-custom-scrollbars";
 import StorageManager, { codeDir } from "../../Storage/storageManager";
 
@@ -19,6 +21,7 @@ interface nodeData {
 }
 interface ExplorerState {
   nodes: ITreeNode<nodeData>[];
+  openDocument: string | null;
   isOpen?: boolean;
   selected: string;
   selectedIsDirectory: boolean;
@@ -39,6 +42,7 @@ class Explorer extends Component<ExplorerProps, ExplorerState> {
     this.state = {
       nodes: [],
       selected: "",
+      openDocument: null,
       selectedIsDirectory: false,
       createFileDialogIsOpen: false,
       deleteFileDialogIsOpen: false,
@@ -99,25 +103,38 @@ class Explorer extends Component<ExplorerProps, ExplorerState> {
   openCreateFileDialog = () => {
     this.setState({ createFileDialogIsOpen: true }, () => {});
   };
-  closeCreateFileDialog = () => {
+  closeCreateFileDialog = (success: boolean) => {
     this.updateNodes();
     this.setState({ createFileDialogIsOpen: false });
   };
   OpenRenameFileDialog = () => {
-    this.setState({ renameDialogIsOpen: true }, () => {});
-  };
-  closeRenameFileDialog = () => {
-    this.updateNodes();
-    this.setState({ renameDialogIsOpen: false });
-  };
-  openDeleteFileDialog = () => {
     if (this.state.selected) {
-      this.setState({ deleteFileDialogIsOpen: true });
+      this.setState({ renameDialogIsOpen: true }, () => {});
     }
   };
-  closeDeleteFileDialog = () => {
+  closeRenameFileDialog = (success: boolean, newName?: string) => {
+    this.updateNodes();
+    this.setState({ renameDialogIsOpen: false });
+    if (success && newName) {
+      this.setState({ selected: newName });
+    }
+  };
+  openDeleteFileDialog = () => {
+    if (
+      this.state.selected &&
+      this.state.selected !== this.state.openDocument
+    ) {
+      this.setState({ deleteFileDialogIsOpen: true });
+    } else {
+      Toster.show({ message: "cannot delete open file", intent: "danger" });
+    }
+  };
+  closeDeleteFileDialog = (success: boolean) => {
     this.updateNodes();
     this.setState({ deleteFileDialogIsOpen: false });
+    if (success) {
+      this.setState({ selected: "" });
+    }
   };
 
   updateNodes = () => {
@@ -218,9 +235,12 @@ class Explorer extends Component<ExplorerProps, ExplorerState> {
   ) => {
     if (nodeData.nodeData) {
       if (nodeData.nodeData.type === "file") {
-        this.props.openFile(nodeData.nodeData.path);
+        if (nodeData.nodeData.path) {
+          const path = nodeData.nodeData.path;
+          this.props.openFile(path);
+          this.setState({ openDocument: path });
+        }
       }
-      this.setState(this.state);
     }
   };
   handleNodeCollapse = (nodeData: ITreeNode<nodeData>) => {
@@ -249,5 +269,10 @@ class Explorer extends Component<ExplorerProps, ExplorerState> {
     }
   }
 }
+
+export const Toster = Toaster.create({
+  className: "recipe-toaster",
+  position: Position.TOP
+});
 
 export default Explorer;

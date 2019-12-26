@@ -8,7 +8,7 @@ export default class GIT_API {
     this.gitclient.plugins.set("fs", this.fileSystem);
   }
   clone(dir, url, ref = "master") {
-    this.gitclient.clone({
+    return this.gitclient.clone({
       dir,
       corsProxy: "https://cors.isomorphic-git.org",
       url: url,

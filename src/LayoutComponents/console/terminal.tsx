@@ -8,6 +8,7 @@ import {
   Tooltip,
   Position
 } from "@blueprintjs/core";
+import ReactMarkdown from "react-markdown";
 import Scrollbars from "react-custom-scrollbars";
 //programs
 import { cat, rm, touch, ls } from "../../ConsoleApps/storage";
@@ -24,9 +25,13 @@ interface TerminalState {
   location: string;
   sudo: boolean;
   terminalText: string;
+  allowInput: boolean;
+  color: string;
 }
+
 interface TerminalProps {}
-interface startObject {
+
+export interface startObject {
   name: string;
   fullArgs: string[];
   location?: string;
@@ -34,6 +39,11 @@ interface startObject {
   strings: string[];
   fullOptions: string[];
   options: string[];
+}
+
+export interface consoleControls {
+  setAllowInput: (allow: boolean, cb?: () => void) => void;
+  changeColor: (color: string, cb?: () => void) => void;
 }
 
 export default class Terminal extends Component<TerminalProps, TerminalState> {
@@ -55,9 +65,11 @@ export default class Terminal extends Component<TerminalProps, TerminalState> {
       location: "",
       sudo: false,
       terminalText: `
-      Hi wellcome to the nnp terminal.
-      try help?
-      `
+## Hi wellcome to the nnp terminal.
+try help?
+      `,
+      allowInput: true,
+      color: "#ffffff"
     };
   }
   setInput = (text: string) => {
@@ -100,7 +112,7 @@ export default class Terminal extends Component<TerminalProps, TerminalState> {
   };
   out = (text: string) => {
     this.setState(
-      { terminalText: this.state.terminalText + "\n---\n" + text },
+      { terminalText: this.state.terminalText + "\n\n" + text },
       () => {
         if (this.scrollbar) {
           this.scrollbar.scrollToBottom();
@@ -109,6 +121,10 @@ export default class Terminal extends Component<TerminalProps, TerminalState> {
     );
   };
   startProgram = (startObject: startObject, out: (output: string) => void) => {
+    const consoleControls: consoleControls = {
+      setAllowInput: this.setAllowInput,
+      changeColor: this.setColor
+    };
     let newStartObject = { ...startObject };
     newStartObject.sudo = this.state.sudo;
     newStartObject.location = this.state.location;
@@ -142,7 +158,7 @@ export default class Terminal extends Component<TerminalProps, TerminalState> {
         break;
       }
       case "git": {
-        git(newStartObject, out);
+        git(newStartObject, out, consoleControls);
         break;
       }
       default: {
@@ -197,11 +213,12 @@ export default class Terminal extends Component<TerminalProps, TerminalState> {
           ref={scrollbar => (this.scrollbar = scrollbar)}
           style={{ height: "83%" }}
         >
-          <Text className="bp3-monospace-text">
-            {this.state.terminalText.split("\n").map((line, index) => (
-              <div key={index}>{line}</div>
-            ))}
-          </Text>
+          <div style={{ color: this.state.color }}>
+            <ReactMarkdown
+              escapeHtml={false}
+              source={this.state.terminalText}
+            ></ReactMarkdown>
+          </div>
         </Scrollbars>
         <InputGroup
           style={{ borderColor: "#000", fontFamily: "monospace" }}
@@ -209,8 +226,10 @@ export default class Terminal extends Component<TerminalProps, TerminalState> {
           onKeyDown={this.terminaListener}
           onChange={this.onChange}
           defaultValue={this.currentCommand}
+          disabled={!this.state.allowInput}
           rightElement={
             <Button
+              disabled={!this.state.allowInput}
               onClick={this.execute}
               text="execute"
               icon="fast-forward"
@@ -220,6 +239,13 @@ export default class Terminal extends Component<TerminalProps, TerminalState> {
       </div>
     );
   }
+  //colsole Controls
+  setAllowInput = (allow: boolean, cb?: () => void) => {
+    this.setState({ allowInput: allow }, cb ? cb : undefined);
+  };
+  setColor = (color: string, cb?: () => void) => {
+    this.setState({ color: color }, cb ? cb : undefined);
+  };
 }
 const makeCmd = (cmd: string): startObject => {
   let command = cmd.split(" ");

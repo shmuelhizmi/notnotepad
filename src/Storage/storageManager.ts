@@ -1,7 +1,6 @@
 import * as BrowserFS from "browserfs/dist/node/core/browserfs";
 import { ErrorCode } from "browserfs/dist/node/core/api_error";
 
-import sjcl from "sjcl";
 //exports
 import fileDownload from "js-file-download";
 import JSZip from "jszip";
@@ -18,6 +17,8 @@ export interface editorDataObjectInterface {
   editor: string;
   editorData: string;
 }
+export const secretDir = "/secret/";
+export const configDir = "/conf/";
 export const codeDir = "/code/";
 export const editorDataDir = "/editorData/";
 export const editorDataDefualtValue = '{"editor":"","editorData":""}';
@@ -313,6 +314,8 @@ export default class StorageManager {
                   .catch(reject);
               }
             );
+          } else if (e.errno === ErrorCode.ENOENT) {
+            resolve();
           } else {
             reject(e);
           }
@@ -369,14 +372,17 @@ export default class StorageManager {
   syncListDirectoryToCategories(
     path: string,
     storage = "",
-    fullPath = true
+    fullPath = true,
+    includeStrage = false
   ): { path: string; isDirectory: boolean }[] {
-    return this.syncListDirectory(path, storage, false).map(file => {
-      return {
-        path: fullPath ? path + file : file,
-        isDirectory: this.syncGetFileState(path + file, storage).isDirectory()
-      };
-    });
+    return this.syncListDirectory(path, storage, false, includeStrage).map(
+      file => {
+        return {
+          path: fullPath ? path + file : file,
+          isDirectory: this.syncGetFileState(path + file, storage).isDirectory()
+        };
+      }
+    );
   }
   listDirectoryToCategories(path: string, storage = "", fullPath = true) {
     return new Promise(
@@ -411,6 +417,23 @@ export default class StorageManager {
         });
       }
     );
+  }
+  syncListFilesToFilesArray(path: string, storage = "") {
+    const filesArray: { file: string; data: string }[] = [];
+    const makeLevel = (path: string, storage: string) => {
+      this.syncListDirectoryToCategories(path, storage).forEach(file => {
+        if (file.isDirectory) {
+          makeLevel(file.path + "/", storage);
+        } else {
+          filesArray.push({
+            file: file.path,
+            data: this.syncGetFile(file.path, storage)
+          });
+        }
+      });
+    };
+    makeLevel(path, storage);
+    return filesArray;
   }
   //stat
   syncGetFileState(path: string, storage = "") {

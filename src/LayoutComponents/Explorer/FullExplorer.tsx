@@ -1,9 +1,9 @@
 import React from "react";
 import { Classes, Tree, Drawer, Button, ButtonGroup } from "@blueprintjs/core";
 import Explorer, { ExplorerProps } from "./Explorer";
-import CreateFile from "./Action/Create";
-import DeleteFile from "./Action/Delete";
-import RenameFile from "./Action/Rename";
+import CreateFile from "./actions/Create";
+import DeleteFile from "./actions/Delete";
+import RenameFile from "./actions/Rename";
 
 interface FullExplorerProps extends ExplorerProps {
   isOpen: boolean;

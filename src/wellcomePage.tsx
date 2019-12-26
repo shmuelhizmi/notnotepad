@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Draggable from "react-draggable";
-import { Spinner, Card, H1, Divider, ButtonGroup, H3 } from "@blueprintjs/core";
+import { Spinner, Card, H1, ButtonGroup, H3, Tag } from "@blueprintjs/core";
 
 export default class WellcomePage extends Component {
   render() {
@@ -37,21 +37,30 @@ export default class WellcomePage extends Component {
             <ButtonGroup
               style={{
                 position: "relative",
-                height: "100%"
+                height: "100%",
+                display: "grid",
+                gridTemplateColumns: "55% 45%"
               }}
             >
-              <Draggable>
-                <div>
-                  <H1 style={{ marginTop: "30%" }}>wellcome to NotNotePad</H1>
-                  <H3>large project may take a wilde to load...</H3>
-                </div>
-              </Draggable>
-              <Divider />
-              <Draggable>
-                <div style={{ position: "relative", padding: "25%" }}>
-                  <Spinner size={175}></Spinner>
-                </div>
-              </Draggable>
+              <div style={{ marginTop: "30%" }}>
+                <Draggable>
+                  <div>
+                    <H1>wellcome to NotNotePad</H1>
+                    <H3>large project may take a while to load...</H3>
+                    <Tag intent="warning">
+                      {" "}
+                      recommend to use in chrome or firefox{" "}
+                    </Tag>
+                  </div>
+                </Draggable>
+              </div>
+              <div style={{ marginTop: "30%" }}>
+                <Draggable>
+                  <div>
+                    <Spinner size={125}></Spinner>
+                  </div>
+                </Draggable>
+              </div>
             </ButtonGroup>
           </Card>
         </div>
