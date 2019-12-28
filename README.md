@@ -1,7 +1,7 @@
 # NoteNotePad - [Live Demo](https://notnotepad.now.sh/)
 
-![blockly](https://i.imgur.com/ZKHZFUz.png)
-![code](https://i.imgur.com/xunV3r4.png)
+![blockly](https://i.imgur.com/R8JeW47.jpg)
+![code](https://i.imgur.com/zGOSyjw.jpg)
 **to start run:**
 
 1. `yarn install`
