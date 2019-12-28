@@ -16,7 +16,6 @@
       });
       setInterval(function() {
         counter++;
-        console.log(parent.location.origin);
         parent.postMessage(action(), parent.location.origin);
       }, 1300);
     </script>
