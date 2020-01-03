@@ -17,7 +17,7 @@
   5.  codemiror - [react-codemirror2](https://github.com/scniro/react-codemirror2), [codemirror](https://codemirror.net/)
   6.  MD editor - [react-mde](https://github.com/andrerpena/react-mde)
 - **full node like file system** - [BrowserFS](https://github.com/jvilk/BrowserFS)
-- **static hosting with now** - [BrowserFS](https://now.sh)
+- **static hosting with now** - [zeit](https://zeit.co/home)
 - **live code/page view**
 - **extensions system not finished**
 
