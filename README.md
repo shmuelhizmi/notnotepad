@@ -31,7 +31,7 @@ those tools solve this problem by adding an additional layer to this proccess th
 
 NotNotePad design to be a home for all kinds of code translators/generators as long as they can fit as a component in this model :
 
->  **editor component=> editor data=> code=> ... **
+>    **editor component=> editor data=> code=> interpreter/compiler**
 
 ![component](https://svgur.com/i/H97.svg)
     
