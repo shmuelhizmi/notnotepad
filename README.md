@@ -23,8 +23,13 @@ that's why we have tools like:
 
   - unreal engine blueprints
 >    **visual editor=> compiled data=> cpp interpreter**
-    
-NotNotePad design to be a home for all kinds of code translators/generators that can fit as a component in this model :
+   
+  - google blockly
+>    **visual editor=> compiled code=> interpreter/compiler**
+   
+those tools solve this problem by adding an additional layer to this proccess that act like some sort of code translators/generators
+
+NotNotePad design to be a home for all kinds of code translators/generators as long as they can fit as a component in this model :
 
 >  **editor component=> editor data=> code=> ... **
 
@@ -43,7 +48,9 @@ class componenet-x extends code-editor{
       }} />
   }
 }
-``` 
+```
+
+
 **to start run:**
 
 1. `yarn`
