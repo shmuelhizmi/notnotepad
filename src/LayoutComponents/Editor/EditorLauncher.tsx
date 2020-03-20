@@ -4,14 +4,25 @@ import StorageManager, {
   editorDataDefualtValue
 } from "../../Storage/storageManager";
 import { getDocumentLanguage } from "../../Storage/fileutils";
-import BlocklyEditor from "../../Editor/Code_Editors/Blockly_Editor/blockly_Editor";
-import MonacoEditor from "../../Editor/Code_Editors/Monaco_Editor/Monaco_Editor";
+import Blockly from "../../Editor/Code_Editors/Blockly_Editor/blockly_Editor";
+import Monaco from "../../Editor/Code_Editors/Monaco_Editor/Monaco_Editor";
 import { Button, Card, ButtonGroup } from "@blueprintjs/core";
 import JsonView from "../../Editor/Code_Editors/Json_View/Json_View";
 import CKEditorEditor from "../../Editor/Code_Editors/CKEditor_Editor/CKEditor_Editor";
 import CKEditor4Editor from "../../Editor/Code_Editors/CKEditor4_Editor/CKEditor4_Editor";
 import MDEDitor from "../../Editor/Code_Editors/MDE_Editor/MDE_Editor";
-import CodeMirrorEditor from "../../Editor/Code_Editors/CodeMirror_Editor/CodeMirror_Editor";
+import CodeMirror from "../../Editor/Code_Editors/CodeMirror_Editor/CodeMirror_Editor";
+import JsonObjectEditor from "../../Editor/Code_Editors/Json_Object_Editor/JsonObjectEditor";
+const Editors = {
+  Blockly,
+  Monaco,
+  JsonView,
+  CKEditorEditor,
+  CKEditor4Editor,
+  MDEDitor,
+  CodeMirror,
+  JsonObjectEditor
+};
 
 interface EditorLauncherState {
   document: string | null;
@@ -134,72 +145,10 @@ class EditorLauncher extends Component<
 
   render() {
     if (this.state.editorFound && this.state.document) {
-      switch (this.state.editor) {
-        case "Blockly": {
-          return (
-            <BlocklyEditor
-              documentName={this.state.document}
-              language={this.getEditorLanguage()}
-            ></BlocklyEditor>
-          );
-        }
-        case "Monaco": {
-          return (
-            <MonacoEditor
-              documentName={this.state.document}
-              language={this.getEditorLanguage()}
-            ></MonacoEditor>
-          );
-        }
-        case "CodeMirror": {
-          return (
-            <CodeMirrorEditor
-              documentName={this.state.document}
-              language={this.getEditorLanguage()}
-            ></CodeMirrorEditor>
-          );
-        }
-        case "JsonView": {
-          return (
-            <JsonView
-              documentName={this.state.document}
-              language={this.getEditorLanguage()}
-            ></JsonView>
-          );
-        }
-        case "CKEditorEditor": {
-          return (
-            <CKEditorEditor
-              documentName={this.state.document}
-              language={this.getEditorLanguage()}
-            ></CKEditorEditor>
-          );
-        }
-        case "CKEditor4Editor": {
-          return (
-            <CKEditor4Editor
-              documentName={this.state.document}
-              language={this.getEditorLanguage()}
-            ></CKEditor4Editor>
-          );
-        }
-        case "MDEditor": {
-          return (
-            <MDEDitor
-              documentName={this.state.document}
-              language={this.getEditorLanguage()}
-            ></MDEDitor>
-          );
-        }
-        default: {
-          return (
-            <MonacoEditor
-              documentName={this.state.document}
-              language={""}
-            ></MonacoEditor>
-          );
-        }
-      }
+      return React.createElement(Editors[this.state.editor], {
+        language: this.getEditorLanguage(),
+        documentName: this.state.document
+      });
     } else {
       return (
         <Card>

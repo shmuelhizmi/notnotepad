@@ -7,12 +7,12 @@ import { editor } from "monaco-editor";
 const themeDark: editor.IStandaloneThemeData = {
   base: "vs-dark",
   inherit: true,
-  rules: [{ background: "293742", token: "" }],
+  rules: [{ background: "#3F4B61", token: "" },{token: "comment", foreground: "#ff628c"},{ token:"variable" , foreground: "#e1efff"},{ token:"string" , foreground: "#ffee80"}],
   colors: {
     //editor
     "editor.foreground": "#CDE7F8",
     descriptionForeground: "#F29D49",
-    "editor.background": "#293742",
+    "editor.background": "#2E3B51",
     "editor.editorCursor.foreground": "#00998C",
     "editor.lineHighlightBackground": "#4580E60f",
     "editor.selectionBackground": "#634DBF30",
@@ -20,7 +20,7 @@ const themeDark: editor.IStandaloneThemeData = {
     "editorWidget.background": "#1F2430",
     "editorWidget.border": "#090702",
     "editorHoverWidget.background": "#1F2430",
-    "dropdown.background": "#293742",
+    "dropdown.background": "#2E3B51",
     "dropdown.border": "#9179F2",
     //scrollbarSlider
     "scrollbarSlider.background": "#00998C",
@@ -31,7 +31,7 @@ const themeDark: editor.IStandaloneThemeData = {
     "editorSuggestWidget.background": "#1F243099",
     "editorSuggestWidget.selectedBackground": "#23525B99",
     "editorSuggestWidget.highlightForeground": "#9179F299"
-  }
+  },
 };
 
 export default class MonacoEditor extends CodeEditor {

@@ -126,7 +126,11 @@ class Explorer extends Component<ExplorerProps, ExplorerState> {
     ) {
       this.setState({ deleteFileDialogIsOpen: true });
     } else {
-      Toster.show({ message: "cannot delete open file", intent: "danger" });
+      if(this.state.selected){
+        Toster.show({ message: "cannot delete open file", intent: "danger" });
+      }else{
+        Toster.show({ message: "please select file first", intent: "danger" });
+      }
     }
   };
   closeDeleteFileDialog = (success: boolean) => {

@@ -203,7 +203,10 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
             </p>
             <p>and click continue </p>
           </div>
+          <ControlGroup>
+          <Button text="back" onClick={()=>this.setState({ requestLoginState: "registration"})}></Button>
           <Button fill text="continue" onClick={this.verify}></Button>
+          </ControlGroup>
           <Divider></Divider>
         </Collapse>
         <ButtonGroup fill>

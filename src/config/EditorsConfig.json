@@ -173,6 +173,14 @@
       }
     },
     {
+      "name": "JsonObjectEditor",
+      "logo": "jsonview.svg",
+      "codeViewer": false,
+      "Languages": {
+        "json": ["json"]
+      }
+    },
+    {
       "name": "CKEditorEditor",
       "logo": "ckeditor5.png",
       "Languages": {

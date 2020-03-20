@@ -37,57 +37,66 @@ class FullExplorer extends Explorer {
           launch full explorer
         </Button>
         <Drawer
+          className="bp3-dark"
+          style={{ height: "100%" }}
           onClose={this.close}
           isOpen={this.state.isOpen}
           title="Full explorer"
           icon="box"
         >
-          <ButtonGroup fill>
-            <Button icon="add" onClick={this.openCreateFileDialog}>
-              Create file
-            </Button>
-            <Button onClick={this.OpenRenameFileDialog} icon="text-highlight">
-              Rename file
-            </Button>
-            <Button onClick={this.openDeleteFileDialog} icon="remove">
-              Delete file
-            </Button>
-          </ButtonGroup>
-          <Tree
-            //style={{ backgroundColor: "rgb(39,44,41,0.5)" }}
-            contents={this.state.nodes}
-            onNodeClick={this.handleNodeClick}
-            onNodeDoubleClick={this.handleNodeDoubleClick}
-            onNodeCollapse={this.handleNodeCollapse}
-            onNodeExpand={this.handleNodeExpand}
-            className={Classes.ELEVATION_0}
-          ></Tree>
-          <ButtonGroup fill minimal>
-            <Button icon="download" onClick={() => {}}>
-              download file code
-            </Button>
-            <Button icon="download" onClick={() => {}}>
-              download file data
-            </Button>
+          <div className={Classes.DRAWER_HEADER}>
+            <ButtonGroup fill minimal>
+              <Button icon="add" onClick={this.openCreateFileDialog}>
+                Create file
+              </Button>
+              <Button onClick={this.OpenRenameFileDialog} icon="text-highlight">
+                Rename file
+              </Button>
+              <Button onClick={this.openDeleteFileDialog} icon="remove">
+                Delete file
+              </Button>
+            </ButtonGroup>
+          </div>
+          <div className={Classes.DRAWER_BODY}>
+            <Tree
+              //style={{ backgroundColor: "rgb(39,44,41,0.5)" }}
+              contents={this.state.nodes}
+              onNodeClick={this.handleNodeClick}
+              onNodeDoubleClick={this.handleNodeDoubleClick}
+              onNodeCollapse={this.handleNodeCollapse}
+              onNodeExpand={this.handleNodeExpand}
+              className={Classes.ELEVATION_0}
+            ></Tree>
+          </div>
+          <div className={Classes.DRAWER_FOOTER}>
+            <ButtonGroup fill minimal>
+              <Button icon="download" onClick={() => {}}>
+                download file code
+              </Button>
+              <Button icon="download" onClick={() => {}}>
+                download file data
+              </Button>
+              <Button
+                icon="download"
+                onClick={() => {
+                  this.storage.download();
+                }}
+              >
+                download project data
+              </Button>
+            </ButtonGroup>
             <Button
-              icon="download"
+              minimal
+              fill
+              large
+              icon="build"
               onClick={() => {
-                this.storage.download();
+                this.storage.downloadCode();
               }}
             >
-              download project data
+              compile and dowload project
             </Button>
-          </ButtonGroup>
-          <Button
-            fill
-            large
-            icon="build"
-            onClick={() => {
-              this.storage.downloadCode();
-            }}
-          >
-            compile and dowload project
-          </Button>
+          </div>
         </Drawer>
         <div>
           <CreateFile
