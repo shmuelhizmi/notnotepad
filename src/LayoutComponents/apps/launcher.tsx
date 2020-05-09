@@ -4,6 +4,7 @@ import Home from "./windows/home";
 import MarketPlace from "./windows/marketPlace";
 import { AppView, appService } from "./appView/app";
 import { app } from "./appStorage";
+import { IconsTabs } from "../../UIComponents/tabs";
 
 interface AppLauncherProps {}
 interface AppLauncherState {
@@ -20,7 +21,7 @@ export default class AppLauncher extends Component<
     super(props);
     this.state = {
       activeWindows: "home",
-      currentApp: null
+      currentApp: null,
     };
     this.activeServices = [];
   }
@@ -48,58 +49,42 @@ export default class AppLauncher extends Component<
   render() {
     return (
       <div style={{ backgroundColor: Colors.DARK_GRAY2, height: "100%" }}>
-        <Navbar>
-          <Navbar.Group>
-            <Navbar.Heading>Extensions</Navbar.Heading>
-            <Navbar.Divider />
-            <Button
-              minimal
-              icon="home"
-              onClick={() => this.changeLocation("home")}
-            />
-            <Button
-              minimal
-              icon="shop"
-              onClick={() => this.changeLocation("mp")}
-            />
-            <Button
-              minimal
-              icon="application"
-              onClick={() => this.changeLocation("app")}
-            />
-          </Navbar.Group>
-        </Navbar>
-        {
-          <Tabs
-            selectedTabId={this.state.activeWindows}
-            renderActiveTabPanelOnly
-          >
-            <Tab
-              id="home"
-              panel={
+        <IconsTabs
+          currentTabId="home"
+          tabs={[
+            {
+              id: "home",
+              childerns: (
                 <Home
                   stopRunningService={this.stopService}
                   listRunningServices={() => this.activeServices}
                   launchApp={this.launchApp}
                 />
-              }
-            ></Tab>
-            <Tab id="mp" panel={<MarketPlace />}></Tab>
-            <Tab
-              id="app"
-              panel={
-                this.state.currentApp ? (
-                  <AppView
-                    url={this.state.currentApp.url}
-                    appPermissions={this.state.currentApp.permissions}
-                  />
-                ) : (
-                  <div />
-                )
-              }
-            ></Tab>
-          </Tabs>
-        }
+              ),
+              heading: "Home",
+              icon: "home",
+            },
+            {
+              id: "mp",
+              childerns: <MarketPlace />,
+              heading: "Market Place",
+              icon: "shop",
+            },
+            {
+              id: "app",
+              childerns: this.state.currentApp ? (
+                <AppView
+                  url={this.state.currentApp.url}
+                  appPermissions={this.state.currentApp.permissions}
+                />
+              ) : (
+                <div />
+              ),
+              heading: "Application",
+              icon: "application",
+            },
+          ]}
+        />
       </div>
     );
   }

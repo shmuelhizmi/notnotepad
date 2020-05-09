@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
-import { Tab, Tabs } from "@blueprintjs/core";
+import Tabs from "../../UIComponents/tabs";
 import { Pre, LineNo } from "./styles";
-
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { DarkTheme } from "./theme";
 import Now from "../hosting/nowPanel";
@@ -15,7 +14,6 @@ interface ViewportProps {
 }
 
 interface ViewportState {
-  selectedTabId: string;
   index: number;
   code: string;
 }
@@ -26,9 +24,8 @@ class Viewport extends Component<ViewportProps, ViewportState> {
     super(props);
     this.Storage = new StorageManager();
     this.state = {
-      selectedTabId: "now",
       index: 0,
-      code: ""
+      code: "",
     };
   }
   componentDidMount() {
@@ -40,9 +37,9 @@ class Viewport extends Component<ViewportProps, ViewportState> {
   };
   codeTick() {
     if (this.props.document) {
-      this.Storage.getFile(this.props.document, codeDir).then(data => {
+      this.Storage.getFile(this.props.document, codeDir).then((data) => {
         this.setState({
-          code: data
+          code: data,
         });
       });
     }
@@ -50,74 +47,74 @@ class Viewport extends Component<ViewportProps, ViewportState> {
   render() {
     return (
       <Tabs
-        id="ViewportTabs"
-        onChange={this.handleTabChange}
-        selectedTabId={this.state.selectedTabId}
-      >
-        <Tab
-          id="now"
-          title="live preview"
-          panel={
-            <div style={{ height: "93%", marginTop: "-3%" }}>
-              <Now></Now>
-            </div>
-          }
-        />
-        <Tab
-          id="wb"
-          title="web view"
-          panel={
-            <div style={{ height: "93%", marginTop: "-3%" }}>
-              <iframe
-                title="page view"
-                className="Fill"
-                key={this.state.index}
-                srcDoc={this.state.code}
-              ></iframe>
-            </div>
-          }
-        />
-        <Tab
-          id="cd"
-          title="code view"
-          panel={
-            <div>
-              <Scrollbars style={{ height: "90%" }} autoHide>
-                <Highlight
-                  {...defaultProps}
-                  code={this.state.code}
-                  theme={DarkTheme}
-                  language={this.getPrismLangusage()}
-                >
-                  {({
-                    className,
-                    style,
-                    tokens,
-                    getLineProps,
-                    getTokenProps
-                  }) => (
-                    <Pre className={className} style={style}>
-                      {tokens.map((line, i) => (
-                        <div {...getLineProps({ line, key: i })}>
-                          <LineNo>{i + 1}</LineNo>
-                          {line.map((token, key) => (
-                            <span {...getTokenProps({ token, key })} />
-                          ))}
-                        </div>
-                      ))}
-                    </Pre>
-                  )}
-                </Highlight>
-              </Scrollbars>
-            </div>
-          }
-        />
-      </Tabs>
+		id="ViewportTabs"
+		currentTabId="now"
+        tabs={[
+          {
+            heading: "Now hosting",
+            title: "live priview",
+            id: "now",
+            childerns: (
+              <div style={{ height: "93%", marginTop: "-3%" }}>
+                <Now></Now>
+              </div>
+            ),
+          },
+          {
+            heading: "View your file in iframe",
+            title: "iframe preview",
+            id: "wb",
+            childerns: (
+				<div style={{ height: "93%", marginTop: "-3%" }}>
+				<iframe
+				  title="page view"
+				  className="Fill"
+				  key={this.state.index}
+				  srcDoc={this.state.code}
+				></iframe>
+			  </div>
+            ),
+          },
+          {
+            heading: "Preview your code",
+            title: "code view",
+            id: "cd",
+            childerns: (
+				<div>
+				<Scrollbars style={{ height: "90%" }} autoHide>
+				  <Highlight
+					{...defaultProps}
+					code={this.state.code}
+					theme={DarkTheme}
+					language={this.getPrismLangusage()}
+				  >
+					{({
+					  className,
+					  style,
+					  tokens,
+					  getLineProps,
+					  getTokenProps,
+					}) => (
+					  <Pre className={className} style={style}>
+						{tokens.map((line, i) => (
+						  <div {...getLineProps({ line, key: i })}>
+							<LineNo>{i + 1}</LineNo>
+							{line.map((token, key) => (
+							  <span {...getTokenProps({ token, key })} />
+							))}
+						  </div>
+						))}
+					  </Pre>
+					)}
+				  </Highlight>
+				</Scrollbars>
+			  </div>
+            ),
+          },
+        ]}
+      />
     );
   }
-  handleTabChange = (tab: string) => {
-    this.setState({ selectedTabId: tab });
-  };
 }
 
 export default Viewport;
