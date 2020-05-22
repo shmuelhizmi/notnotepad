@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getInstalledApps, app, appTypes } from "../appStorage";
+import { ControlGroupTabs } from "../../../UIComponents/tabs";
 import {
   Tag,
   ControlGroup,
@@ -8,18 +9,14 @@ import {
   Divider,
   Colors,
   InputGroup,
-  Tabs,
-  Tab,
-  Button
+  Button,
 } from "@blueprintjs/core";
 import Scrollbars from "react-custom-scrollbars";
 import { appService } from "../appView/app";
 
 interface homeState {
   filterKey: string;
-  activeTab: tabs;
 }
-type tabs = "apps" | "services" | "editors";
 interface homeProps {
   launchApp: (app: app) => void;
   listRunningServices: () => appService[];
@@ -30,7 +27,6 @@ export default class Home extends Component<homeProps, homeState> {
     super(props);
     this.state = {
       filterKey: "",
-      activeTab: "apps"
     };
   }
   private listApps(type: appTypes, updateOnClick?: boolean) {
@@ -55,7 +51,7 @@ export default class Home extends Component<homeProps, homeState> {
               <div
                 style={{
                   display: "inline-grid",
-                  gridTemplateColumns: "35px auto auto"
+                  gridTemplateColumns: "35px auto auto",
                 }}
               >
                 <AppIcon name={v.name} iconUrl={v.iconUrl}></AppIcon>
@@ -71,71 +67,75 @@ export default class Home extends Component<homeProps, homeState> {
   }
   render() {
     return (
-      <div style={{ marginRight: "3%", marginLeft: "3%" }}>
-        <ControlGroup fill>
-          <Tag>Apps</Tag>
-          <InputGroup
-            placeholder="filter"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              this.setState({ filterKey: e.target.value });
-            }}
-          ></InputGroup>
-        </ControlGroup>
-        <Tabs
-          selectedTabId={this.state.activeTab}
-          onChange={(newTab: tabs) => {
-            this.setState({ activeTab: newTab });
-          }}
-        >
-          <Tab
-            id="apps"
-            title="apps"
-            panel={
-              <Scrollbars autoHeight autoHide>
-                {this.listApps("app")}
-              </Scrollbars>
-            }
-          ></Tab>
-          <Tab
-            id="services"
-            title="services"
-            panel={
-              <Scrollbars autoHeight autoHide>
-                {this.props.listRunningServices().map((service, i) => {
-                  const app = service.getApp();
-                  return (
-                    <div key={i}>
-                      <ControlGroup>
-                        <AppIcon
-                          name={app.name}
-                          iconUrl={app.iconUrl}
-                        ></AppIcon>
-                        <Button
-                          text="STOP"
-                          fill
-                          onClick={() => {
-                            this.props.stopRunningService(i);
-                            this.forceUpdate();
-                          }}
-                        ></Button>
-                      </ControlGroup>
-                    </div>
-                  );
-                })}
-                {this.listApps("service", true)}
-              </Scrollbars>
-            }
-          ></Tab>
-          <Tab
-            id="editors"
-            title="editors"
-            panel={
-              <Scrollbars autoHeight autoHide>
-                {this.listApps("editor")}
-              </Scrollbars>
-            }
-          ></Tab>
-        </Tabs>
+      <div>
+        <ControlGroupTabs
+          betweenComponent={
+            <div>
+              <Divider />
+              <InputGroup
+                placeholder="filter"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  this.setState({ filterKey: e.target.value });
+                }}
+              ></InputGroup>
+            </div>
+          }
+          currentTabId="apps"
+          id="homeView"
+          tabs={[
+            {
+              title: "apps",
+              heading: "view your apps",
+              id: "apps",
+              childerns: (
+                <Scrollbars autoHeight autoHide>
+                  {this.listApps("app")}
+                </Scrollbars>
+              ),
+            },
+            {
+              title: "services",
+              heading: "view your services",
+              id: "services",
+              childerns: (
+                <Scrollbars autoHeight autoHide>
+                  {this.props.listRunningServices().map((service, i) => {
+                    const app = service.getApp();
+                    return (
+                      <div key={i}>
+                        <ControlGroup>
+                          <AppIcon
+                            name={app.name}
+                            iconUrl={app.iconUrl}
+                          ></AppIcon>
+                          <Button
+                            text="STOP"
+                            fill
+                            onClick={() => {
+                              this.props.stopRunningService(i);
+                              this.forceUpdate();
+                            }}
+                          ></Button>
+                        </ControlGroup>
+                      </div>
+                    );
+                  })}
+                  {this.listApps("service", true)}
+                </Scrollbars>
+              ),
+            },
+            {
+              id: "editors",
+              title: "editors",
+              heading: "view your editors",
+              childerns: (
+                <Scrollbars autoHeight autoHide>
+                  {this.listApps("editor")}
+                </Scrollbars>
+              ),
+            },
+          ]}
+        />
       </div>
     );
   }
