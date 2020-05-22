@@ -34,7 +34,16 @@ class FullExplorer extends Explorer {
           title="open full explorer"
           onClick={this.open}
         >
-          launch full explorer
+          <div
+            style={{
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              maxWidth: "100%",
+              overflow: "hidden"
+            }}
+          >
+            launch full explorer
+          </div>
         </Button>
         <Drawer
           className="bp3-dark"
