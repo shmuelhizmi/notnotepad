@@ -13,12 +13,148 @@ import {
   PanelStack,
   Text,
   InputGroup,
-  Divider
+  Divider,
+  Switch,
 } from "@blueprintjs/core";
 import "./JsonObjectEditor.scss";
-import { Cell, Table, Column, EditableCell } from "@blueprintjs/table";
+import {
+  Cell,
+  Table,
+  Column,
+  EditableCell,
+  EditableName,
+} from "@blueprintjs/table";
 import "@blueprintjs/table/lib/css/table.css";
 
+interface CompiledObject {
+  type: "object";
+  name?: string;
+  childrens: ((
+    | CompiledObject
+    | CompiledArray
+    | CompiledString
+    | CompiledNumber
+    | CompiledBoolean
+  ) & {
+    name: string;
+    index: number;
+  })[];
+}
+
+interface CompiledArray {
+  type: "array";
+  name?: string;
+  childrens: ((
+    | CompiledObject
+    | CompiledArray
+    | CompiledString
+    | CompiledNumber
+    | CompiledBoolean
+  ) & { index: number })[];
+}
+
+interface CompiledString {
+  type: "string";
+  name?: string;
+  value: string;
+}
+
+interface CompiledNumber {
+  type: "number";
+  name?: string;
+  value: number;
+}
+
+interface CompiledBoolean {
+  type: "boolean";
+  name?: string;
+  value: boolean;
+}
+
+// @ts-ignore
+type JsonValue = string | Array<JsonValue> | object | number | boolean;
+
+const compileJson: (
+  value: JsonValue
+) =>
+  | CompiledObject
+  | CompiledArray
+  | CompiledString
+  | CompiledNumber
+  | CompiledBoolean = (value) => {
+  try {
+    switch (typeof value) {
+      case "object": {
+        if (!Array.isArray(value)) {
+          const result: CompiledObject = {
+            type: "object",
+            childrens: Object.keys(value).map((name, index) => ({
+              ...compileJson(value[name]),
+              name,
+              index,
+            })),
+          };
+          return result;
+        } else {
+          const result: CompiledArray = {
+            type: "array",
+            childrens: value.map((child, index) => ({
+              ...compileJson(child),
+              index,
+            })),
+          };
+          return result;
+        }
+      }
+      case "string": {
+        const result: CompiledString = { type: "string", value };
+        return result;
+      }
+      case "number": {
+        const result: CompiledNumber = { type: "number", value };
+        return result;
+      }
+      case "boolean": {
+        const result: CompiledBoolean = { type: "boolean", value };
+        return result;
+      }
+    }
+  } catch (e) {
+    const result: CompiledObject = { type: "object", childrens: [] };
+    return result;
+  }
+};
+
+const comileToJson: (
+  value:
+    | CompiledObject
+    | CompiledArray
+    | CompiledString
+    | CompiledNumber
+    | CompiledBoolean
+) => JsonValue = (value) => {
+  try {
+    switch (value.type) {
+      case "object": {
+        const result: object = {};
+        value.childrens.forEach(
+          (child) => (result[child.name] = comileToJson(child))
+        );
+        return result;
+      }
+      case "array": {
+        const result = [];
+        value.childrens.forEach((child) => result.push(comileToJson(child)));
+        return result;
+      }
+      case "string" || "number" || "boolean": {
+        return value.value;
+      }
+    }
+  } catch (e) {
+    return {};
+  }
+};
 export default class JsonObjectEditor extends CodeEditor {
   constructor(props) {
     super(props);
@@ -30,23 +166,21 @@ export default class JsonObjectEditor extends CodeEditor {
   componentWillUnmount = () => {
     this.saveEditorDataFromState();
   };
-  updateCode = code => {
-    const newCode = JSON.stringify(code);
+  updateCode = (code) => {
+    const newCode = JSON.stringify(comileToJson(code));
     this.setState({
-      code: newCode
+      code: newCode,
     });
     this.updateDocument(newCode);
   };
-  makeJSON(code) {
-    try {
-      return JSON.parse(code);
-    } catch {
-      return { name: this.state.documentName };
-    }
-  }
+
   public render() {
-    console.log(this.state.code);
-    const code = JSON.parse(this.state.code);
+    let code;
+    try {
+      code = compileJson(JSON.parse(this.state.code));
+    } catch (e) {
+      code = compileJson(JSON.parse("{}"));
+    }
     if (typeof code === "object") {
       return (
         <>
@@ -55,7 +189,7 @@ export default class JsonObjectEditor extends CodeEditor {
             initialPanel={{
               component: ObjectView,
               title: "ROOT",
-              props: { value: code, onChange: this.updateCode }
+              props: { value: code, onChange: this.updateCode },
             }}
           />
         </>
@@ -71,110 +205,190 @@ export default class JsonObjectEditor extends CodeEditor {
 }
 
 class ObjectView extends React.Component<
-  IPanelProps & { value: object; onChange: (value) => void },
+  IPanelProps & {
+    value: CompiledObject | CompiledArray;
+    onChange: (value) => void;
+  },
   { value: object }
 > {
   state = {
-    value: this.props.value
+    value: this.props.value,
   };
   public render() {
     return (
       <div>
         <div className="grid-container">
-          {Object.keys(this.state.value).map(
-            (name, index) =>
-              typeof this.state.value[name] === "object" && (
-                <div key={index}>
-                  <Button
-                    icon={
-                      Array.isArray(this.state.value[name])
-                        ? "numbered-list"
-                        : "cube"
-                    }
-                    style={{
-                      height: 100,
-                      width: 120,
-                      margin: 10
-                    }}
-                    onClick={() =>
-                      this.openObject(this.state.value[name], name)
-                    }
-                  >
-                    <div
+          {
+            // @ts-ignore
+            this.state.value.childrens.map(
+              (value, index) =>
+                value.type === "object" && (
+                  <div key={value.index}>
+                    <Button
+                      icon={"cube"}
                       style={{
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                        maxWidth: 80,
-                        overflow: "hidden"
+                        height: 100,
+                        width: 120,
+                        margin: 10,
                       }}
+                      onClick={() =>
+                        this.openObject(
+                          value,
+                          value.name || "index - " + (value.index + 1)
+                        )
+                      }
                     >
-                      {name}
-                    </div>
-                  </Button>
-                </div>
-              )
-          )}
+                      <div
+                        style={{
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                          maxWidth: 80,
+                          overflow: "hidden",
+                        }}
+                      >
+                        {value.name || "index - " + (value.index + 1)}
+                      </div>
+                    </Button>
+                  </div>
+                )
+            )
+          }
+          {
+            // @ts-ignore
+            this.state.value.childrens.map(
+              (value, index) =>
+                value.type === "array" && (
+                  <div key={value.index}>
+                    <Button
+                      icon={"numbered-list"}
+                      style={{
+                        height: 100,
+                        width: 120,
+                        margin: 10,
+                      }}
+                      onClick={() =>
+                        this.openObject(
+                          value,
+                          value.name || "index - " + (value.index + 1)
+                        )
+                      }
+                    >
+                      <div
+                        style={{
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                          maxWidth: 80,
+                          overflow: "hidden",
+                        }}
+                      >
+                        {value.name || "index - " + (value.index + 1)}
+                      </div>
+                    </Button>
+                  </div>
+                )
+            )
+          }
         </div>
         <Divider />
-
-        <Table
-          className="table-fill-width"
-          numRows={
-            Object.keys(this.state.value).filter(
-              value => typeof this.state.value[value] !== "object"
-            ).length
-          }
-        >
-          <Column name="name" cellRenderer={this.renderNameCell}></Column>
-          <Column name="value" cellRenderer={this.renderCell}></Column>
-        </Table>
+        {this.state.value.childrens.filter(
+          (value) =>
+            value.type === "number" ||
+            value.type === "boolean" ||
+            value.type === "string"
+        ).length > 0 && (
+          <Table
+            className="table-fill-width"
+            numRows={
+              this.state.value.childrens.filter(
+                (value) =>
+                  value.type === "number" ||
+                  value.type === "boolean" ||
+                  value.type === "string"
+              ).length
+            }
+          >
+            <Column name="name" cellRenderer={this.renderNameCell}></Column>
+            <Column name="value" cellRenderer={this.renderCell}></Column>
+          </Table>
+        )}
       </div>
     );
   }
 
   private renderCell = (rowIndex: number) => {
-    const filterdValues = Object.keys(this.state.value).filter(
-      value => typeof this.state.value[value] !== "object"
+    // @ts-ignore
+    const filterdValues: (
+      | CompiledBoolean
+      | CompiledNumber
+      | CompiledString
+    )[] = this.state.value.childrens.filter(
+      (value) =>
+        value.type === "number" ||
+        value.type === "boolean" ||
+        value.type === "string"
     );
+    const toStringBool = (value) => (value ? "true" : "false");
     return (
       <EditableCell
-        onChange={value => {
-          if (typeof this.state.value[filterdValues[rowIndex]] === "number") {
-            this.state.value[filterdValues[rowIndex]] = Number(value);
+        onChange={(value) => {
+          if (filterdValues[rowIndex].type === "number") {
+            filterdValues[rowIndex].value = Number(value);
           }
-          if (typeof this.state.value[filterdValues[rowIndex]] === "boolean") {
-            this.state.value[filterdValues[rowIndex]] = Boolean(value);
+          if (filterdValues[rowIndex].type === "string") {
+            filterdValues[rowIndex].value = value;
           }
-          if (typeof this.state.value[filterdValues[rowIndex]] === "string") {
-            this.state.value[filterdValues[rowIndex]] = value;
+          if (filterdValues[rowIndex].type === "boolean") {
+            filterdValues[rowIndex].value = value === "true" ? true : false;
           }
           this.setState(this.state);
           this.props.onChange(this.state.value);
         }}
-        value={this.state.value[filterdValues[rowIndex]]}
+        // @ts-ignore
+        value={
+          filterdValues[rowIndex].type === "boolean"
+            ? toStringBool(filterdValues[rowIndex].value)
+            : filterdValues[rowIndex].value
+        }
       ></EditableCell>
     );
   };
   private renderNameCell = (rowIndex: number) => {
-    const filterdValues = Object.keys(this.state.value).filter(
-      value => typeof this.state[value] !== "object"
+    const filterdValues = this.state.value.childrens.filter(
+      (value) =>
+        value.type === "number" ||
+        value.type === "boolean" ||
+        value.type === "string"
     );
 
-    return <Cell>{filterdValues[rowIndex]}</Cell>;
+    return (
+      <EditableCell
+
+        value={
+          filterdValues[rowIndex].name ||
+          "index - " + filterdValues[rowIndex].index
+        }
+        onChange={(value) => {
+          if (filterdValues[rowIndex].name) {
+            filterdValues[rowIndex].name = value;
+            this.props.onChange(this.state.value);
+          }
+        }}
+      />
+    );
   };
 
-  private openObject(value: object, name: string) {
+  private openObject(value: CompiledObject | CompiledArray, name: string) {
     this.props.openPanel({
       component: ObjectView,
       props: {
         value,
-        onChange: value => {
+        onChange: (value) => {
           this.state.value[name] = value;
           this.setState(this.state);
           this.props.onChange(this.state.value);
-        }
+        },
       },
-      title: "Settings"
+      title: name,
     });
   }
 }

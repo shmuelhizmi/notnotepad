@@ -28,10 +28,6 @@ BrowserFSStorage((e, fs) => {
 
   window.fs = fs;
 
-  //test area
-
-  ////////////////////////////////////////
-
   ReactDOM.render(
     React.createElement(WebRouter),
     document.getElementById("editor")
