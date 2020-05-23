@@ -173,13 +173,17 @@ export const FilesTabs = (props: FilesTabsProps) => {
                   >
                     <Button
                       minimal
-                      icon={"collapse-all"}
+                      icon={"cross"}
+                      style={{}}
                       onClick={() => {
                         props.onCloseTab(tab.id);
                         forceUpdate();
                       }}
                     />
-                    <div onClick={() => props.setActiveTab(tab.id)}>
+                    <div
+                      style={{ marginTop: 3, fontSize: 15 }}
+                      onClick={() => props.setActiveTab(tab.id)}
+                    >
                       {tab.filename}
                     </div>
                   </div>
