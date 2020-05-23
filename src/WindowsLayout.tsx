@@ -8,7 +8,7 @@ import {
   Mosaic,
   MosaicNode,
   MosaicWindow,
-  MosaicZeroState
+  MosaicZeroState,
 } from "react-mosaic-component";
 
 import "@blueprintjs/core/lib/css/blueprint.css";
@@ -20,12 +20,14 @@ import FullExplorer from "./LayoutComponents/Explorer/FullExplorer";
 import ProjectNavbar from "./LayoutComponents/navbar/ProjectNavbar";
 import AppLauncher from "./LayoutComponents/apps/launcher";
 import Viewport from "./LayoutComponents/Viewport/viewport";
+import { FilesTabs, EditorTabs } from "./UIComponents/tabs";
+import "./mosaic.css";
 
 export const THEMES = {
-  Blueprint: "mosaic-blueprint-theme",
-  NNP_DARK: classNames("nnp-dark", Classes.DARK),
-  "Blueprint Dark": classNames("mosaic-blueprint-theme", Classes.DARK),
-  None: ""
+  light: "mosaic-blueprint-theme",
+  nnp: classNames("nnp-dark", Classes.DARK),
+  dark: classNames("mosaic-blueprint-theme", Classes.DARK),
+  none: "",
 };
 export type Theme = keyof typeof THEMES;
 
@@ -33,6 +35,7 @@ export interface WindowsLayoutState {
   currentNode: MosaicNode<number> | null;
   currentTheme: Theme;
   openDocument: string;
+  editorTabs: EditorTabs[];
 }
 interface tab {
   name: string;
@@ -40,7 +43,13 @@ interface tab {
   body: JSX.Element;
   draggable?: boolean;
 }
-export class WindowsLayout extends React.PureComponent<{}, WindowsLayoutState> {
+export class WindowsLayout extends React.PureComponent<
+  { theme: Theme },
+  WindowsLayoutState
+> {
+  constructor(props: { theme: Theme }) {
+    super(props);
+  }
   state: WindowsLayoutState = {
     currentNode: {
       direction: "row",
@@ -48,20 +57,30 @@ export class WindowsLayout extends React.PureComponent<{}, WindowsLayoutState> {
         direction: "row",
         first: 3,
         second: 1,
-        splitPercentage: 20
+        splitPercentage: 20,
       },
       second: {
         direction: "column",
         first: 2,
         second: 4,
-        splitPercentage: 60
+        splitPercentage: 60,
       },
-      splitPercentage: 70
+      splitPercentage: 70,
     },
-    currentTheme: "NNP_DARK",
-    openDocument: ""
+    currentTheme: this.props.theme,
+    openDocument: "",
+    editorTabs: [],
   };
+
   openFile = (name: string) => {
+    this.setState((state) => {
+      if (!state.editorTabs.find((tab) => tab.filename === name)) {
+        state.editorTabs.push({ filename: name, id: name });
+        if (state.editorTabs.length > 5) {
+          state.editorTabs.shift();
+        }
+      }
+    });
     this.setState({ openDocument: name }, () => {
       this.forceUpdate();
     });
@@ -77,15 +96,30 @@ export class WindowsLayout extends React.PureComponent<{}, WindowsLayoutState> {
           openFile={this.openFile}
           key={this.state.openDocument}
           theme={THEMES[this.state.currentTheme]}
-        ></ProjectNavbar>
+        ></ProjectNavbar>,
       ]),
-      body: (
-        <EditorWindow
-          key={this.state.openDocument}
-          document={this.state.openDocument}
-          editor="Monaco"
-        ></EditorWindow>
-      )
+      body: this.state.openDocument !== "" && (
+        <FilesTabs
+          currentTabId={this.state.openDocument}
+          tabs={this.state.editorTabs}
+          onCloseTab={(id) => {
+            this.setState((state) => {
+              state.editorTabs.splice(
+                state.editorTabs.findIndex((tab) => tab.id === id),
+                1
+              );
+              if (id === this.state.openDocument) {
+                if (state.editorTabs.length === 0) {
+                  this.setState({ openDocument: "" });
+                } else {
+                  this.setState({ openDocument: state.editorTabs[0].filename });
+                }
+              }
+            });
+          }}
+          setActiveTab={(id) => this.openFile(id)}
+        />
+      ),
     },
     {
       name: "Viewport",
@@ -102,20 +136,20 @@ export class WindowsLayout extends React.PureComponent<{}, WindowsLayoutState> {
           icon="application"
         >
           open in new window
-        </Button>
+        </Button>,
       ]),
-      body: <Viewport document={this.state.openDocument}></Viewport>
+      body: <Viewport document={this.state.openDocument}></Viewport>,
     },
     {
       name: "Explorer",
       toolbarControls: React.Children.toArray([
-        <FullExplorer openFile={this.openFile}></FullExplorer>
+        <FullExplorer openFile={this.openFile}></FullExplorer>,
       ]),
       body: (
         <div>
           <Explorer openFile={this.openFile}></Explorer>
         </div>
-      )
+      ),
     },
     {
       name: "Apps",
@@ -124,8 +158,8 @@ export class WindowsLayout extends React.PureComponent<{}, WindowsLayoutState> {
         <div>
           <AppLauncher />
         </div>
-      )
-    }
+      ),
+    },
   ];
   render() {
     return (
@@ -170,7 +204,7 @@ export class WindowsLayout extends React.PureComponent<{}, WindowsLayoutState> {
     const leaves = getLeaves(this.state.currentNode);
 
     this.setState({
-      currentNode: createBalancedTreeFromLeaves(leaves)
+      currentNode: createBalancedTreeFromLeaves(leaves),
     });
   };
 }

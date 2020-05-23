@@ -48,7 +48,7 @@ export default class AppLauncher extends Component<
   };
   render() {
     return (
-      <div style={{ backgroundColor: Colors.DARK_GRAY2, height: "100%" }}>
+      <div style={{ height: "100%" }}>
         <IconsTabs
           currentTabId="home"
           tabs={[

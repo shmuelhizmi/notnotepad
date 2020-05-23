@@ -10,7 +10,7 @@ export default class WellcomePage extends Component {
           backgroundColor: "#2732A7",
           position: "relative",
           width: "100%",
-          height: "100%"
+          height: "100%",
         }}
       >
         <div
@@ -21,7 +21,7 @@ export default class WellcomePage extends Component {
             top: "10%",
             width: "100%",
             height: "80%",
-            border: "1px solid #D9956E"
+            border: "1px solid #D9956E",
           }}
         >
           <Card
@@ -31,7 +31,7 @@ export default class WellcomePage extends Component {
               top: "10%",
               left: "25%",
               width: "50%",
-              height: "60%"
+              height: "60%",
             }}
           >
             <ButtonGroup
@@ -39,7 +39,7 @@ export default class WellcomePage extends Component {
                 position: "relative",
                 height: "100%",
                 display: "grid",
-                gridTemplateColumns: "55% 45%"
+                gridTemplateColumns: "55% 45%",
               }}
             >
               <div style={{ marginTop: "30%" }}>
@@ -67,7 +67,7 @@ export default class WellcomePage extends Component {
         <Draggable>
           <img
             alt="monaco editor"
-            src="./media/editors/monaco.svg"
+            src={window.location.origin + "/media/editors/monaco.svg"}
             width={100}
             height={100}
             draggable={false}
@@ -76,7 +76,7 @@ export default class WellcomePage extends Component {
         <Draggable>
           <img
             alt="md editor"
-            src="./media/editors/md.png"
+            src={window.location.origin + "/media/editors/md.png"}
             width={100}
             height={100}
             draggable={false}
@@ -85,7 +85,7 @@ export default class WellcomePage extends Component {
         <Draggable>
           <img
             alt="ckeditor5 editor"
-            src="./media/editors/ckeditor5.png"
+            src={window.location.origin + "/media/editors/ckeditor5.png"}
             width={100}
             height={100}
             draggable={false}
@@ -94,7 +94,7 @@ export default class WellcomePage extends Component {
         <Draggable>
           <img
             alt="ckeditor4 editor"
-            src="./media/editors/ckeditor4.png"
+            src={window.location.origin + "/media/editors/ckeditor4.png"}
             width={100}
             height={100}
             draggable={false}
@@ -103,7 +103,7 @@ export default class WellcomePage extends Component {
         <Draggable>
           <img
             alt="blockly editor"
-            src="./media/editors/blockly.svg"
+            src={window.location.origin + "/media/editors/blockly.svg"}
             width={100}
             height={100}
             draggable={false}
@@ -112,7 +112,7 @@ export default class WellcomePage extends Component {
         <Draggable>
           <img
             alt="json tree editor"
-            src="./media/editors/jsonview.svg"
+            src={window.location.origin + "/media/editors/jsonview.svg"}
             width={100}
             height={100}
             draggable={false}
