@@ -149,10 +149,7 @@ export const FilesTabs = (props: FilesTabsProps) => {
   return (
     <div>
       <Navbar style={{ height: 45 }}>
-        <Navbar.Group
-          align={Alignment.CENTER}
-          style={{ overflowX: "auto", overflowY: "hidden" }}
-        >
+        <Navbar.Group align={Alignment.CENTER}>
           <BlueprintTabs selectedTabId={props.currentTabId}>
             {props.tabs.map((tab) => (
               <Tab
