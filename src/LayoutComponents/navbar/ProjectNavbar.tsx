@@ -25,7 +25,7 @@ export default class ProjectNavbar extends Component<NavbarProps, NavbarState> {
       document: props.document,
       theme: props.theme,
       hostingPanelIsOpen: false,
-      githubPanelIsOpen: true
+      githubPanelIsOpen: true,
     };
   }
   render() {
@@ -99,5 +99,5 @@ export default class ProjectNavbar extends Component<NavbarProps, NavbarState> {
   }
 }
 const ButtonGroupStyle: React.CSSProperties = {
-  width: 200
+  width: 200,
 };

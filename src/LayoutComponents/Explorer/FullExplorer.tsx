@@ -14,7 +14,7 @@ class FullExplorer extends Explorer {
     super(props);
     this.state = {
       ...this.state,
-      isOpen: props.isOpen
+      isOpen: props.isOpen,
     };
   }
 
@@ -39,7 +39,7 @@ class FullExplorer extends Explorer {
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
               maxWidth: "100%",
-              overflow: "hidden"
+              overflow: "hidden",
             }}
           >
             launch full explorer
@@ -79,7 +79,13 @@ class FullExplorer extends Explorer {
           </div>
           <div className={Classes.DRAWER_FOOTER}>
             <ButtonGroup fill minimal>
-              <Button icon="download" onClick={() => {}}>
+              <Button
+                icon="download"
+                onClick={() =>
+                  this.state.selected &&
+                  this.storage.downloadFile(this.state.selected)
+                }
+              >
                 download file code
               </Button>
               <Button icon="download" onClick={() => {}}>
@@ -88,7 +94,7 @@ class FullExplorer extends Explorer {
               <Button
                 icon="download"
                 onClick={() => {
-                  this.storage.download();
+                  this.storage.downloadProject();
                 }}
               >
                 download project data

@@ -11,7 +11,7 @@ export const action = {
   byPathOnly: 0,
   codeOnly: 1,
   editorDataOnly: 2,
-  codeAndEditorData: 3
+  codeAndEditorData: 3,
 };
 export interface editorDataObjectInterface {
   editor: string;
@@ -34,7 +34,7 @@ export default class StorageManager {
       try {
         resolve({
           code: await this.getFile(path, codeDir),
-          editorData: await this.getFileEditorData(path)
+          editorData: await this.getFileEditorData(path),
         });
       } catch (e) {
         reject(e);
@@ -44,12 +44,12 @@ export default class StorageManager {
   syncGetDocument(path: string) {
     return {
       code: this.syncGetFile(path, codeDir),
-      editorData: this.syncGetFileEditorData(path)
+      editorData: this.syncGetFileEditorData(path),
     };
   }
   getFileEditorData(path: string, defaultValue = editorDataDefualtValue) {
     return new Promise((resolve, reject) => {
-      this.getFile(path, editorDataDir, defaultValue).then(editorData => {
+      this.getFile(path, editorDataDir, defaultValue).then((editorData) => {
         const editorDataObject = JSON.parse(editorData);
         if (editorDataObject) {
           resolve(editorDataObject);
@@ -125,7 +125,7 @@ export default class StorageManager {
   ) {
     return Promise.all([
       this.setFile(path, code, codeDir),
-      this.setFile(path, JSON.stringify(editorDataObject), editorDataDir)
+      this.setFile(path, JSON.stringify(editorDataObject), editorDataDir),
     ]);
   }
   updateFile(
@@ -135,7 +135,7 @@ export default class StorageManager {
     onErorr?: (error: BrowserFS.Errors.ApiError) => void
   ) {
     if (code) {
-      this.setFile(path, code, codeDir).catch(e => {
+      this.setFile(path, code, codeDir).catch((e) => {
         if (onErorr) {
           onErorr(e);
         }
@@ -143,7 +143,7 @@ export default class StorageManager {
     }
     if (editorDataObject) {
       this.setFile(path, JSON.stringify(editorDataObject), editorDataDir).catch(
-        e => {
+        (e) => {
           if (onErorr) {
             onErorr(e);
           }
@@ -153,7 +153,7 @@ export default class StorageManager {
   }
   setEditor(path: string, editor: string) {
     this.getFile(path, editorDataDir, editorDataDefualtValue).then(
-      editorData => {
+      (editorData) => {
         let editorDataObject: editorDataObjectInterface = JSON.parse(
           editorData
         );
@@ -164,12 +164,12 @@ export default class StorageManager {
   }
   setFile(path: string, data: string, storage: string) {
     return new Promise((resolve: () => void, reject) => {
-      this.fileSystem.writeFile(storage + path, data, e => {
+      this.fileSystem.writeFile(storage + path, data, (e) => {
         if (e) {
           if (e.errno === ErrorCode.ENOENT) {
             this.createDirectory(path.slice(0, path.lastIndexOf("/")), storage)
               .then(() => {
-                this.fileSystem.writeFile(storage + path, data, e => {
+                this.fileSystem.writeFile(storage + path, data, (e) => {
                   if (e) {
                     reject(e);
                   } else {
@@ -204,7 +204,7 @@ export default class StorageManager {
   makeDirectory(path: string) {
     return Promise.all([
       this.createDirectory(path, codeDir),
-      this.createDirectory(path, editorDataDir)
+      this.createDirectory(path, editorDataDir),
     ]);
   }
   createDirectory(path: string, storage = "") {
@@ -269,13 +269,13 @@ export default class StorageManager {
   removeDocument(path: string) {
     return Promise.all([
       this.removeFile(path, codeDir),
-      this.removeFile(path, editorDataDir)
+      this.removeFile(path, editorDataDir),
     ]);
   }
 
   removeFile(path: string, storage = "") {
     return new Promise((resolve: () => void, reject) => {
-      this.fileSystem.unlink(storage + path, e => {
+      this.fileSystem.unlink(storage + path, (e) => {
         if (e) {
           reject(e);
         } else {
@@ -289,18 +289,18 @@ export default class StorageManager {
   removeDocumentDirectory(path: string) {
     return Promise.all([
       this.removeDirectory(path, codeDir),
-      this.removeDirectory(path, editorDataDir)
+      this.removeDirectory(path, editorDataDir),
     ]);
   }
   removeDirectory(path: string, storage = "") {
     return new Promise((resolve: () => void, reject) => {
-      this.fileSystem.rmdir(storage + path, e => {
+      this.fileSystem.rmdir(storage + path, (e) => {
         if (e) {
           if (e.errno === ErrorCode.ENOTEMPTY) {
             this.listDirectoryToCategories(path + "/", storage, true).then(
-              files => {
+              (files) => {
                 const promises: Promise<unknown>[] = [];
-                files.forEach(file => {
+                files.forEach((file) => {
                   if (file.isDirectory) {
                     promises.push(this.removeDirectory(file.path, storage));
                   } else {
@@ -336,9 +336,9 @@ export default class StorageManager {
     const folder = this.fileSystem.readdirSync(storage + path);
     if (fullPath) {
       if (includeStorageInPath) {
-        return folder.map(r => storage + path + r);
+        return folder.map((r) => storage + path + r);
       } else {
-        return folder.map(r => path + r);
+        return folder.map((r) => path + r);
       }
     } else {
       return folder;
@@ -358,9 +358,9 @@ export default class StorageManager {
           }
           if (fullPath && res) {
             if (includeStorageInPath) {
-              resolve(res.map(r => storage + path + r));
+              resolve(res.map((r) => storage + path + r));
             } else {
-              resolve(res.map(r => path + r));
+              resolve(res.map((r) => path + r));
             }
           } else {
             resolve(res);
@@ -376,10 +376,13 @@ export default class StorageManager {
     includeStrage = false
   ): { path: string; isDirectory: boolean }[] {
     return this.syncListDirectory(path, storage, false, includeStrage).map(
-      file => {
+      (file) => {
         return {
           path: fullPath ? path + file : file,
-          isDirectory: this.syncGetFileState(path + file, storage).isDirectory()
+          isDirectory: this.syncGetFileState(
+            path + file,
+            storage
+          ).isDirectory(),
         };
       }
     );
@@ -390,19 +393,19 @@ export default class StorageManager {
         resolve: (files: { path: string; isDirectory: boolean }[]) => void,
         reject
       ) => {
-        this.listDirectory(path, storage, false).then(files => {
+        this.listDirectory(path, storage, false).then((files) => {
           if (files) {
-            const filesProms = files.map(file => {
+            const filesProms = files.map((file) => {
               return new Promise(
                 (
                   res: (file: { path: string; isDirectory: boolean }) => void,
                   rej
                 ) => {
                   this.getFileState(path + file, storage)
-                    .then(stat =>
+                    .then((stat) =>
                       res({
                         path: fullPath ? path + file : file,
-                        isDirectory: stat.isDirectory()
+                        isDirectory: stat.isDirectory(),
                       })
                     )
 
@@ -411,7 +414,7 @@ export default class StorageManager {
               );
             });
             Promise.all(filesProms)
-              .then(res => resolve(res))
+              .then((res) => resolve(res))
               .catch(reject);
           }
         });
@@ -421,13 +424,13 @@ export default class StorageManager {
   syncListFilesToFilesArray(path: string, storage = "") {
     const filesArray: { file: string; data: string }[] = [];
     const makeLevel = (path: string, storage: string) => {
-      this.syncListDirectoryToCategories(path, storage).forEach(file => {
+      this.syncListDirectoryToCategories(path, storage).forEach((file) => {
         if (file.isDirectory) {
           makeLevel(file.path + "/", storage);
         } else {
           filesArray.push({
             file: file.path,
-            data: this.syncGetFile(file.path, storage)
+            data: this.syncGetFile(file.path, storage),
           });
         }
       });
@@ -456,7 +459,7 @@ export default class StorageManager {
   renameDocument(path: string, newPath: string) {
     return Promise.all([
       this.renameFile(path, newPath, editorDataDir),
-      this.renameFile(path, newPath, codeDir)
+      this.renameFile(path, newPath, codeDir),
     ]);
   }
   syncRenameDocument(path: string, newPath: string) {
@@ -466,7 +469,7 @@ export default class StorageManager {
 
   renameFile(path: string, newPath: string, storage = "") {
     return new Promise((res, rej) => {
-      this.fileSystem.rename(storage + path, storage + newPath, e => {
+      this.fileSystem.rename(storage + path, storage + newPath, (e) => {
         if (e) {
           rej();
         } else {
@@ -483,11 +486,11 @@ export default class StorageManager {
   syncZipFolder(path: string, storage = "") {
     const zip = new JSZip();
     const makeLevel = (path: string, storage: string) => {
-      this.syncListDirectoryToCategories(path, storage).forEach(file => {
+      this.syncListDirectoryToCategories(path, storage).forEach((file) => {
         if (file.isDirectory) {
           makeLevel(file.path + "/", storage);
         } else {
-          zip.file(storage + file.path, this.syncGetFile(file.path, storage));
+          zip.file(file.path, this.syncGetFile(file.path, storage));
         }
       });
     };
@@ -515,14 +518,21 @@ export default class StorageManager {
   downloadCode() {
     this.syncZipFolder("", codeDir)
       .generateAsync({ type: "blob" })
-      .then(v => fileDownload(v, "project.zip"));
+      .then((v) => fileDownload(v, "project.zip"));
   }
-  download() {
+
+  downloadProject() {
     const code = this.syncZipFolder("", codeDir);
     const editorData = this.syncZipFolder("", editorDataDir);
     fileDownload(
       JSON.stringify({ code: code, editorData: editorData }),
       Date.now() + "-notnotepad.nnpjs"
     );
+  }
+  getPathToFileName = (fullPath: string) => fullPath.replace(/^.*[\\\/]/, "");
+
+  downloadFile(path: string, storage = codeDir) {
+    const file = this.syncGetFile(path, storage);
+    fileDownload(file, this.getPathToFileName(path));
   }
 }

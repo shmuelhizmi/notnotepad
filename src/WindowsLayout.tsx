@@ -76,9 +76,6 @@ export class WindowsLayout extends React.PureComponent<
     this.setState((state) => {
       if (!state.editorTabs.find((tab) => tab.filename === name)) {
         state.editorTabs.unshift({ filename: name, id: name });
-        if (state.editorTabs.length > 5) {
-          state.editorTabs.pop();
-        }
       }
     });
     this.setState({ openDocument: name }, () => {

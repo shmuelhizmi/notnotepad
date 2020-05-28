@@ -10,6 +10,8 @@ import {
   Tag,
 } from "@blueprintjs/core";
 import EditorWindow from "../LayoutComponents/Editor/EditorWindow";
+import "./tabs.scss";
+
 interface Props {
   id?: string;
   tabs: {
@@ -140,7 +142,7 @@ interface FilesTabsProps {
 }
 
 function useForceUpdate() {
-  const [value, setValue] = useState(0); // integer state
+  const [, setValue] = useState(0); // integer state
   return () => setValue((value) => ++value); // update the state to force render
 }
 
@@ -149,7 +151,10 @@ export const FilesTabs = (props: FilesTabsProps) => {
   return (
     <div>
       <Navbar style={{ height: 45 }}>
-        <Navbar.Group align={Alignment.CENTER}>
+        <Navbar.Group
+          align={Alignment.CENTER}
+          style={{ overflowX: "auto", overflowY: "hidden" }}
+        >
           <BlueprintTabs selectedTabId={props.currentTabId}>
             {props.tabs.map((tab) => (
               <Tab
