@@ -10,15 +10,15 @@ lets take the idea of programming
 
  now when trying to improve this process we can encounter a few problems like
 
-1. any changes in the code syntax will require every user to update is interpreter and every program or library to update its code base, witch can result in mostly small or non-breaking changes every generation.
-2. sometimes code syntax witch is easy to write can be harder to interpret.
+1. any changes in the code syntax will require every user to update is interpreter and every program or library to update its code base, which can result in mostly small or non-breaking changes in every language generation leap.
+2. sometimes code syntax which is easy to write can be harder to interpret for an interpretor.
 3. for some people coding in general is not the best way to program especially for people in the creative area like designers.   
 
 that's why we have tools like:
   - bable (code translator)
 >    **es6 + jsx=> raw js=> code interpreter**
 
-  - wix (web builder)
+  - wix (website builder)
 >    **visual editor=> html=> html renderer**
 
   - unreal engine blueprints
