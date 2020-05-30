@@ -47,8 +47,8 @@ class Viewport extends Component<ViewportProps, ViewportState> {
   render() {
     return (
       <Tabs
-		id="ViewportTabs"
-		currentTabId="now"
+        id="ViewportTabs"
+        currentTabId="now"
         tabs={[
           {
             heading: "Now hosting",
@@ -65,14 +65,14 @@ class Viewport extends Component<ViewportProps, ViewportState> {
             title: "iframe preview",
             id: "wb",
             childerns: (
-				<div style={{ height: "93%", marginTop: "-3%" }}>
-				<iframe
-				  title="page view"
-				  className="Fill"
-				  key={this.state.index}
-				  srcDoc={this.state.code}
-				></iframe>
-			  </div>
+              <div style={{ height: "93%", marginTop: "-3%" }}>
+                <iframe
+                  title="page view"
+                  className="Fill"
+                  key={this.state.index}
+                  srcDoc={this.state.code}
+                ></iframe>
+              </div>
             ),
           },
           {
@@ -80,38 +80,39 @@ class Viewport extends Component<ViewportProps, ViewportState> {
             title: "code view",
             id: "cd",
             childerns: (
-				<div>
-				<Scrollbars style={{ height: "90%" }} autoHide>
-				  <Highlight
-					{...defaultProps}
-					code={this.state.code}
-					theme={DarkTheme}
-					language={this.getPrismLangusage()}
-				  >
-					{({
-					  className,
-					  style,
-					  tokens,
-					  getLineProps,
-					  getTokenProps,
-					}) => (
-					  <Pre className={className} style={style}>
-						{tokens.map((line, i) => (
-						  <div {...getLineProps({ line, key: i })}>
-							<LineNo>{i + 1}</LineNo>
-							{line.map((token, key) => (
-							  <span {...getTokenProps({ token, key })} />
-							))}
-						  </div>
-						))}
-					  </Pre>
-					)}
-				  </Highlight>
-				</Scrollbars>
-			  </div>
+              <div>
+                <Scrollbars style={{ height: "90%" }} autoHide>
+                  <Highlight
+                    {...defaultProps}
+                    code={this.state.code}
+                    theme={DarkTheme}
+                    language={this.getPrismLangusage()}
+                  >
+                    {({
+                      className,
+                      style,
+                      tokens,
+                      getLineProps,
+                      getTokenProps,
+                    }) => (
+                      <Pre className={className} style={style}>
+                        {tokens.map((line, i) => (
+                          <div {...getLineProps({ line, key: i })}>
+                            <LineNo>{i + 1}</LineNo>
+                            {line.map((token, key) => (
+                              <span {...getTokenProps({ token, key })} />
+                            ))}
+                          </div>
+                        ))}
+                      </Pre>
+                    )}
+                  </Highlight>
+                </Scrollbars>
+              </div>
             ),
           },
         ]}
+        betweenComponent={<div style={{ marginTop: 20 }} />}
       />
     );
   }

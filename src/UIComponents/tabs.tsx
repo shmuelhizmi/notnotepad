@@ -27,13 +27,16 @@ const Tabs = (props: Props) => {
   const [currentTabId, setCurrentTabId] = useState(props.currentTabId);
   return (
     <div>
-      <Navbar style={{ height: 45 }}>
+      <Navbar style={{ height: 45, display: "flex" }}>
         <Navbar.Group>
           <Navbar.Heading>
             {props.tabs.find((tab) => currentTabId === tab.id).heading}
           </Navbar.Heading>
         </Navbar.Group>
-        <Navbar.Group align={Alignment.RIGHT}>
+        <Navbar.Group
+          style={{ overflowX: "auto", overflowY: "hidden" }}
+          align={Alignment.RIGHT}
+        >
           <BlueprintTabs
             animate
             large
