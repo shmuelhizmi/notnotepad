@@ -1,4 +1,4 @@
-# NotNotePad - [Live Demo](https://notnotepad.now.sh/)
+# NotNotePad - [Live Demo](https://notnotepad.com/)
 
 ![blockly](https://i.imgur.com/R8JeW47.jpg)
 ![code](https://i.imgur.com/zGOSyjw.jpg)
@@ -70,6 +70,9 @@ class componenet-x extends code-editor{
 - **static hosting with now** - [zeit](https://zeit.co/home)
 - **live code/page view**
 - **extensions system not finished**
+
+## How to contribute ?
+it's simple everyone is wellcome to open a PR on both features from the todo list or there own ideas
 
 ## todo
 
