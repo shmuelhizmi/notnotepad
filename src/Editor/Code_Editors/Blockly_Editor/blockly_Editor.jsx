@@ -20,9 +20,9 @@ export default class BlocklyEditor extends CodeEditor {
     this.Initial_xml = this.state.editorData;
     this.makeBlocksByCategory(this.init, this.blockData);
     this.theme = this.getThemeFromInitializationData();
-    this.theme.setComponentStyle("toolbox", "#293742");
+    this.theme.setComponentStyle("toolbox", "#2e3b51");
     this.workspace = null;
-    this.theme.setComponentStyle("workspace", "#293742");
+    this.theme.setComponentStyle("workspace", "#2e3b51");
   }
   componentDidMount = () => {
     this.setState({ editor: "Blockly" });
@@ -37,12 +37,14 @@ export default class BlocklyEditor extends CodeEditor {
     }, 200);
   };
   //workspace updated
-  workspaceDidChange = workspace => {
+  workspaceDidChange = (workspace) => {
     this.workspace = workspace;
     this.setState(
       {
         code: this.generator.workspaceToCode(workspace),
-        editorData: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
+        editorData: Blockly.Xml.domToText(
+          Blockly.Xml.workspaceToDom(workspace)
+        ),
       },
       () => {
         this.saveEditorDataFromState();
@@ -57,7 +59,7 @@ export default class BlocklyEditor extends CodeEditor {
         <ReactBlocklyComponent.BlocklyEditor
           toolboxCategories={parseWorkspaceXml(this.toolbox)}
           workspaceConfiguration={{
-            theme: this.theme
+            theme: this.theme,
           }}
           initialXml={this.Initial_xml}
           wrapperDivClassName="fill-height"
@@ -68,11 +70,11 @@ export default class BlocklyEditor extends CodeEditor {
   }
 
   //data initialization
-  initializationFileToData = name => {
+  initializationFileToData = (name) => {
     return require("./blockly_files_editors/" + name + "/init.json");
   };
 
-  getBlocksDataFromInitializationData = init => {
+  getBlocksDataFromInitializationData = (init) => {
     return require("./blockly_files_editors/" +
       init.name +
       "/" +
@@ -95,7 +97,7 @@ export default class BlocklyEditor extends CodeEditor {
     let BlockMakers = {};
     let BlockCodeMakers = {};
 
-    init.blocksDir.forEach(category => {
+    init.blocksDir.forEach((category) => {
       const makeBlock = require("./blockly_files_editors/" +
         init.name +
         "/" +
@@ -104,7 +106,7 @@ export default class BlocklyEditor extends CodeEditor {
       BlockMakers[category] = makeBlock;
     });
 
-    init.blocksDir.forEach(category => {
+    init.blocksDir.forEach((category) => {
       const makeBlockCode = require("./blockly_files_editors/" +
         init.name +
         "/" +
@@ -114,37 +116,37 @@ export default class BlocklyEditor extends CodeEditor {
       BlockCodeMakers[category] = makeBlockCode;
     });
 
-    blocks.forEach(block => {
+    blocks.forEach((block) => {
       let makeBlock = () => {}; //empty void
       makeBlock = BlockMakers[block.type]; //load function
       registerBlock(makeBlock(block));
     });
 
-    blocks.forEach(block => {
+    blocks.forEach((block) => {
       let makeBlockCode = () => {}; //empty void
       makeBlockCode = BlockCodeMakers[block.type]; //load function
       this.registerBlockCodeFromData(makeBlockCode(block));
     });
   };
 
-  registerBlockCodeFromData = blockData => {
-    this.generator[blockData.name] = block => {
+  registerBlockCodeFromData = (blockData) => {
+    this.generator[blockData.name] = (block) => {
       let resultCode = blockData.blockText;
-      blockData.statement_inputs.forEach(statement => {
+      blockData.statement_inputs.forEach((statement) => {
         resultCode = replace(
           resultCode,
           "%" + statement + "%",
           this.generator.statementToCode(block, statement) || ""
         );
       });
-      blockData.value_inputs.forEach(value => {
+      blockData.value_inputs.forEach((value) => {
         resultCode = replace(
           resultCode,
           "%" + value + "%",
           this.generator.valueToCode(block, value, 1) || ""
         );
       });
-      blockData.field_values.forEach(value => {
+      blockData.field_values.forEach((value) => {
         resultCode = replace(
           resultCode,
           "%" + value + "%",
@@ -164,24 +166,24 @@ export default class BlocklyEditor extends CodeEditor {
   };
 }
 
-const registerBlock = block => {
+const registerBlock = (block) => {
   Blockly.Blocks[block.type] = {
-    init: function() {
+    init: function () {
       this.jsonInit(block);
-    }
+    },
   };
 };
 
 //TOOLBOX
 const makeToolboxCategories = (data, categories = []) => {
   let categoriesArray = categories;
-  data.forEach(element => {
+  data.forEach((element) => {
     if (element.tags != null) {
       //check for tags
-      element.tags.forEach(tag => {
+      element.tags.forEach((tag) => {
         //if tags found go over each tag
         let categoryFound = false;
-        categoriesArray.forEach(category => {
+        categoriesArray.forEach((category) => {
           //and go over every category to...
           if (category.name === tag) {
             // check for match
@@ -193,7 +195,7 @@ const makeToolboxCategories = (data, categories = []) => {
           //if no match was found create a new category with the tag
           categoriesArray.push({
             name: tag,
-            elements: [element.name]
+            elements: [element.name],
           });
         }
       });
@@ -202,16 +204,16 @@ const makeToolboxCategories = (data, categories = []) => {
   return categoriesArray;
 };
 
-const genarateToolboxFromCategories = categories => {
+const genarateToolboxFromCategories = (categories) => {
   let results = `<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">\n`;
-  categories.forEach(category => {
+  categories.forEach((category) => {
     results +=
       ' <category name="' +
       category.name +
       '" categorystyle="' +
       category.name +
       '" >\n';
-    category.elements.forEach(element => {
+    category.elements.forEach((element) => {
       results += `    <block type="${element}" ></block>\n`;
     });
     results += ` </category>\n`;

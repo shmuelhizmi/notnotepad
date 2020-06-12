@@ -5,12 +5,12 @@ import { connect } from "react-redux";
 import {
   setNowEnable,
   setNowToken,
-  setNowUrl
+  setNowUrl,
 } from "../../states/services/now";
 import Now from "../../APIS/now/now";
 import StorageManager, {
   codeDir,
-  secretDir
+  secretDir,
 } from "../../Storage/storageManager";
 import {
   InputGroup,
@@ -22,7 +22,7 @@ import {
   ControlGroup,
   Collapse,
   H4,
-  Spinner
+  Spinner,
 } from "@blueprintjs/core";
 
 interface NowPanelState {
@@ -74,7 +74,7 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
       email: "",
       existingToken: "",
       projectId: "nnp-" + randomstring.generate(5),
-      requestLoginState: props.enable ? "ready" : "registration"
+      requestLoginState: props.enable ? "ready" : "registration",
     };
     this.storage = new StorageManager();
     this.nowClient = new Now(
@@ -90,7 +90,7 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
     this.setState({ requestLoginState: "loading" });
     this.nowClient
       .requestLogin(this.state.email, this.state.projectId)
-      .then(res => {
+      .then((res) => {
         this.setState({ activeCode: res.securityCode, activeToken: res.token });
         this.setState({ requestLoginState: "verification" });
       });
@@ -99,7 +99,7 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
     this.setState({ requestLoginState: "loading" });
     this.nowClient
       .verifyLogin(this.state.email, this.state.activeToken)
-      .then(token => {
+      .then((token) => {
         this.storage.syncSetFile("now", token, secretDir);
         this.updateToken(token);
       });
@@ -114,10 +114,10 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
   publish = () => {
     this.setState({ requestLoginState: "loading" });
     const files = this.storage.syncListFilesToFilesArray("", codeDir);
-    this.nowClient.deploy(files, "notpad").then(url => {
+    this.nowClient.deploy(files, "notpad").then((url) => {
       this.setState({
         url: url,
-        requestLoginState: "publish"
+        requestLoginState: "publish",
       });
       this.props.setNowUrl(url);
     });
@@ -191,7 +191,7 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
         >
           <div
             style={{
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
             <p>
@@ -204,32 +204,42 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
             <p>and click continue </p>
           </div>
           <ControlGroup>
-          <Button text="back" onClick={()=>this.setState({ requestLoginState: "registration"})}></Button>
-          <Button fill text="continue" onClick={this.verify}></Button>
+            <Button
+              text="back"
+              onClick={() =>
+                this.setState({ requestLoginState: "registration" })
+              }
+            ></Button>
+            <Button fill text="continue" onClick={this.verify}></Button>
           </ControlGroup>
           <Divider></Divider>
         </Collapse>
-        <ButtonGroup fill>
-          <Button onClick={this.publish} disabled={!this.state.enable}>
-            <HTMLTable>
-              <thead>
-                <tr>
-                  <th>
-                    <img
-                      width="25"
-                      alt="now"
-                      height="25"
-                      src="./media/oauth/zeit-black-triangle.svg"
-                    ></img>
-                  </th>
-                  <th>
-                    <p>Publish</p>
-                  </th>
-                </tr>
-              </thead>
-            </HTMLTable>
+        <div style={{ width: "100%", textAlign: "center" }}>
+          <Button
+            onClick={this.publish}
+            disabled={!this.state.enable}
+            className="button-content"
+            style={{ width: "80%", height: 60 }}
+          >
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              <img
+                style={{ position: "relative", right: 10, top: 14 }}
+                width="35"
+                alt="now"
+                height="25"
+                src="./media/oauth/zeit-black-triangle.svg"
+              ></img>
+              <h3>Publish</h3>
+            </div>
           </Button>
-        </ButtonGroup>
+        </div>
         <Divider></Divider>
         <Collapse isOpen={this.state.enable && this.state.url !== ""}>
           <Browser url={this.state.url}></Browser>

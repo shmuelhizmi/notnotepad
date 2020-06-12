@@ -74,7 +74,7 @@ export const ControlGroupTabs = (props: ControlGroupProps) => {
         <Tag>
           <h3>{props.tabs.find((tab) => currentTabId === tab.id).heading}</h3>
         </Tag>
-        <Tag style={{ backgroundColor: "#394b59" }}>
+        <Tag>
           <BlueprintTabs
             animate
             large
