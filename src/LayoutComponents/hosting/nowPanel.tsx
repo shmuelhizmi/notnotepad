@@ -15,9 +15,7 @@ import StorageManager, {
 import {
   InputGroup,
   Divider,
-  ButtonGroup,
   Button,
-  HTMLTable,
   Tag,
   ControlGroup,
   Collapse,

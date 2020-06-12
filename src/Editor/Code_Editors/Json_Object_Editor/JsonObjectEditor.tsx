@@ -1,29 +1,14 @@
 import React from "react";
 import CodeEditor from "../../CodeEditor";
 import {
-  Navbar,
-  NavbarGroup,
-  NumericInput,
-  ControlGroup,
-  Alignment,
-  Tag,
   H1,
   IPanelProps,
   Button,
   PanelStack,
-  Text,
-  InputGroup,
   Divider,
-  Switch,
 } from "@blueprintjs/core";
 import "./JsonObjectEditor.scss";
-import {
-  Cell,
-  Table,
-  Column,
-  EditableCell,
-  EditableName,
-} from "@blueprintjs/table";
+import { Table, Column, EditableCell } from "@blueprintjs/table";
 import "@blueprintjs/table/lib/css/table.css";
 
 interface CompiledObject {
@@ -362,7 +347,6 @@ class ObjectView extends React.Component<
 
     return (
       <EditableCell
-
         value={
           filterdValues[rowIndex].name ||
           "index - " + filterdValues[rowIndex].index
@@ -383,6 +367,7 @@ class ObjectView extends React.Component<
       props: {
         value,
         onChange: (value) => {
+          // eslint-disable-next-line react/no-direct-mutation-state
           this.state.value[name] = value;
           this.setState(this.state);
           this.props.onChange(this.state.value);

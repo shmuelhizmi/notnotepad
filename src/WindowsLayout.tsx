@@ -15,7 +15,6 @@ import "@blueprintjs/core/lib/css/blueprint.css";
 import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
 import Explorer from "./LayoutComponents/Explorer/Explorer";
-import EditorWindow from "./LayoutComponents/Editor/EditorWindow";
 import FullExplorer from "./LayoutComponents/Explorer/FullExplorer";
 import ProjectNavbar from "./LayoutComponents/navbar/ProjectNavbar";
 import AppLauncher from "./LayoutComponents/apps/launcher";
@@ -47,9 +46,6 @@ export class WindowsLayout extends React.PureComponent<
   { theme: Theme },
   WindowsLayoutState
 > {
-  constructor(props: { theme: Theme }) {
-    super(props);
-  }
   state: WindowsLayoutState = {
     currentNode: {
       direction: "row",

@@ -529,7 +529,7 @@ export default class StorageManager {
       Date.now() + "-notnotepad.nnpjs"
     );
   }
-  getPathToFileName = (fullPath: string) => fullPath.replace(/^.*[\\\/]/, "");
+  getPathToFileName = (fullPath: string) => fullPath.replace(/^.*[\\/]/, "");
 
   downloadFile(path: string, storage = codeDir) {
     const file = this.syncGetFile(path, storage);

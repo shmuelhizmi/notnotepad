@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Colors, Navbar, Button, Tabs, Tab } from "@blueprintjs/core";
 import Home from "./windows/home";
 import MarketPlace from "./windows/marketPlace";
 import { AppView, appService } from "./appView/app";
