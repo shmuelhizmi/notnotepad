@@ -72,7 +72,7 @@ class componenet-x extends code-editor{
 - **extensions system not finished**
 
 ## How to contribute ?
-it's simple everyone is wellcome to open a PR on both features from the todo list or there own ideas
+it's simple everyone is wellcome to open a PR on both features from the todo list or from there own ideas :)
 
 ## todo
 
