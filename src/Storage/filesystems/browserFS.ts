@@ -1,5 +1,4 @@
-import * as BrowserFS from "browserfs/dist/node/core/browserfs";
-import { FSModule } from "browserfs/dist/node/core/FS";
+import * as BrowserFS from "browserfs";
 import {
   codeDir,
   configDir,
@@ -43,12 +42,12 @@ export default async (): Promise<FileSystem> => {
     createFileSystem("LocalStorage"),
     createFileSystem("LocalStorage"),
   ]);
-  const [
-    AsyncMirrorCode,
-    AsyncMirrorEditorData,
-  ] = await Promise.all([
+  const [AsyncMirrorCode, AsyncMirrorEditorData] = await Promise.all([
     createFileSystem("AsyncMirror", { sync: codeMemory, async: code }),
-    createFileSystem("AsyncMirror", { sync: editorDataMemory, async: editorData }),
+    createFileSystem("AsyncMirror", {
+      sync: editorDataMemory,
+      async: editorData,
+    }),
   ]);
   const fs = await createFileSystem("MountableFileSystem", {
     [codeDir]: AsyncMirrorCode,
@@ -57,5 +56,6 @@ export default async (): Promise<FileSystem> => {
     [configDir]: configData,
   });
   BrowserFS.initialize(fs);
+  BrowserFS.install(window);
   return fs;
 };

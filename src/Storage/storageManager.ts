@@ -25,7 +25,7 @@ export const editorDataDefualtValue = '{"editor":"","editorData":""}';
 export default class StorageManager {
   fileSystem: FSModule;
   constructor() {
-    this.fileSystem = BrowserFS.BFSRequire("fs");
+    this.fileSystem = require("fs");
   }
 
   //readFile

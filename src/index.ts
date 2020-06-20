@@ -20,8 +20,6 @@ ReactDOM.render(
 );
 BrowserFSStorage().then(async (fs) => {
   FocusStyleManager.onlyShowFocusOnTabs();
-
-  window.fs = fs;
   ReactDOM.render(
     React.createElement(WebRouter),
     document.getElementById("editor")
