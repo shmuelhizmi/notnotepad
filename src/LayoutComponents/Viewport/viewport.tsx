@@ -8,7 +8,8 @@ import Now from "../hosting/nowPanel";
 import StorageManager, { codeDir } from "../../Storage/storageManager";
 import { getDocumentLanguage } from "../../Storage/fileutils";
 import Scrollbars from "react-custom-scrollbars";
-
+import { html as inline } from "web-resource-inliner";
+import { dirname, join } from 'path'
 interface ViewportProps {
   document: string | null;
 }
@@ -16,6 +17,7 @@ interface ViewportProps {
 interface ViewportState {
   index: number;
   code: string;
+  html: string;
 }
 
 class Viewport extends Component<ViewportProps, ViewportState> {
@@ -26,6 +28,7 @@ class Viewport extends Component<ViewportProps, ViewportState> {
     this.state = {
       index: 0,
       code: "",
+      html: "",
     };
   }
   componentDidMount() {
@@ -37,11 +40,26 @@ class Viewport extends Component<ViewportProps, ViewportState> {
   };
   codeTick() {
     if (this.props.document) {
-      this.Storage.getFile(this.props.document, codeDir).then((data) => {
-        this.setState({
-          code: data,
+      if (
+        this.props.document.lastIndexOf(".html") ===
+        this.props.document.length - ".html".length
+      ) {
+        this.Storage.getFile(this.props.document, codeDir).then((data) => {
+          inline({ fileContent: data, relativeTo: dirname(join(codeDir, this.props.document)) }, (e, r) => {
+            this.setState({
+              code: data,
+              html: r,
+            });
+          });
         });
-      });
+      } else {
+        this.Storage.getFile(this.props.document, codeDir).then((data) => {
+          this.setState({
+            code: data,
+            html: data,
+          });
+        });
+      }
     }
   }
   render() {
@@ -70,7 +88,7 @@ class Viewport extends Component<ViewportProps, ViewportState> {
                   title="page view"
                   className="Fill"
                   key={this.state.index}
-                  srcDoc={this.state.code}
+                  srcDoc={this.state.html}
                 ></iframe>
               </div>
             ),

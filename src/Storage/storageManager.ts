@@ -72,7 +72,7 @@ export default class StorageManager {
       }
     }
   }
-  getFile(path: string, storage = "", defaultValue = "") {
+  getFile(path: string, storage = codeDir, defaultValue = "") {
     return new Promise(
       (resolve: (fileData: string | undefined) => void, reject) => {
         this.fileSystem.readFile(storage + path, "utf8", (e, res) => {
@@ -266,11 +266,16 @@ export default class StorageManager {
   }
 
   //delete file
-  removeDocument(path: string) {
-    return Promise.all([
-      this.removeFile(path, codeDir),
-      this.removeFile(path, editorDataDir),
-    ]);
+  async removeDocument(path: string) {
+    try {
+      await Promise.all([
+        this.removeFile(path, codeDir),
+        this.removeFile(path, editorDataDir),
+      ]);
+
+    } catch (e) {
+      // TO DO: HANDLE
+    }
   }
 
   removeFile(path: string, storage = "") {
