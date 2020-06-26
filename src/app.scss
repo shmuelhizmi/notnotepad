@@ -201,7 +201,12 @@ $ocean-dark-select-disabled: #3f4a5d;
       &.bp3-disabled {
         background: $ocean-dark-select-disabled;
       }
-
+      &.bp3-minimal {
+        background: none;
+        &:hover {
+          background: rgba(138, 155, 168, 0.15);
+        }
+      }
       &.button-content {
         padding: 0;
         .bp3-button-text {

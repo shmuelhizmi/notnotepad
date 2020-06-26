@@ -217,7 +217,8 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
             onClick={this.publish}
             disabled={!this.state.enable}
             className="button-content"
-            style={{ width: "80%", height: 60 }}
+            minimal
+            style={{ width: "100%", height: 60, borderRadius: 0 }}
           >
             <div
               style={{
@@ -238,7 +239,6 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
             </div>
           </Button>
         </div>
-        <Divider></Divider>
         <Collapse isOpen={this.state.enable && this.state.url !== ""}>
           <Browser url={this.state.url}></Browser>
         </Collapse>
