@@ -49,7 +49,7 @@ export default class AppLauncher extends Component<
     return (
       <div style={{ height: "100%" }}>
         <IconsTabs
-          currentTabId="home"
+          currentTabId={this.state.activeWindows}
           tabs={[
             {
               id: "home",

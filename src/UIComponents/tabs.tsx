@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   Tabs as BlueprintTabs,
   Tab,
@@ -44,8 +44,8 @@ const Tabs = (props: Props) => {
             onChange={(newTab) => setCurrentTabId(newTab)}
             id={props.id}
           >
-            {props.tabs.map((tab) => (
-              <Tab id={tab.id} title={tab.title} />
+            {props.tabs.map((tab, i) => (
+              <Tab key={i} id={tab.id} title={tab.title} />
             ))}
           </BlueprintTabs>
         </Navbar.Group>
@@ -82,8 +82,8 @@ export const ControlGroupTabs = (props: ControlGroupProps) => {
             onChange={(newTab) => setCurrentTabId(newTab)}
             id={props.id}
           >
-            {props.tabs.map((tab) => (
-              <Tab id={tab.id} title={tab.title} />
+            {props.tabs.map((tab, i) => (
+              <Tab key={i} id={tab.id} title={tab.title} />
             ))}
           </BlueprintTabs>
         </Tag>
@@ -107,6 +107,7 @@ interface IconsTabsProps {
 
 export const IconsTabs = (props: IconsTabsProps) => {
   const [currentTabId, setCurrentTabId] = useState(props.currentTabId);
+  useMemo(() => setCurrentTabId(props.currentTabId), [props.currentTabId])
   return (
     <div>
       <Navbar style={{ height: 45 }}>
@@ -116,8 +117,9 @@ export const IconsTabs = (props: IconsTabsProps) => {
           </Navbar.Heading>
         </Navbar.Group>
         <Navbar.Group align={Alignment.CENTER}>
-          {props.tabs.map((tab) => (
+          {props.tabs.map((tab, i) => (
             <Button
+              key={i}
               icon={tab.icon}
               minimal
               onClick={() => setCurrentTabId(tab.id)}
@@ -159,8 +161,9 @@ export const FilesTabs = (props: FilesTabsProps) => {
           style={{ overflowX: "auto", overflowY: "hidden" }}
         >
           <BlueprintTabs selectedTabId={props.currentTabId}>
-            {props.tabs.map((tab) => (
+            {props.tabs.map((tab, i) => (
               <Tab
+                key={i}
                 style={{
                   minWidth: 150,
                   maxWidth: 250,

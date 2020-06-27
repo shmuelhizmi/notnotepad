@@ -8,7 +8,7 @@ var action = () => ({
     icon: "info-sign"
   }
 });
-window.addEventListener("message", function(e) {
+addEventListener("message", function(e) {
   console.log(["new message to service -", e.data]);
 });
 setInterval(function() {

@@ -1,5 +1,5 @@
 import StorageManager, { configDir } from "../../Storage/storageManager";
-import { permissions } from "./appView/app";
+import { Permissions } from "./appView/app";
 
 const storage = new StorageManager();
 
@@ -8,7 +8,7 @@ export interface app {
   appID: string;
   type: appTypes;
   url: string;
-  permissions: permissions;
+  permissions: Permissions;
   iconUrl?: string;
 }
 export type appTypes = "app" | "service" | "editor";
