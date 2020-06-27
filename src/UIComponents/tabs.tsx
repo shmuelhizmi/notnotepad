@@ -89,7 +89,16 @@ export const ControlGroupTabs = (props: ControlGroupProps) => {
         </Tag>
       </ControlGroup>
       {props.betweenComponent}
-      {props.tabs.find((tab) => currentTabId === tab.id).childerns}
+      <div
+        style={{
+          width: "100%",
+          height: "calc(100% - 155px)",
+          overflowY: "auto",
+        }}
+        className={"scroll"}
+      >
+        {props.tabs.find((tab) => currentTabId === tab.id).childerns}
+      </div>
     </div>
   );
 };
@@ -107,7 +116,7 @@ interface IconsTabsProps {
 
 export const IconsTabs = (props: IconsTabsProps) => {
   const [currentTabId, setCurrentTabId] = useState(props.currentTabId);
-  useMemo(() => setCurrentTabId(props.currentTabId), [props.currentTabId])
+  useMemo(() => setCurrentTabId(props.currentTabId), [props.currentTabId]);
   return (
     <div>
       <Navbar style={{ height: 45 }}>

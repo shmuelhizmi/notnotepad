@@ -11,7 +11,6 @@ import {
   InputGroup,
   Button,
 } from "@blueprintjs/core";
-import Scrollbars from "react-custom-scrollbars";
 import { appService } from "../appView/app";
 
 interface homeState {
@@ -88,9 +87,9 @@ export default class Home extends Component<homeProps, homeState> {
               heading: "view your apps",
               id: "apps",
               childerns: (
-                <Scrollbars autoHeight autoHide>
+                <div>
                   {this.listApps("app")}
-                </Scrollbars>
+                </div>
               ),
             },
             {
@@ -98,7 +97,7 @@ export default class Home extends Component<homeProps, homeState> {
               heading: "view your services",
               id: "services",
               childerns: (
-                <Scrollbars autoHeight autoHide>
+                <div>
                   {this.props.listRunningServices().map((service, i) => {
                     const app = service.getApp();
                     return (
@@ -121,7 +120,7 @@ export default class Home extends Component<homeProps, homeState> {
                     );
                   })}
                   {this.listApps("service", true)}
-                </Scrollbars>
+                </div>
               ),
             },
             {
@@ -129,9 +128,9 @@ export default class Home extends Component<homeProps, homeState> {
               title: "editors",
               heading: "view your editors",
               childerns: (
-                <Scrollbars autoHeight autoHide>
+                <div>
                   {this.listApps("editor")}
-                </Scrollbars>
+                </div>
               ),
             },
           ]}
