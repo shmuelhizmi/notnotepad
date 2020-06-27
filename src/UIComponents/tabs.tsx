@@ -179,7 +179,7 @@ export const FilesTabs = (props: FilesTabsProps) => {
                     <Button
                       minimal
                       icon={"cross"}
-                      style={{}}
+                      style={{ borderRadius: 0, width: 35 }}
                       onClick={() => {
                         props.onCloseTab(tab.id);
                         forceUpdate();
@@ -199,13 +199,13 @@ export const FilesTabs = (props: FilesTabsProps) => {
         </Navbar.Group>
       </Navbar>
       {props.betweenComponent}
-      <EditorWindow
-        key={props.tabs.find((tab) => props.currentTabId === tab.id).id}
-        document={
-          props.tabs.find((tab) => props.currentTabId === tab.id).filename
-        }
-        editor="Monaco"
-      ></EditorWindow>
+      {props.tabs.map((tab) => (
+        <div
+          style={{ display: tab.id !== props.currentTabId ? "none" : "block" }}
+        >
+          <EditorWindow key={tab.id} document={tab.filename} editor="Monaco" />
+        </div>
+      ))}
     </div>
   );
 };

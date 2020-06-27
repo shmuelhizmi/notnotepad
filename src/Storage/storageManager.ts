@@ -47,7 +47,7 @@ export default class StorageManager {
       editorData: this.syncGetFileEditorData(path),
     };
   }
-  getFileEditorData(path: string, defaultValue = editorDataDefualtValue) {
+  getFileEditorData(path: string, defaultValue = editorDataDefualtValue): Promise<editorDataObjectInterface> {
     return new Promise((resolve, reject) => {
       this.getFile(path, editorDataDir, defaultValue).then((editorData) => {
         const editorDataObject = JSON.parse(editorData);
