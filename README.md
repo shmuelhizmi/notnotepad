@@ -60,7 +60,7 @@ class componenet-x extends code-editor{
 ## features
 
 - **multi editor**
-  1.  [monaco](https://github.com/microsoft/monaco-editor) editor ([vs-code](https://github.com/microsoft/vscode) like) - [react monaco editor]((https://github.com/react-monaco-editor/react-monaco-editor)
+  1.  [monaco](https://github.com/microsoft/monaco-editor) editor ([vs-code](https://github.com/microsoft/vscode) like) - [react monaco editor](https://github.com/react-monaco-editor/react-monaco-editor)
   2.  [blockly](https://github.com/google/blockly) html editor
   3.  json tree editor - [react-json-view](https://github.com/mac-s-g/react-json-view)
   4.  ckeditor 4 and 5 html editor - [ckeditor4-react](https://github.com/ckeditor/ckeditor4-react) , [@ckeditor/ckeditor5-react](https://github.com/ckeditor/ckeditor5-react)
