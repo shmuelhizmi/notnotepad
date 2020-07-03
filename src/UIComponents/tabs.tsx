@@ -213,9 +213,10 @@ export const FilesTabs = (props: FilesTabsProps) => {
       {props.betweenComponent}
       {props.tabs.map((tab) => (
         <div
+          key={tab.id}
           style={{ display: tab.id !== props.currentTabId ? "none" : "block" }}
         >
-          <EditorWindow key={tab.id} document={tab.filename} editor="Monaco" />
+          <EditorWindow document={tab.filename} editor="Monaco" />
         </div>
       ))}
     </div>

@@ -5,7 +5,7 @@ import { app, addApp } from "../appStorage";
 import StorageManager from "../../../Storage/storageManager";
 import handlers, { Handler } from "../actionHandlers";
 
-const storage = new StorageManager();
+const storage = StorageManager;
 
 export interface Permissions {
   //state

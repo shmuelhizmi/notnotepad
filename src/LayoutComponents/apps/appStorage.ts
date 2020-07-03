@@ -1,7 +1,7 @@
 import StorageManager, { configDir } from "../../Storage/storageManager";
 import { Permissions } from "./appView/app";
 
-const storage = new StorageManager();
+const storage = StorageManager;
 
 export interface app {
   name: string;

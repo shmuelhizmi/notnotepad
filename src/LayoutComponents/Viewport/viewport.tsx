@@ -21,10 +21,10 @@ interface ViewportState {
 }
 
 class Viewport extends Component<ViewportProps, ViewportState> {
-  Storage: StorageManager;
+  Storage: typeof StorageManager;
   constructor(props: ViewportProps) {
     super(props);
-    this.Storage = new StorageManager();
+    this.Storage = StorageManager;
     this.state = {
       index: 0,
       code: "",

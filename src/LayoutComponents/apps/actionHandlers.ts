@@ -15,7 +15,7 @@ export type Handler<
     openFile?: string;
     launchApp?: (appId: string) => void;
   };
-  storage: StorageManager;
+  storage: typeof StorageManager;
   addApp: (app: app) => void;
   toaster: IToaster;
 }) => void;

@@ -1,6 +1,6 @@
 import StorageManager, { codeDir } from "../Storage/storageManager";
 import { makeTable } from "./terminalComponents";
-const storage = new StorageManager();
+const storage = StorageManager;
 export const rm = (startObject, out) => {
   const help = ` rm - remove
     exmple file : rm "file.c"

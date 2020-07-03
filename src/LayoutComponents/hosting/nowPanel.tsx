@@ -60,7 +60,7 @@ type requestLoginState =
   | "loading";
 class NowPanel extends Component<NowPanelProps, NowPanelState> {
   nowClient: Now;
-  storage: StorageManager;
+  storage: typeof StorageManager;
   constructor(props: NowPanelProps) {
     super(props);
     this.state = {
@@ -74,7 +74,7 @@ class NowPanel extends Component<NowPanelProps, NowPanelState> {
       projectId: "nnp-" + randomstring.generate(5),
       requestLoginState: props.enable ? "ready" : "registration",
     };
-    this.storage = new StorageManager();
+    this.storage = StorageManager;
     this.nowClient = new Now(
       this.state.enable && this.state.token ? this.state.token : ""
     );

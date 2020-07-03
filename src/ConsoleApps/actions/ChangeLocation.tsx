@@ -21,10 +21,10 @@ interface RenameFileProps {
 }
 
 class RenameFile extends Component<RenameFileProps, RenameFileState> {
-  storage: StorageManager;
+  storage: typeof StorageManager;
   constructor(props: RenameFileProps) {
     super(props);
-    this.storage = new StorageManager();
+    this.storage = StorageManager;
     this.state = {
       isOpen: props.isOpen,
       currentLocation: props.currentLocation

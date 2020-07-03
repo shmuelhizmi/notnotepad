@@ -1,13 +1,17 @@
 import React from "react";
 import CodeEditor, { CodeEditorProps, Toster } from "../../CodeEditor";
-import Editor, { monaco } from "@monaco-editor/react";
 import { Button } from "@blueprintjs/core";
-import { editor } from "monaco-editor";
+import * as Monaco from "monaco-editor";
 
-const themeDark: editor.IStandaloneThemeData = {
+const themeDark: Monaco.editor.IStandaloneThemeData = {
   base: "vs-dark",
   inherit: true,
-  rules: [{ background: "#3F4B61", token: "" },{token: "comment", foreground: "#ff628c"},{ token:"variable" , foreground: "#e1efff"},{ token:"string" , foreground: "#ffee80"}],
+  rules: [
+    { background: "#3F4B61", token: "" },
+    { token: "comment", foreground: "#ff628c" },
+    { token: "variable", foreground: "#e1efff" },
+    { token: "string", foreground: "#ffee80" },
+  ],
   colors: {
     //editor
     "editor.foreground": "#CDE7F8",
@@ -30,13 +34,15 @@ const themeDark: editor.IStandaloneThemeData = {
     //suggestion
     "editorSuggestWidget.background": "#1F243099",
     "editorSuggestWidget.selectedBackground": "#23525B99",
-    "editorSuggestWidget.highlightForeground": "#9179F299"
+    "editorSuggestWidget.highlightForeground": "#9179F299",
   },
 };
+Monaco.editor.defineTheme("nnp", themeDark);
 
 export default class MonacoEditor extends CodeEditor {
-  editor: editor.IStandaloneCodeEditor | null;
+  editor: Monaco.editor.IStandaloneCodeEditor | null;
   isSaved: boolean;
+  editorMount?: HTMLDivElement;
   constructor(props: CodeEditorProps) {
     super(props);
     this.editor = null;
@@ -44,11 +50,6 @@ export default class MonacoEditor extends CodeEditor {
     this.editorOptions = { saveHotky: true };
     this.registerOptions(this.editorOptions);
   }
-  componentWillMount = () => {
-    monaco.init().then(monaco => {
-      monaco.editor.defineTheme("nnp", themeDark);
-    });
-  };
   componentWillUnmount = () => {
     const code = this.editor.getValue();
     const name = this.state.documentName;
@@ -69,17 +70,19 @@ export default class MonacoEditor extends CodeEditor {
           </div>
         ),
         intent: "warning",
-        timeout: 0
+        timeout: 0,
       });
     }
   };
   componentDidMount = () => {
     this.setState({ editor: "Monaco" });
+    this.onEditorMount(Monaco.editor.create(this.editorMount, {
+      theme: "nnp",
+      language: this.state.language,
+      automaticLayout: true,
+    }));
   };
-  onEditorMount = (
-    getEditorValue: () => string,
-    editor: editor.IStandaloneCodeEditor
-  ) => {
+  onEditorMount = (editor: Monaco.editor.IStandaloneCodeEditor) => {
     this.editor = editor;
     this.editor.setValue(this.state.code);
     this.isSaved = true;
@@ -88,7 +91,7 @@ export default class MonacoEditor extends CodeEditor {
       label: "save file",
       keybindings: [2048 | 49],
       run: this.save,
-      contextMenuGroupId: "9_cutcopypaste"
+      contextMenuGroupId: "9_cutcopypaste",
     });
     this.editor.onKeyDown(() => {
       this.onChange();
@@ -105,14 +108,12 @@ export default class MonacoEditor extends CodeEditor {
   render() {
     return (
       <div style={{ zIndex: 5 }}>
-        <Editor
-          theme="nnp"
-          options={{
-            automaticLayout: true
+        <div
+          style={{ width: "100%", height: "100%" }}
+          ref={(div) => {
+            this.editorMount = div;
           }}
-          language={this.state.language}
-          editorDidMount={this.onEditorMount}
-        ></Editor>
+        />
       </div>
     );
   }

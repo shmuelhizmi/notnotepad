@@ -11,7 +11,7 @@ export default class Now {
   requestLogin = (email: string, tokenName: string) => {
     return new Promise((resolve: (res: Login) => void, reject) => {
       axios({
-        url: "https://cors-anywhere.herokuapp.com/api.zeit.co/now/registration",
+        url: "https://api.vercel.com/now/registration",
         method: "POST",
         headers: ["Content-Type: application/json"],
         data: {
@@ -27,7 +27,7 @@ export default class Now {
     return new Promise((resolve: (token: string) => void, reject) => {
       axios({
         url:
-          "https://cors-anywhere.herokuapp.com/api.zeit.co/now/registration/verify",
+          "https://api.vercel.com/now/registration/verify",
         params: { email, token }
       })
         .then((res: AxiosResponse<{ token: string }>) =>
@@ -40,7 +40,7 @@ export default class Now {
     return new Promise((resolve: (url: string) => void, reject) => {
       axios
         .post(
-          "https://cors-anywhere.herokuapp.com/api.zeit.co/v11/now/deployments",
+          "https://api.vercel.com/v11/now/deployments",
           { name, version: 2, files },
           { headers: { Authorization: "bearer " + this.token } }
         )

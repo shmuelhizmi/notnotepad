@@ -7,7 +7,7 @@ export default class WellcomePage extends Component {
     return (
       <div
         style={{
-          backgroundColor: "#2732A7",
+          backgroundColor: "#2e3b51",
           position: "relative",
           width: "100%",
           height: "100%",
@@ -16,15 +16,16 @@ export default class WellcomePage extends Component {
         <div
           className="bp3-dark"
           style={{
-            backgroundColor: "#587BD6",
+            backgroundColor: "#2f405f",
             position: "absolute",
             top: "10%",
             width: "100%",
             height: "80%",
-            border: "1px solid #D9956E",
+            border: "1px solid #3e4b61",
           }}
         >
           <Card
+            interactive
             elevation={4}
             style={{
               position: "relative",
@@ -47,10 +48,17 @@ export default class WellcomePage extends Component {
                   <div>
                     <H1>wellcome to NotNotePad</H1>
                     <H3>large project may take a while to load...</H3>
-                    <Tag intent="warning">
-                      {" "}
-                      recommend to use in chrome or firefox{" "}
+                    <div style={{ display: "flex", flexDirection: "column", width: 300 }}>
+                    <Tag intent="warning" style={{ margin: 5 }}>
+                      make sure to give the page file permission
                     </Tag>
+                    <Tag intent="success" style={{ margin: 5 }}>
+                      recommend to use in chrome or firefox
+                    </Tag>
+                    <Tag style={{ margin: 5 }}>
+                      some of this page layout component are dragable :)
+                    </Tag>
+                    </div>
                   </div>
                 </Draggable>
               </div>

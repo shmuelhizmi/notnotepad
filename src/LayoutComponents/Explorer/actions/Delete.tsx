@@ -15,10 +15,10 @@ interface RenameFileProps {
 }
 
 class DeleteFile extends Component<RenameFileProps, RenameFileState> {
-  storage: StorageManager;
+  storage: typeof StorageManager;
   constructor(props: RenameFileProps) {
     super(props);
-    this.storage = new StorageManager();
+    this.storage = StorageManager;
     this.state = {
       isOpen: props.isOpen,
       selected: props.selected,

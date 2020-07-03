@@ -19,10 +19,10 @@ interface editorOptions {
 
 class CodeEditor extends Component<CodeEditorProps, CodeEditorState> {
   editorOptions?: editorOptions;
-  storage: StorageManager;
+  storage: typeof StorageManager;
   constructor(props: CodeEditorProps) {
     super(props);
-    this.storage = new StorageManager();
+    this.storage = StorageManager;
     const editorData = this.storage.syncGetDocument(props.documentName);
     this.state = {
       language: props.language,

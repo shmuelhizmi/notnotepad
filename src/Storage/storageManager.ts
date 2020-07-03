@@ -1,5 +1,6 @@
 import * as BrowserFS from "browserfs/dist/node/core/browserfs";
 import { ErrorCode } from "browserfs/dist/node/core/api_error";
+import Emittery from "emittery";
 
 //exports
 import fileDownload from "js-file-download";
@@ -22,11 +23,34 @@ export const configDir = "/conf/";
 export const codeDir = "/code/";
 export const editorDataDir = "/editorData/";
 export const editorDataDefualtValue = '{"editor":"","editorData":""}';
-export default class StorageManager {
+
+export interface StorageEvents {
+  readFile: { document: string; storage: string };
+  writeFile: { document: string; storage: string; data: string };
+  deleteFile: { document: string; storage: string };
+}
+
+class StorageManager {
   fileSystem: FSModule;
   constructor() {
     this.fileSystem = require("fs");
   }
+
+  private emitter = new Emittery();
+
+  private emit = <T extends keyof StorageEvents>(
+    event: T,
+    data: StorageEvents[T]
+  ) => {
+    this.emitter.emit(event, data);
+  };
+
+  on = <T extends keyof StorageEvents>(
+    event: T,
+    listener: (data: StorageEvents[T]) => void
+  ) => {
+    return this.emitter.on(event, listener);
+  };
 
   //readFile
   getDocument(path: string) {
@@ -41,13 +65,18 @@ export default class StorageManager {
       }
     });
   }
+
   syncGetDocument(path: string) {
     return {
       code: this.syncGetFile(path, codeDir),
       editorData: this.syncGetFileEditorData(path),
     };
   }
-  getFileEditorData(path: string, defaultValue = editorDataDefualtValue): Promise<editorDataObjectInterface> {
+
+  getFileEditorData(
+    path: string,
+    defaultValue = editorDataDefualtValue
+  ): Promise<editorDataObjectInterface> {
     return new Promise((resolve, reject) => {
       this.getFile(path, editorDataDir, defaultValue).then((editorData) => {
         const editorDataObject = JSON.parse(editorData);
@@ -72,7 +101,9 @@ export default class StorageManager {
       }
     }
   }
+
   getFile(path: string, storage = codeDir, defaultValue = "") {
+    this.emit("readFile", { document: path, storage });
     return new Promise(
       (resolve: (fileData: string | undefined) => void, reject) => {
         this.fileSystem.readFile(storage + path, "utf8", (e, res) => {
@@ -98,6 +129,7 @@ export default class StorageManager {
   }
 
   syncGetFile(path: string, storage = "", defaultValue = "") {
+    this.emit("readFile", { document: path, storage });
     try {
       return this.fileSystem.readFileSync(storage + path, "utf8");
     } catch (e) {
@@ -118,6 +150,7 @@ export default class StorageManager {
     this.syncSetFile(path, code, codeDir);
     this.syncSetFile(path, JSON.stringify(editorDataObject), editorDataDir);
   }
+
   MakeDocument(
     path: string,
     code = "",
@@ -128,6 +161,7 @@ export default class StorageManager {
       this.setFile(path, JSON.stringify(editorDataObject), editorDataDir),
     ]);
   }
+
   updateFile(
     path: string,
     code?: string,
@@ -151,6 +185,7 @@ export default class StorageManager {
       );
     }
   }
+
   setEditor(path: string, editor: string) {
     this.getFile(path, editorDataDir, editorDataDefualtValue).then(
       (editorData) => {
@@ -162,7 +197,9 @@ export default class StorageManager {
       }
     );
   }
+
   setFile(path: string, data: string, storage: string) {
+    this.emit("writeFile", { document: path, storage, data });
     return new Promise((resolve: () => void, reject) => {
       this.fileSystem.writeFile(storage + path, data, (e) => {
         if (e) {
@@ -186,7 +223,9 @@ export default class StorageManager {
       });
     });
   }
+
   syncSetFile(path: string, data: string, storage: string) {
+    this.emit("writeFile", { document: path, storage, data });
     try {
       return this.fileSystem.writeFileSync(storage + path, data);
     } catch (e) {
@@ -196,17 +235,20 @@ export default class StorageManager {
       }
     }
   }
+
   //make directory
   syncMakeDirectory(path: string) {
     this.syncCreateDirectory(path, codeDir);
     this.syncCreateDirectory(path, editorDataDir);
   }
+
   makeDirectory(path: string) {
     return Promise.all([
       this.createDirectory(path, codeDir),
       this.createDirectory(path, editorDataDir),
     ]);
   }
+
   createDirectory(path: string, storage = "") {
     return new Promise((resolve: () => void, reject) => {
       this.fileSystem.mkdir(storage + path, (e: BrowserFS.Errors.ApiError) => {
@@ -242,6 +284,7 @@ export default class StorageManager {
       });
     });
   }
+
   syncCreateDirectory(path: string, storage = "") {
     try {
       this.fileSystem.mkdirSync(storage + path);
@@ -272,13 +315,13 @@ export default class StorageManager {
         this.removeFile(path, codeDir),
         this.removeFile(path, editorDataDir),
       ]);
-
     } catch (e) {
       // TO DO: HANDLE
     }
   }
 
   removeFile(path: string, storage = "") {
+    this.emit("deleteFile", { document: path, storage });
     return new Promise((resolve: () => void, reject) => {
       this.fileSystem.unlink(storage + path, (e) => {
         if (e) {
@@ -541,3 +584,5 @@ export default class StorageManager {
     fileDownload(file, this.getPathToFileName(path));
   }
 }
+
+export default new StorageManager();

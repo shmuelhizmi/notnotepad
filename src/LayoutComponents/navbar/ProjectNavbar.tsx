@@ -17,10 +17,10 @@ interface NavbarState {
 export type panels = "now" | "github";
 
 export default class ProjectNavbar extends Component<NavbarProps, NavbarState> {
-  storage: StorageManager;
+  storage: typeof StorageManager;
   constructor(props: NavbarProps) {
     super(props);
-    this.storage = new StorageManager();
+    this.storage = StorageManager;
     this.state = {
       document: props.document,
       theme: props.theme,

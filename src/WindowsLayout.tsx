@@ -10,7 +10,7 @@ import {
   MosaicWindow,
   MosaicZeroState,
 } from "react-mosaic-component";
-
+import storageManager, { codeDir } from "./Storage/storageManager";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
@@ -38,14 +38,23 @@ export interface WindowsLayoutState {
 }
 interface tab {
   name: string;
-  toolbarControls: JSX.Element[];
+  toolbarControls: JSX.Element;
   body: JSX.Element;
   draggable?: boolean;
 }
-export class WindowsLayout extends React.PureComponent<
-  { theme: Theme },
-  WindowsLayoutState
-> {
+interface Props {
+  theme: Theme;
+}
+
+export class WindowsLayout extends React.Component<Props, WindowsLayoutState> {
+  constructor(props: Props) {
+    super(props);
+    storageManager.on("deleteFile", (data) => {
+      if (data.storage === codeDir) {
+        this.closeTab(data.document);
+      }
+    });
+  }
   state: WindowsLayoutState = {
     currentNode: {
       direction: "row",
@@ -79,44 +88,47 @@ export class WindowsLayout extends React.PureComponent<
     });
   };
 
+  closeTab = (document: string) => {
+    this.setState((state) => {
+      const newState = {
+        ...state,
+        editorTabs: state.editorTabs.filter((tab) => tab.id !== document),
+      };
+      if (document === state.openDocument) {
+        if (state.editorTabs.length === 0) {
+          return { ...newState, openDocument: "" };
+        } else {
+          return { ...newState, openDocument: state.editorTabs[0].filename };
+        }
+      }
+      return newState;
+    });
+  };
+
   Tabs: () => tab[] = () => [
     {
       name: "Editor",
       draggable: false,
-      toolbarControls: React.Children.toArray([
+      toolbarControls: (
         <ProjectNavbar
           document={this.state.openDocument}
           openFile={this.openFile}
           key={this.state.openDocument}
           theme={THEMES[this.state.currentTheme]}
-        ></ProjectNavbar>,
-      ]),
+        ></ProjectNavbar>
+      ),
       body: this.state.openDocument !== "" && (
         <FilesTabs
           currentTabId={this.state.openDocument}
           tabs={this.state.editorTabs}
-          onCloseTab={(id) => {
-            this.setState((state) => {
-              state.editorTabs.splice(
-                state.editorTabs.findIndex((tab) => tab.id === id),
-                1
-              );
-              if (id === this.state.openDocument) {
-                if (state.editorTabs.length === 0) {
-                  this.setState({ openDocument: "" });
-                } else {
-                  this.setState({ openDocument: state.editorTabs[0].filename });
-                }
-              }
-            });
-          }}
+          onCloseTab={this.closeTab}
           setActiveTab={(id) => this.openFile(id)}
         />
       ),
     },
     {
       name: "Viewport",
-      toolbarControls: React.Children.toArray([
+      toolbarControls: (
         <Button
           onClick={() => {
             window.open(
@@ -129,24 +141,30 @@ export class WindowsLayout extends React.PureComponent<
           icon="application"
         >
           open in new window
-        </Button>,
-      ]),
+        </Button>
+      ),
       body: <Viewport document={this.state.openDocument}></Viewport>,
     },
     {
       name: "Explorer",
-      toolbarControls: React.Children.toArray([
-        <FullExplorer openFile={this.openFile}></FullExplorer>,
-      ]),
+      toolbarControls: (
+        <FullExplorer
+          document={this.state.openDocument}
+          openFile={this.openFile}
+        ></FullExplorer>
+      ),
       body: (
         <div>
-          <Explorer openFile={this.openFile}></Explorer>
+          <Explorer
+            document={this.state.openDocument}
+            openFile={this.openFile}
+          ></Explorer>
         </div>
       ),
     },
     {
       name: "Apps",
-      toolbarControls: React.Children.toArray([]),
+      toolbarControls: <></>,
       body: (
         <div>
           <AppLauncher />

@@ -32,13 +32,14 @@ interface ExplorerState {
 
 export interface ExplorerProps {
   openFile: (path: string) => void;
+  document: string;
 }
 
 class Explorer extends Component<ExplorerProps, ExplorerState> {
-  storage: StorageManager;
+  storage: typeof StorageManager;
   constructor(props: ExplorerProps) {
     super(props);
-    this.storage = new StorageManager();
+    this.storage = StorageManager;
     this.state = {
       nodes: [],
       selected: "",
@@ -122,7 +123,7 @@ class Explorer extends Component<ExplorerProps, ExplorerState> {
   openDeleteFileDialog = () => {
     if (
       this.state.selected &&
-      this.state.selected !== this.state.openDocument
+      this.state.selected !== this.props.document
     ) {
       this.setState({ deleteFileDialogIsOpen: true });
     } else {

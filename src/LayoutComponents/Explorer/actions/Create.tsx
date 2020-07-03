@@ -22,11 +22,11 @@ interface CreateFileProps {
 }
 
 class CreateFile extends Component<CreateFileProps, CreateFileState> {
-  storage: StorageManager;
+  storage: typeof StorageManager;
   originalFileName: string;
   constructor(props: CreateFileProps) {
     super(props);
-    this.storage = new StorageManager();
+    this.storage = StorageManager;
     this.state = {
       isOpen: props.isOpen,
       fileName: props.selected,

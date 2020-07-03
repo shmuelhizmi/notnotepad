@@ -55,11 +55,11 @@ class EditorLauncher extends Component<
   EditorLauncherState
 > {
   Editors: Editor[];
-  StorageManager: StorageManager;
+  StorageManager: typeof StorageManager;
   constructor(props: EditorLauncherProps) {
     super(props);
     this.Editors = require("../../config/EditorsConfig.json").Editors;
-    this.StorageManager = new StorageManager();
+    this.StorageManager = StorageManager;
     const editor = this.getEditor(props);
     this.state = {
       document: props.document,

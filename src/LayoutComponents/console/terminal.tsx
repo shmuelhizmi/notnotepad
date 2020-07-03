@@ -47,7 +47,7 @@ export interface consoleControls {
 }
 
 export default class Terminal extends Component<TerminalProps, TerminalState> {
-  storage: StorageManager;
+  storage: typeof StorageManager;
   inputRef: HTMLInputElement | null;
   history: string[];
   currentCommand: string;
@@ -55,7 +55,7 @@ export default class Terminal extends Component<TerminalProps, TerminalState> {
   scrollbar: Scrollbars | null;
   constructor(props: TerminalProps) {
     super(props);
-    this.storage = new StorageManager();
+    this.storage = StorageManager;
     this.inputRef = null;
     this.currentCommand = "";
     this.history = [];
