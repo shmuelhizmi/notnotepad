@@ -7,7 +7,7 @@
     "@blueprintjs/table": "^3.8.3",
     "@ckeditor/ckeditor5-build-classic": "^20.0.0",
     "@ckeditor/ckeditor5-react": "^2.0.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "browserfs": "^1.4.3",
     "ckeditor4-react": "^1.0.0",
     "codemirror": "^5.49.2",
