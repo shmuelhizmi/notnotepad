@@ -18,7 +18,7 @@
     "isomorphic-git": "^1.5.0",
     "js-file-download": "^0.4.8",
     "jszip": "^3.2.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "monaco-editor": "^0.20.0",
     "monaco-editor-webpack-plugin": "^1.9.0",
     "node-sass": "^4.13.0",
