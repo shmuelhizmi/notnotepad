@@ -15,7 +15,7 @@
     "git": "^0.1.5",
     "hotkeys-js": "^3.7.3",
     "is-buffer": "^2.0.4",
-    "isomorphic-git": "^1.5.0",
+    "isomorphic-git": "^1.8.2",
     "js-file-download": "^0.4.8",
     "jszip": "^3.2.2",
     "lodash": "^4.17.15",
